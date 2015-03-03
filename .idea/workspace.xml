@@ -28,14 +28,21 @@
       <file leaf-file-name="Agent.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Agent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.06410257" vertical-offset="0" max-vertical-offset="702">
-              <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.32051283" vertical-offset="0" max-vertical-offset="702">
+              <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/Agent.java" />
+      </list>
+    </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="width" value="1280" />
@@ -350,8 +357,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Agent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06410257" vertical-offset="0" max-vertical-offset="702">
-          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.32051283" vertical-offset="0" max-vertical-offset="702">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
           <folding />
         </state>
       </provider>
