@@ -3,11 +3,11 @@
 ROZDELENI PRACE
 
 Tomas:
-Agent, AgentManager, AgentManagerImpl
+Agent, AgentManager, AgentManagerImpl,
 Assignment, AssignmentManager, AssignmentManagerImpl
-testy pro Mission
+,testy pro Mission
 
 Kristy:
-Mission, MissionManager, MissionManagerImpl
-testy pro Agent
+Mission, MissionManager, MissionManagerImpl,
+testy pro Agent,
 testy pro Assignment
