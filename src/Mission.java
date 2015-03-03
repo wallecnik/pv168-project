@@ -6,12 +6,14 @@ public class Mission {
     private String description;
     private int requiredAgents;
     private String goal;
+    private boolean completed;
 
-    public Mission(String goal, Long id, String description, int requiredAgents) {
+    public Mission(String goal, Long id, String description, int requiredAgents, boolean completed) {
         this.goal = goal;
         this.id = id;
         this.description = description;
         this.requiredAgents = requiredAgents;
+        this.completed = completed;
     }
 
     @Override
