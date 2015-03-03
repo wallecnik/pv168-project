@@ -1,10 +1,21 @@
 package cz.muni.fi.agentproject;
 
+import java.util.List;
+
 /**
- * Created by Wallecnik on 03.03.15.
+ * @author  Wallecnik
+ * @version 31.22.2015
  */
 public interface AgentManager {
 
-    public void createAgent(Agent agent);
+    void createAgent(Agent agent);
+
+    Agent findAgentById(Long id);
+
+    void updateAgent(Agent agent);
+
+    void deleteAgent(Agent agent);
+
+    List<Agent> findAllAgents();
 
 }
