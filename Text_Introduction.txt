@@ -5,14 +5,14 @@ End user: Executive officer with responsibility of mission-agent assignments
 Description: This software offers basic handling of agent-to-mission assignment.
 One agent can be assigned to various missions, just as one mission might require more than one agent.
 
-Agent parameters:
+cz.muni.fi.agentproject.Agent parameters:
 - id (clearly identifiable)
 - name
 - date of birth
 - description
 User will be able to get an agent from external sources, update his parameters and track him by his ID, as well as track all hired agents at once. Once user decides there is no more need for the agent, he can silently and humanely kill him in order to retain all the sensitive data in private.
 
-Mission parameters:
+cz.muni.fi.agentproject.Mission parameters:
 - id (clearly identifiable)
 - description
 - requiredAgents

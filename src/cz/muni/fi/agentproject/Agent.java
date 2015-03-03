@@ -1,3 +1,5 @@
+package cz.muni.fi.agentproject;
+
 /**
  * Created by Wallecnik on 03.03.15.
  */

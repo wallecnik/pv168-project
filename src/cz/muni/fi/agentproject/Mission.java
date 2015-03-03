@@ -1,3 +1,5 @@
+package cz.muni.fi.agentproject;
+
 /**
  * Created by Dužinka on 3. 3. 2015.
  */
