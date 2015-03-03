@@ -6,7 +6,7 @@ import java.util.List;
 public interface MissionManager {
     void createMission(Mission mission);
     boolean deleteMission(Mission mission);
-    boolean updateMission(Long id, Mission mission);
+    boolean updateMission(Mission mission);
 
     Mission findMissionById(Long id);
     List<Mission> findAllMissions();
