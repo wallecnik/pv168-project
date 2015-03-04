@@ -54,6 +54,30 @@ public class Mission {
     }
 
     /**
+     * Setters
+     */
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setRequiredAgents(int requiredAgents) {
+        this.requiredAgents = requiredAgents;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setGoal(String goal) {
+        this.goal = goal;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    /**
      * Equals + hashCode methods
      */
 
