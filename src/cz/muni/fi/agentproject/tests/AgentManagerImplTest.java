@@ -285,7 +285,7 @@ public class AgentManagerImplTest {
     }
 
     @Test
-    public void deleteMission() {
+    public void deleteAgent() {
 
         Agent agent = new Agent(1L, "Michal Brandejs", 10L, "Make IS rule the world");
         manager.createAgent(agent);
