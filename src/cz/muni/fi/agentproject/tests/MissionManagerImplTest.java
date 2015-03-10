@@ -41,9 +41,7 @@ public class MissionManagerImplTest {
             manager.createMission(null);
             fail();
         }
-        catch (IllegalArgumentException iae) {
-            //OK
-        }
+        catch (IllegalArgumentException ok) {}
 
         //setting id
         try {
@@ -51,9 +49,7 @@ public class MissionManagerImplTest {
             manager.createMission(mission);
             fail();
         }
-        catch (IllegalArgumentException iae) {
-            //OK
-        }
+        catch (IllegalArgumentException ok) {}
 
         //null goal
         try {
@@ -61,9 +57,7 @@ public class MissionManagerImplTest {
             manager.createMission(mission);
             fail();
         }
-        catch (IllegalArgumentException iae) {
-            //OK
-        }
+        catch (IllegalArgumentException ok) {}
 
         //null description
         try {
@@ -71,9 +65,7 @@ public class MissionManagerImplTest {
             manager.createMission(mission);
             fail();
         }
-        catch (IllegalArgumentException iae) {
-            //OK
-        }
+        catch (IllegalArgumentException ok) {}
 
         //zero Agents
         try {
@@ -81,9 +73,7 @@ public class MissionManagerImplTest {
             manager.createMission(mission);
             fail();
         }
-        catch (IllegalArgumentException iae) {
-            //OK
-        }
+        catch (IllegalArgumentException ok) {}
 
         //negative Agents
         try {
@@ -91,9 +81,7 @@ public class MissionManagerImplTest {
             manager.createMission(mission);
             fail();
         }
-        catch (IllegalArgumentException iae) {
-            //OK
-        }
+        catch (IllegalArgumentException ok) {}
 
         //completed mission
         try {
@@ -101,9 +89,7 @@ public class MissionManagerImplTest {
             manager.createMission(mission);
             fail();
         }
-        catch (IllegalArgumentException iae) {
-            //OK
-        }
+        catch (IllegalArgumentException ok) {}
 
 
     }
@@ -146,9 +132,7 @@ public class MissionManagerImplTest {
             manager.updateMission(storedMission);
             fail();
         }
-        catch (IllegalArgumentException iae) {
-            //OK
-        }
+        catch (IllegalArgumentException ok) {}
 
         //null goal
         try {
@@ -156,9 +140,7 @@ public class MissionManagerImplTest {
             manager.updateMission(storedMission);
             fail();
         }
-        catch (IllegalArgumentException iae) {
-            //OK
-        }
+        catch (IllegalArgumentException ok) {}
 
         //null description
         try {
@@ -166,9 +148,7 @@ public class MissionManagerImplTest {
             manager.updateMission(storedMission);
             fail();
         }
-        catch (IllegalArgumentException iae) {
-            //OK
-        }
+        catch (IllegalArgumentException ok) {}
 
         //zero agents
         try {
@@ -176,9 +156,7 @@ public class MissionManagerImplTest {
             manager.updateMission(storedMission);
             fail();
         }
-        catch (IllegalArgumentException iae) {
-            //OK
-        }
+        catch (IllegalArgumentException ok) {}
 
         //negative agents
         try {
@@ -186,9 +164,7 @@ public class MissionManagerImplTest {
             manager.updateMission(storedMission);
             fail();
         }
-        catch (IllegalArgumentException iae) {
-            //OK
-        }
+        catch (IllegalArgumentException ok) {}
 
     }
 
