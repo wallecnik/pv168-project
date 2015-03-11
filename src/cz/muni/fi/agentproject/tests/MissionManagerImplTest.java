@@ -4,7 +4,10 @@ import cz.muni.fi.agentproject.Mission;
 import cz.muni.fi.agentproject.MissionManager;
 import cz.muni.fi.agentproject.MissionManagerImpl;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
 import static org.junit.Assert.*;
 
 /**
@@ -13,7 +16,10 @@ import static org.junit.Assert.*;
  */
 public class MissionManagerImplTest {
 
-    MissionManager manager;
+    private MissionManager manager;
+
+    @Rule
+    private ExpectedException expected = ExpectedException.none();
 
     @Before
     public void setUp() {
@@ -34,64 +40,51 @@ public class MissionManagerImplTest {
     }
 
     @Test
-    public void createMissionWithWrongAttributes() {
+    public void createNullMission() {
+        expected.expect(IllegalArgumentException.class);
+        manager.createMission(null);
+    }
 
-        //null
-        try {
-            manager.createMission(null);
-            fail();
-        }
-        catch (IllegalArgumentException ok) {}
+    @Test
+    public void createMissionWithAssignedId() {
+        Mission mission = new Mission(0L, "", "", 1, false);
+        expected.expect(IllegalArgumentException.class);
+        manager.createMission(mission);
+    }
 
-        //setting id
-        try {
-            Mission mission = new Mission(0L, "", "", 1, false);
-            manager.createMission(mission);
-            fail();
-        }
-        catch (IllegalArgumentException ok) {}
+    @Test
+    public void createMissionWithNullGoal() {
+        Mission mission = new Mission(null, null, "", 1, false);
+        expected.expect(IllegalArgumentException.class);
+        manager.createMission(mission);
+    }
 
-        //null goal
-        try {
-            Mission mission = new Mission(null, null, "", 1, false);
-            manager.createMission(mission);
-            fail();
-        }
-        catch (IllegalArgumentException ok) {}
+    @Test
+    public void createMissionWithNullDescription() {
+        Mission mission = new Mission(null, "", null, 1, false);
+        expected.expect(IllegalArgumentException.class);
+        manager.createMission(mission);
+    }
 
-        //null description
-        try {
-            Mission mission = new Mission(null, "", null, 1, false);
-            manager.createMission(mission);
-            fail();
-        }
-        catch (IllegalArgumentException ok) {}
+    @Test
+    public void createMissionWithZeroRequiredAgents() {
+        Mission mission = new Mission(null, "", "", 0, false);
+        expected.expect(IllegalArgumentException.class);
+        manager.createMission(mission);
+    }
 
-        //zero Agents
-        try {
-            Mission mission = new Mission(null, "", "", 0, false);
-            manager.createMission(mission);
-            fail();
-        }
-        catch (IllegalArgumentException ok) {}
+    @Test
+    public void createMissionWithNegativeRequiredAgents() {
+        Mission mission = new Mission(null, "", "", -1, false);
+        expected.expect(IllegalArgumentException.class);
+        manager.createMission(mission);
+    }
 
-        //negative Agents
-        try {
-            Mission mission = new Mission(null, "", "", -1, false);
-            manager.createMission(mission);
-            fail();
-        }
-        catch (IllegalArgumentException ok) {}
-
-        //completed mission
-        try {
-            Mission mission = new Mission(null, "", "", 1, true);
-            manager.createMission(mission);
-            fail();
-        }
-        catch (IllegalArgumentException ok) {}
-
-
+    @Test
+    public void createMissionMarkedCompleted() {
+        Mission mission = new Mission(null, "", "", 1, true);
+        expected.expect(IllegalArgumentException.class);
+        manager.createMission(mission);
     }
 
     @Test
@@ -118,54 +111,43 @@ public class MissionManagerImplTest {
     }
 
     @Test
-    public void updateMissionWithWrongAttributes() {
+    public void updateMissionWithWrongId() {
+        Mission storedMission = createAndRetrieveMission();
+        storedMission.setId(Long.MAX_VALUE);
+        expected.expect(IllegalArgumentException.class);
+        manager.updateMission(storedMission);
+    }
 
-        Mission mission = new Mission(null, "Kill Usama", "Quick in and out", 100, false);
-        manager.createMission(mission);
+    @Test
+    public void updateMissionWithNullGoal() {
+        Mission storedMission = createAndRetrieveMission();
+        storedMission.setGoal(null);
+        expected.expect(IllegalArgumentException.class);
+        manager.updateMission(storedMission);
+    }
 
-        Long id = mission.getId();
-        Mission storedMission = manager.findMissionById(id);
+    @Test
+    public void updateMissionWithNullDescription() {
+        Mission storedMission = createAndRetrieveMission();
+        storedMission.setDescription(null);
+        expected.expect(IllegalArgumentException.class);
+        manager.updateMission(storedMission);
+    }
 
-        //no such id
-        try {
-            storedMission.setId(Long.MAX_VALUE);
-            manager.updateMission(storedMission);
-            fail();
-        }
-        catch (IllegalArgumentException ok) {}
+    @Test
+    public void updateMissionWithZeroRequiredAgents() {
+        Mission storedMission = createAndRetrieveMission();
+        storedMission.setRequiredAgents(0);
+        expected.expect(IllegalArgumentException.class);
+        manager.updateMission(storedMission);
+    }
 
-        //null goal
-        try {
-            storedMission.setGoal(null);
-            manager.updateMission(storedMission);
-            fail();
-        }
-        catch (IllegalArgumentException ok) {}
-
-        //null description
-        try {
-            storedMission.setDescription(null);
-            manager.updateMission(storedMission);
-            fail();
-        }
-        catch (IllegalArgumentException ok) {}
-
-        //zero agents
-        try {
-            storedMission.setRequiredAgents(0);
-            manager.updateMission(storedMission);
-            fail();
-        }
-        catch (IllegalArgumentException ok) {}
-
-        //negative agents
-        try {
-            storedMission.setRequiredAgents(-1);
-            manager.updateMission(storedMission);
-            fail();
-        }
-        catch (IllegalArgumentException ok) {}
-
+    @Test
+    public void updateMissionWithNegatoverequiredAgents() {
+        Mission storedMission = createAndRetrieveMission();
+        storedMission.setRequiredAgents(-1);
+        expected.expect(IllegalArgumentException.class);
+        manager.updateMission(storedMission);
     }
 
     @Test
@@ -180,6 +162,25 @@ public class MissionManagerImplTest {
         Mission storedMission = manager.findMissionById(id);
         assertNull(storedMission);
 
+    }
+
+    @Test
+    public void deleteNullMission() {
+        expected.expect(IllegalArgumentException.class);
+        manager.deleteMission(null);
+    }
+
+    @Test
+    public void deleteMissionWithWrongId() {
+
+    }
+
+    private Mission createAndRetrieveMission() {
+        Mission mission = new Mission(null, "Kill Usama", "Quick in and out", 100, false);
+        manager.createMission(mission);
+
+        Long id = mission.getId();
+        return manager.findMissionById(id);
     }
 
 }
