@@ -28,7 +28,6 @@ public class AgentManagerImplTest {
         manager = new AgentManagerImpl();
     }
 
-
     /* Create agent */
 
     @Test
