@@ -26,30 +26,34 @@ public class Agent {
     }
 
     /**
-     * Getters and setters
+     * Getters
      */
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public long getBorn() {
+        return born;
+    }
+
+    /**
+     * Setters
+     */
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public Long getBorn() {
-        return born;
-    }
-
-    public void setBorn(Long born) {
+    public void setBorn(long born) {
         this.born = born;
     }
 

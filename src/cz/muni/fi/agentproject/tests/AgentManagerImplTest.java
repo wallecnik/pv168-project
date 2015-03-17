@@ -52,33 +52,37 @@ public class AgentManagerImplTest {
 
     @Test
      public void createAgentWithWrongId() {
+        Agent agent = new Agent(-1L, "name", 10L);
+
         expectedEx.expect(IllegalArgumentException.class);
         expectedEx.expectMessage("ID cannot be <= 0");
-        Agent agent = new Agent(-1L, "name", 10L);
         manager.createAgent(agent);
     }
 
     @Test
     public void createAgentWithNullName() {
+        Agent agent = new Agent(1L, null, 10L);
+
         expectedEx.expect(IllegalArgumentException.class);
         expectedEx.expectMessage("Name is null");
-        Agent agent = new Agent(1L, null, 10L);
         manager.createAgent(agent);
     }
 
     @Test
     public void createAgentWithEmptyName() {
+        Agent agent = new Agent(1L, "", 10L);
+
         expectedEx.expect(IllegalArgumentException.class);
         expectedEx.expectMessage("Name is empty");
-        Agent agent = new Agent(1L, "", 10L);
         manager.createAgent(agent);
     }
 
     @Test
     public void createAgentNameWithIllegalSymbols() {
+        Agent agent = new Agent(1L, "lol_#yolo^2", 10L);
+
         expectedEx.expect(IllegalArgumentException.class);
         expectedEx.expectMessage("Name contains illegal symbols");
-        Agent agent = new Agent(1L, "lol_#yolo^2", 10L);
         manager.createAgent(agent);
         // regex which might help: name.matches("[a-zA-Z]+");
     }
@@ -88,33 +92,29 @@ public class AgentManagerImplTest {
      */
     @Test
     public void createAgentBornMoreThan100yo() {
-        try {
-            Calendar cal = Calendar.getInstance();
-            //cal.setTime(new Date());
-            cal.add(Calendar.YEAR, -100);
-            Date dateBefore100Years = cal.getTime();
+        Calendar cal = Calendar.getInstance();
+        //cal.setTime(new Date());
+        cal.add(Calendar.YEAR, -100);
+        Date dateBefore100Years = cal.getTime();
 
-            Agent agent = new Agent(1L, "name", dateBefore100Years.getTime());
-            manager.createAgent(agent);
-            fail("Agent is more than 100 years old");
-        }
-        catch (IllegalArgumentException ok) {
-        }
+        Agent agent = new Agent(1L, "name", dateBefore100Years.getTime());
+
+        expectedEx.expect(IllegalArgumentException.class);
+        expectedEx.expectMessage("Agent would be too old");
+        manager.createAgent(agent);
     }
 
     @Test
     public void createAgentNotBornYet() {
-        try {
-            Calendar cal = Calendar.getInstance();
-            cal.add(Calendar.DAY_OF_MONTH, +1);
-            Date datePlus1Day = cal.getTime();
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_MONTH, +1);
+        Date datePlus1Day = cal.getTime();
 
-            Agent agent = new Agent(1L, "name", datePlus1Day.getTime());
-            manager.createAgent(agent);
-            fail("Agent is not born yet");
-        }
-        catch (IllegalArgumentException ok) {
-        }
+        Agent agent = new Agent(1L, "name", datePlus1Day.getTime());
+
+        expectedEx.expect(IllegalArgumentException.class);
+        expectedEx.expectMessage("Born is in future");
+        manager.createAgent(agent);
     }
 
 
@@ -147,55 +147,51 @@ public class AgentManagerImplTest {
 
     @Test
     public void updateAgentNull() {
-        expectedEx.expect(NullPointerException.class);
-        expectedEx.expectMessage("Null agent (object)");
         Agent newAgent = makeAgent();
         newAgent.setId(Long.MAX_VALUE);
+
+        expectedEx.expect(NullPointerException.class);
+        expectedEx.expectMessage("Null agent (object)");
         manager.updateAgent(newAgent);
     }
 
     @Test
     public void updateAgentWithWrongId() {
-        expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("ID cannot be <= 0");
         Agent newAgent = makeAgent();
         newAgent.setId(-1L);
+
+        expectedEx.expect(IllegalArgumentException.class);
+        expectedEx.expectMessage("ID cannot be <= 0");
         manager.updateAgent(newAgent);
     }
 
     @Test
     public void updateAgentWithNullName() {
-        expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("Name is null");
         Agent newAgent = makeAgent();
         newAgent.setName(null);
+
+        expectedEx.expect(IllegalArgumentException.class);
+        expectedEx.expectMessage("Name is null");
         manager.updateAgent(newAgent);
     }
 
     @Test
     public void updateAgentWithEmptyName() {
-        expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("Name is empty");
         Agent newAgent = makeAgent();
         newAgent.setName("");
+
+        expectedEx.expect(IllegalArgumentException.class);
+        expectedEx.expectMessage("Name is empty");
         manager.updateAgent(newAgent);
     }
 
     @Test
     public void updateAgentNameWithIllegalSymbols() {
-        expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("Name contains illegal symbols");
         Agent newAgent = makeAgent();
         newAgent.setName("lol_#yolo^2");
-        manager.updateAgent(newAgent);
-    }
 
-    @Test
-    public void updateAgentNullBorn() {
         expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("Born is null");
-        Agent newAgent = makeAgent();
-        newAgent.setBorn(null);
+        expectedEx.expectMessage("Name contains illegal symbols");
         manager.updateAgent(newAgent);
     }
 
@@ -203,34 +199,30 @@ public class AgentManagerImplTest {
     public void updateAgentBornMoreThan100yo() {
         Agent agent = makeAgent();
 
-        try {
-            Calendar cal = Calendar.getInstance();
-            cal.add(Calendar.YEAR, -100);
-            Date dateBefore100Years = cal.getTime();
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, -100);
+        Date dateBefore100Years = cal.getTime();
 
-            agent.setBorn(dateBefore100Years.getTime());
-            manager.updateAgent(agent);
-            fail("updateAgent: Agent is more than 100 years old");
-        }
-        catch (IllegalArgumentException ok) {
-        }
+        agent.setBorn(dateBefore100Years.getTime());
+
+        expectedEx.expect(IllegalArgumentException.class);
+        expectedEx.expectMessage("Agent would be too old");
+        manager.updateAgent(agent);
     }
 
     @Test
     public void updateAgentNotBornYet() {
         Agent agent = makeAgent();
 
-        try {
-            Calendar cal = Calendar.getInstance();
-            cal.add(Calendar.DAY_OF_MONTH, +1);
-            Date datePlus1Day = cal.getTime();
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_MONTH, +1);
+        Date datePlus1Day = cal.getTime();
 
-            agent.setBorn(datePlus1Day.getTime());
-            manager.updateAgent(agent);
-            fail("updateAgent: Agent is not born yet");
-        }
-        catch (IllegalArgumentException ok) {
-        }
+        agent.setBorn(datePlus1Day.getTime());
+
+        expectedEx.expect(IllegalArgumentException.class);
+        expectedEx.expectMessage("Born is in future");
+        manager.updateAgent(agent);
     }
 
     @Test
