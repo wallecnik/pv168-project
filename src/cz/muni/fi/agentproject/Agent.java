@@ -10,8 +10,7 @@ public class Agent {
 
     private Long id;
     private String name;
-    private Long born;
-    private String description;
+    private long born;
 
     /**
      * Constructor for objects of class Agent.
@@ -19,13 +18,11 @@ public class Agent {
      * @param id          synthetic id of this Agent
      * @param name        name of this Agent
      * @param born        long value of time the agent was born
-     * @param description short description of this Agent
      */
-    public Agent(Long id, String name, Long born, String description) {
+    public Agent(Long id, String name, long born) {
         this.id = id;
         this.name = name;
         this.born = born;
-        this.description = description;
     }
 
     /**
@@ -56,11 +53,27 @@ public class Agent {
         this.born = born;
     }
 
-    public String getDescription() {
-        return description;
+    /**
+     * Equals + hashCode methods
+     */
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Agent)) return false;
+
+        Agent agent = (Agent) o;
+
+        if (born != agent.born) return false;
+        if (name != null ? !name.equals(agent.name) : agent.name != null) return false;
+
+        return true;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (int) (born ^ (born >>> 32));
+        return result;
     }
 }

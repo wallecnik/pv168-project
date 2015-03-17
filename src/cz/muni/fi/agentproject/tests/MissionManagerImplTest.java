@@ -28,7 +28,7 @@ public class MissionManagerImplTest {
 
     @Test
     public void createMission() {
-        Mission mission = new Mission(null, "Kill Usama", "Quick in and out", 100, false);
+        Mission mission = new Mission(null, "Kill Usama", 100, false);
         manager.createMission(mission);
 
         Long id = mission.getId();
@@ -47,42 +47,35 @@ public class MissionManagerImplTest {
 
     @Test
     public void createMissionWithAssignedId() {
-        Mission mission = new Mission(0L, "", "", 1, false);
+        Mission mission = new Mission(0L, "", 1, false);
         expected.expect(IllegalArgumentException.class);
         manager.createMission(mission);
     }
 
     @Test
     public void createMissionWithNullGoal() {
-        Mission mission = new Mission(null, null, "", 1, false);
-        expected.expect(IllegalArgumentException.class);
-        manager.createMission(mission);
-    }
-
-    @Test
-    public void createMissionWithNullDescription() {
-        Mission mission = new Mission(null, "", null, 1, false);
+        Mission mission = new Mission(null, null, 1, false);
         expected.expect(IllegalArgumentException.class);
         manager.createMission(mission);
     }
 
     @Test
     public void createMissionWithZeroRequiredAgents() {
-        Mission mission = new Mission(null, "", "", 0, false);
+        Mission mission = new Mission(null, "", 0, false);
         expected.expect(IllegalArgumentException.class);
         manager.createMission(mission);
     }
 
     @Test
     public void createMissionWithNegativeRequiredAgents() {
-        Mission mission = new Mission(null, "", "", -1, false);
+        Mission mission = new Mission(null, "", -1, false);
         expected.expect(IllegalArgumentException.class);
         manager.createMission(mission);
     }
 
     @Test
     public void createMissionMarkedCompleted() {
-        Mission mission = new Mission(null, "", "", 1, true);
+        Mission mission = new Mission(null, "", 1, true);
         expected.expect(IllegalArgumentException.class);
         manager.createMission(mission);
     }
@@ -90,13 +83,12 @@ public class MissionManagerImplTest {
     @Test
     public void updateMission() {
 
-        Mission mission = new Mission(null, "Kill Usama", "Quick in and out", 100, false);
+        Mission mission = new Mission(null, "Kill Usama", 100, false);
         manager.createMission(mission);
 
         Long id = mission.getId();
         Mission storedMission = manager.findMissionById(id);
         storedMission.setGoal("Kill Obama");
-        storedMission.setDescription("Slow infiltration");
         storedMission.setRequiredAgents(1);
         storedMission.setCompleted(true);
 
@@ -104,7 +96,6 @@ public class MissionManagerImplTest {
         assertNotEquals(mission, storedMission);
         assertEquals(mission.getId(), storedMission.getId());
         assertNotEquals(mission.getGoal(), storedMission.getGoal());
-        assertNotEquals(mission.getDescription(), storedMission.getDescription());
         assertNotEquals(mission.getRequiredAgents(), storedMission.getRequiredAgents());
         assertNotEquals(mission.isCompleted(), storedMission.isCompleted());
 
@@ -129,7 +120,6 @@ public class MissionManagerImplTest {
     @Test
     public void updateMissionWithNullDescription() {
         Mission storedMission = createAndRetrieveMission();
-        storedMission.setDescription(null);
         expected.expect(IllegalArgumentException.class);
         manager.updateMission(storedMission);
     }
@@ -153,7 +143,7 @@ public class MissionManagerImplTest {
     @Test
     public void deleteMission() {
 
-        Mission mission = new Mission(null, "Kill Usama", "Quick in and out", 100, false);
+        Mission mission = new Mission(null, "Kill Usama", 100, false);
         manager.createMission(mission);
 
         Long id = mission.getId();
@@ -176,7 +166,7 @@ public class MissionManagerImplTest {
     }
 
     private Mission createAndRetrieveMission() {
-        Mission mission = new Mission(null, "Kill Usama", "Quick in and out", 100, false);
+        Mission mission = new Mission(null, "Kill Usama", 100, false);
         manager.createMission(mission);
 
         Long id = mission.getId();

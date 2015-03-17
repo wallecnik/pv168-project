@@ -9,7 +9,6 @@ public class Mission {
 
     private Long id;
     private int requiredAgents;
-    private String description;
     private String goal;
     private boolean completed;
 
@@ -17,14 +16,12 @@ public class Mission {
      * Constructor for Mission class
      * @param id                clearly identifiable long number, can be null
      * @param goal              goal of the mission
-     * @param description       description of the mission
      * @param requiredAgents    number of agents required to succesfully complete the mission
      * @param completed         indicates the completeness of the mission
      */
-    public Mission(Long id, String goal, String description, int requiredAgents, boolean completed) {
+    public Mission(Long id, String goal, int requiredAgents, boolean completed) {
         this.id = id;
         this.goal = goal;
-        this.description = description;
         this.requiredAgents = requiredAgents;
         this.completed = completed;
     }
@@ -39,10 +36,6 @@ public class Mission {
 
     public int getRequiredAgents() {
         return requiredAgents;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public String getGoal() {
@@ -65,10 +58,6 @@ public class Mission {
         this.requiredAgents = requiredAgents;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public void setGoal(String goal) {
         this.goal = goal;
     }
@@ -88,22 +77,16 @@ public class Mission {
 
         Mission mission = (Mission) o;
 
-        if (completed != mission.completed) return false;
         if (requiredAgents != mission.requiredAgents) return false;
-        if (description != null ? !description.equals(mission.description) : mission.description != null) return false;
         if (goal != null ? !goal.equals(mission.goal) : mission.goal != null) return false;
-        if (id != null ? !id.equals(mission.id) : mission.id != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + requiredAgents;
-        result = 31 * result + (description != null ? description.hashCode() : 0);
+        int result = requiredAgents;
         result = 31 * result + (goal != null ? goal.hashCode() : 0);
-        result = 31 * result + (completed ? 1 : 0);
         return result;
     }
 }
