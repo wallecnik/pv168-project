@@ -13,7 +13,6 @@ import org.junit.rules.ExpectedException;
 import org.apache.commons.dbcp2.BasicDataSource;
 import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
@@ -161,7 +160,7 @@ public class AgentManagerImplTest {
         Agent newAgent = makeAgent();
         newAgent.setId(Long.MAX_VALUE);
 
-        expectedEx.expect(NullPointerException.class);
+        expectedEx.expect(IllegalArgumentException.class);
         manager.updateAgent(newAgent);
     }
 

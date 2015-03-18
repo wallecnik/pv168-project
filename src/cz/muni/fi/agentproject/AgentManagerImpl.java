@@ -28,9 +28,9 @@ public class AgentManagerImpl implements AgentManager {
         if (agent == null) throw new IllegalArgumentException("agent is null");
         if (agent.getId() != null) throw new IllegalArgumentException("agent id is not null");
         if (agent.getName() == null) throw new IllegalArgumentException("agent name is null");
-        if (agent.getName() == "") throw new IllegalArgumentException("agent name is empty");
-        if (agent.getName().length() > this.NAME_MAX_LENGTH) throw new IllegalArgumentException("agent name is empty");
-        //TODO: implement born protection
+        if (agent.getName().equals("")) throw new IllegalArgumentException("agent name is empty");
+        if (agent.getName().length() > NAME_MAX_LENGTH) throw new IllegalArgumentException("agent name is empty");
+        //TODO: implement born protection - toto dopisu ja :-)
 
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(
@@ -108,7 +108,7 @@ public class AgentManagerImpl implements AgentManager {
 
     private Long getKeyFromRS(ResultSet resultSet, Agent agent) throws SQLException {
 
-        Long newId = null;
+        Long newId;
 
         if (resultSet.first()) {
             if (resultSet.getMetaData().getColumnCount() != 1) {
