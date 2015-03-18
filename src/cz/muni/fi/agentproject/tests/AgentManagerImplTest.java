@@ -3,11 +3,18 @@ package cz.muni.fi.agentproject.tests;
 import cz.muni.fi.agentproject.Agent;
 import cz.muni.fi.agentproject.AgentManager;
 import cz.muni.fi.agentproject.AgentManagerImpl;
+import cz.muni.fi.agentproject.DbHelper;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import org.apache.commons.dbcp2.BasicDataSource;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -18,14 +25,31 @@ import static org.junit.Assert.*;
  */
 public class AgentManagerImplTest {
 
-    AgentManager manager;
+    private AgentManager manager;
+    private DataSource dataSource;
 
     @Rule
     public ExpectedException expectedEx = ExpectedException.none();
 
     @Before
-    public void setUp() {
-        manager = new AgentManagerImpl();
+    public void setUp() throws SQLException {
+        BasicDataSource bds = new BasicDataSource();
+        bds.setUrl(DbHelper.DB_URL);
+        this.dataSource = bds;
+        try (Connection connection = dataSource.getConnection()) {
+            connection.prepareStatement(DbHelper.SQL_CREATE_TEMPORARY_TABLE_AGENT)
+                    .executeUpdate();
+        }
+
+        manager = new AgentManagerImpl(dataSource);
+    }
+
+    @After
+    public void tearDown() throws SQLException {
+        try (Connection connection = dataSource.getConnection()){
+            connection.prepareStatement(DbHelper.SQL_DROP_TABLE_AGENT)
+                    .executeUpdate();
+        }
     }
 
     /* Create agent */

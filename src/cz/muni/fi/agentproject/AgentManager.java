@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface AgentManager {
 
-    void createAgent(Agent agent);
+    void createAgent(Agent agent) throws ServiceFailureException;
 
     Agent findAgentById(Long id);
 

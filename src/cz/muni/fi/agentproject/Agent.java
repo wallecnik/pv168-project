@@ -80,4 +80,12 @@ public class Agent {
         result = 31 * result + (int) (born ^ (born >>> 32));
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Agent{" +
+                "name='" + name + '\'' +
+                ", born=" + born +
+                '}';
+    }
 }

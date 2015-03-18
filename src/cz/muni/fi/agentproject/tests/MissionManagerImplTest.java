@@ -19,7 +19,7 @@ public class MissionManagerImplTest {
     private MissionManager manager;
 
     @Rule
-    private ExpectedException expected = ExpectedException.none();
+    public ExpectedException expected = ExpectedException.none();
 
     @Before
     public void setUp() {
