@@ -35,6 +35,8 @@ public class AgentManagerImplTest {
     public void setUp() throws SQLException {
         BasicDataSource bds = new BasicDataSource();
         bds.setUrl(DbHelper.DB_URL);
+        bds.setUsername(DbHelper.USERNAME);
+        bds.setPassword(DbHelper.PASSWORD);
         this.dataSource = bds;
         try (Connection connection = dataSource.getConnection()) {
             connection.prepareStatement(DbHelper.SQL_CREATE_TEMPORARY_TABLE_AGENT)
@@ -56,7 +58,7 @@ public class AgentManagerImplTest {
 
     @Test
     public void createAgent() {
-        Agent agent = new Agent(1L, "Michal Brandejs", 10L);
+        Agent agent = new Agent(null, "Michal Brandejs", 10L);
         manager.createAgent(agent);
 
         Long id = agent.getId();
@@ -69,44 +71,31 @@ public class AgentManagerImplTest {
 
     @Test
     public void createAgentNull() {
-        expectedEx.expect(NullPointerException.class);
-        expectedEx.expectMessage("Null agent (object)");
+        expectedEx.expect(IllegalArgumentException.class);
         manager.createAgent(null);
     }
 
     @Test
-     public void createAgentWithWrongId() {
-        Agent agent = new Agent(-1L, "name", 10L);
-
-        expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("ID cannot be <= 0");
-        manager.createAgent(agent);
-    }
-
-    @Test
     public void createAgentWithNullName() {
-        Agent agent = new Agent(1L, null, 10L);
+        Agent agent = new Agent(null, null, 10L);
 
         expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("Name is null");
         manager.createAgent(agent);
     }
 
     @Test
     public void createAgentWithEmptyName() {
-        Agent agent = new Agent(1L, "", 10L);
+        Agent agent = new Agent(null, "", 10L);
 
         expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("Name is empty");
         manager.createAgent(agent);
     }
 
     @Test
     public void createAgentNameWithIllegalSymbols() {
-        Agent agent = new Agent(1L, "lol_#yolo^2", 10L);
+        Agent agent = new Agent(null, "lol_#yolo^2", 10L);
 
         expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("Name contains illegal symbols");
         manager.createAgent(agent);
         // regex which might help: name.matches("[a-zA-Z]+");
     }
@@ -121,10 +110,9 @@ public class AgentManagerImplTest {
         cal.add(Calendar.YEAR, -100);
         Date dateBefore100Years = cal.getTime();
 
-        Agent agent = new Agent(1L, "name", dateBefore100Years.getTime());
+        Agent agent = new Agent(null, "name", dateBefore100Years.getTime());
 
         expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("Agent would be too old");
         manager.createAgent(agent);
     }
 
@@ -134,10 +122,9 @@ public class AgentManagerImplTest {
         cal.add(Calendar.DAY_OF_MONTH, +1);
         Date datePlus1Day = cal.getTime();
 
-        Agent agent = new Agent(1L, "name", datePlus1Day.getTime());
+        Agent agent = new Agent(null, "name", datePlus1Day.getTime());
 
         expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("Born is in future");
         manager.createAgent(agent);
     }
 
@@ -145,7 +132,7 @@ public class AgentManagerImplTest {
     /* Update agent */
 
     private Agent makeAgent() {
-        Agent agent = new Agent(1L, "Michal Brandejs", 10L);
+        Agent agent = new Agent(null, "Michal Brandejs", 10L);
         manager.createAgent(agent);
         Long id = agent.getId();
         Agent newAgent = manager.findAgentById(id);
@@ -154,7 +141,7 @@ public class AgentManagerImplTest {
 
     @Test
     public void updateAgent() {
-        Agent agent = new Agent(1L, "Michal Brandejs", 10L);
+        Agent agent = new Agent(null, "Michal Brandejs", 10L);
         manager.createAgent(agent);
         Long id = agent.getId();
         Agent newAgent = manager.findAgentById(id);
@@ -175,7 +162,6 @@ public class AgentManagerImplTest {
         newAgent.setId(Long.MAX_VALUE);
 
         expectedEx.expect(NullPointerException.class);
-        expectedEx.expectMessage("Null agent (object)");
         manager.updateAgent(newAgent);
     }
 
@@ -185,7 +171,6 @@ public class AgentManagerImplTest {
         newAgent.setId(-1L);
 
         expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("ID cannot be <= 0");
         manager.updateAgent(newAgent);
     }
 
@@ -195,7 +180,6 @@ public class AgentManagerImplTest {
         newAgent.setName(null);
 
         expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("Name is null");
         manager.updateAgent(newAgent);
     }
 
@@ -205,7 +189,6 @@ public class AgentManagerImplTest {
         newAgent.setName("");
 
         expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("Name is empty");
         manager.updateAgent(newAgent);
     }
 
@@ -215,7 +198,6 @@ public class AgentManagerImplTest {
         newAgent.setName("lol_#yolo^2");
 
         expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("Name contains illegal symbols");
         manager.updateAgent(newAgent);
     }
 
@@ -230,7 +212,6 @@ public class AgentManagerImplTest {
         agent.setBorn(dateBefore100Years.getTime());
 
         expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("Agent would be too old");
         manager.updateAgent(agent);
     }
 
@@ -245,13 +226,12 @@ public class AgentManagerImplTest {
         agent.setBorn(datePlus1Day.getTime());
 
         expectedEx.expect(IllegalArgumentException.class);
-        expectedEx.expectMessage("Born is in future");
         manager.updateAgent(agent);
     }
 
     @Test
     public void deleteAgent() {
-        Agent agent = new Agent(1L, "Michal Brandejs", 10L);
+        Agent agent = new Agent(null, "Michal Brandejs", 10L);
         manager.createAgent(agent);
 
         Long id = agent.getId();

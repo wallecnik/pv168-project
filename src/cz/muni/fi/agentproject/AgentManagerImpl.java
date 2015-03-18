@@ -12,6 +12,8 @@ import java.util.logging.Logger;
  */
 public class AgentManagerImpl implements AgentManager {
 
+    private static final int NAME_MAX_LENGTH = 255;
+
     public static final Logger logger = Logger.getLogger(AgentManagerImpl.class.getName());
 
     private DataSource dataSource;
@@ -26,7 +28,8 @@ public class AgentManagerImpl implements AgentManager {
         if (agent == null) throw new IllegalArgumentException("agent is null");
         if (agent.getId() != null) throw new IllegalArgumentException("agent id is not null");
         if (agent.getName() == null) throw new IllegalArgumentException("agent name is null");
-        if (agent.getName() != "") throw new IllegalArgumentException("agent name is empty");
+        if (agent.getName() == "") throw new IllegalArgumentException("agent name is empty");
+        if (agent.getName().length() > this.NAME_MAX_LENGTH) throw new IllegalArgumentException("agent name is empty");
         //TODO: implement born protection
 
         try (Connection connection = dataSource.getConnection()) {
@@ -90,12 +93,12 @@ public class AgentManagerImpl implements AgentManager {
 
     @Override
     public void updateAgent(Agent agent) {
-
+        throw new ServiceFailureException("Not yet implemented");
     }
 
     @Override
     public void deleteAgent(Agent agent) {
-
+        throw new ServiceFailureException("Not yet implemented");
     }
 
     @Override
