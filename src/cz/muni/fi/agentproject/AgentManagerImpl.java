@@ -93,12 +93,48 @@ public class AgentManagerImpl implements AgentManager {
 
     @Override
     public void updateAgent(Agent agent) {
-        throw new ServiceFailureException("Not yet implemented");
+        if (agent == null) throw new IllegalArgumentException("Agent pointer is null");
+        if (agent.getId() == null) throw new IllegalArgumentException("Agent with null id cannot be updated");
+        if (agent.getId() <= 0) throw new IllegalArgumentException("Agent's id is less than zero");
+        if (agent.getName() == null) throw new IllegalArgumentException("Agent's name is null");
+        if (agent.getName().equals("")) throw new IllegalArgumentException("Agent has an empty name");
+        if (agent.getName().length() > NAME_MAX_LENGTH) throw new IllegalArgumentException("Agent does not have valid name");
+        // TODO: Born protection + name with illegal symbols (the same as in createAgent())
+
+        try (Connection conn = dataSource.getConnection()) {
+            try(PreparedStatement ps = conn.prepareStatement(DbHelper.SQL_UPDATE_SINGLE_AGENT)) {
+
+                ps.setString(1, agent.getName());
+                ps.setLong(2, agent.getBorn());
+                ps.setLong(3, agent.getId());
+
+                int addedRows = ps.executeUpdate();
+                if(addedRows != 1) {
+                    throw new IllegalArgumentException("Unable to update agent " + agent);
+                }
+            }
+        } catch (SQLException sqle) {
+            logger.log(Level.SEVERE, null, sqle);
+            throw new ServiceFailureException("Error when updating an agent" + agent, sqle);
+        }
     }
 
     @Override
     public void deleteAgent(Agent agent) {
-        throw new ServiceFailureException("Not yet implemented");
+        try (Connection conn = dataSource.getConnection()) {
+            try(PreparedStatement ps = conn.prepareStatement(DbHelper.SQL_DELETE_SINGLE_AGENT)) {
+                Long agentId = agent.getId();
+                ps.setLong(1, agentId);
+
+                int addedRows = ps.executeUpdate();
+                if(addedRows != 1) {
+                    throw new ServiceFailureException("Did not delete agent with id =" + agentId);
+                }
+            }
+        } catch (SQLException sqle) {
+            logger.log(Level.SEVERE, null, sqle);
+            throw new ServiceFailureException("Unable to delete an agent" + agent, sqle);
+        }
     }
 
     @Override

@@ -160,7 +160,7 @@ public class AgentManagerImplTest {
     @Test
     public void updateAgentNull() {
         Agent newAgent = makeAgent();
-        newAgent.setId(Long.MAX_VALUE);
+        newAgent.setId(null);
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.updateAgent(newAgent);
