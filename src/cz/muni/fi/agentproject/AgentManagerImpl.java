@@ -29,8 +29,8 @@ public class AgentManagerImpl implements AgentManager {
         if (agent.getId() != null) throw new IllegalArgumentException("agent id is not null");
         if (agent.getName() == null) throw new IllegalArgumentException("agent name is null");
         if (agent.getName().equals("")) throw new IllegalArgumentException("agent name is empty");
-        if (agent.getName().length() > NAME_MAX_LENGTH) throw new IllegalArgumentException("agent name is empty");
-        //TODO: implement born protection - toto dopisu ja :-)
+        if (agent.getName().length() > NAME_MAX_LENGTH) throw new IllegalArgumentException("agent name is too long");
+        //TODO: implement born protection + illegal name - toto dopisu ja :-)
 
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(
@@ -121,6 +121,10 @@ public class AgentManagerImpl implements AgentManager {
 
     @Override
     public void deleteAgent(Agent agent) {
+        if (agent == null) throw new IllegalArgumentException("Agent pointer is null");
+        if (agent.getId() == null) throw new IllegalArgumentException("Agent with null id cannot be deleted");
+        if (agent.getId() <= 0) throw new IllegalArgumentException("Agent's id is less than zero");
+
         try (Connection conn = dataSource.getConnection()) {
             try(PreparedStatement ps = conn.prepareStatement(DbHelper.SQL_DELETE_SINGLE_AGENT)) {
                 Long agentId = agent.getId();
