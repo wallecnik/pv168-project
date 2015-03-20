@@ -38,7 +38,9 @@ public class AgentManagerImplTest {
         bds.setPassword(DbHelper.PASSWORD);
         this.dataSource = bds;
         try (Connection connection = dataSource.getConnection()) {
-            connection.prepareStatement(DbHelper.SQL_CREATE_TEMPORARY_TABLE_AGENT)
+            connection.prepareStatement(DbHelper.SQL_DROP_TABLE_AGENT)
+                    .executeUpdate();
+            connection.prepareStatement(DbHelper.SQL_CREATE_TABLE_AGENT)
                     .executeUpdate();
         }
 

@@ -19,7 +19,7 @@ public class DbHelper {
 
     public static final String DB_URL = "jdbc:mysql://localhost:3306/" + DB_NAME;
 
-    public static final String SQL_CREATE_TEMPORARY_TABLE_AGENT = "" +
+    public static final String SQL_CREATE_TABLE_AGENT = "" +
             "CREATE TABLE " + DbContract.TABLE_NAME_AGENT +
             " (" +
             DbContract.COLUMN_AGENT_ID   + " BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
@@ -28,22 +28,32 @@ public class DbHelper {
             ")";
 
     public static final String SQL_DROP_TABLE_AGENT = "" +
-            "DROP TABLE " + DbContract.TABLE_NAME_AGENT;
+            "DROP TABLE IF EXISTS " + DbContract.TABLE_NAME_AGENT;
 
-    public static String SQL_INSERT_INTO_AGENT = "" +
-            "INSERT INTO " + DbContract.TABLE_NAME_AGENT +
-            " (" +
+    public static final String SQL_INSERT_INTO_AGENT = "" +
+            "INSERT INTO " + DbContract.TABLE_NAME_AGENT + " " +
+            "(" +
             DbContract.COLUMN_AGENT_NAME + ", " +
             DbContract.COLUMN_AGENT_BORN +
             ") VALUES (?, ?)";
 
-    public static String SQL_SELECT_SINGLE_AGENT = "" +
+    public static final String SQL_SELECT_SINGLE_AGENT = "" +
             "SELECT " +
             DbContract.COLUMN_AGENT_ID   + ", " +
             DbContract.COLUMN_AGENT_NAME + ", " +
-            DbContract.COLUMN_AGENT_BORN +
-            " FROM " + DbContract.TABLE_NAME_AGENT +
-            " WHERE " + DbContract.COLUMN_AGENT_ID + " = ?";
+            DbContract.COLUMN_AGENT_BORN + " " +
+            "FROM " + DbContract.TABLE_NAME_AGENT + " " +
+            "WHERE " + DbContract.COLUMN_AGENT_ID + " = ?";
 
+    public static final String SQL_UPDATE_SINGLE_AGENT = "" +
+            "UPDATE " + DbContract.TABLE_NAME_AGENT +
+            "SET " +
+            DbContract.COLUMN_AGENT_NAME + " = ?, " +
+            DbContract.COLUMN_AGENT_BORN + " = ? " +
+            "WHERE " + DbContract.COLUMN_AGENT_ID + " = ?";
+
+    public static final String SQL_DELETE_SINGLE_AGENT = "" +
+            "DELETE FROM " + DbContract.TABLE_NAME_AGENT + " " +
+            "WHERE " + DbContract.COLUMN_AGENT_ID + " = ?";
 
 }
