@@ -2,6 +2,9 @@ package cz.muni.fi.agentproject;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +33,9 @@ public class AgentManagerImpl implements AgentManager {
         if (agent.getName() == null) throw new IllegalArgumentException("agent name is null");
         if (agent.getName().equals("")) throw new IllegalArgumentException("agent name is empty");
         if (agent.getName().length() > NAME_MAX_LENGTH) throw new IllegalArgumentException("agent name is too long");
-        //TODO: implement born protection + illegal name - toto dopisu ja :-)
+        ZonedDateTime agentBorn = ZonedDateTime.ofInstant(Instant.ofEpochMilli(agent.getBorn()), ZoneId.systemDefault());
+        if (agentBorn.compareTo(ZonedDateTime.now()) > 0) throw new IllegalArgumentException("Agent not born yet");
+        if (agentBorn.plusYears(100).compareTo(ZonedDateTime.now()) < 0) throw new IllegalArgumentException("Agent is too old");
 
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(
@@ -99,7 +104,9 @@ public class AgentManagerImpl implements AgentManager {
         if (agent.getName() == null) throw new IllegalArgumentException("Agent's name is null");
         if (agent.getName().equals("")) throw new IllegalArgumentException("Agent has an empty name");
         if (agent.getName().length() > NAME_MAX_LENGTH) throw new IllegalArgumentException("Agent does not have valid name");
-        // TODO: Born protection + name with illegal symbols (the same as in createAgent())
+        ZonedDateTime agentBorn = ZonedDateTime.ofInstant(Instant.ofEpochMilli(agent.getBorn()), ZoneId.systemDefault());
+        if (agentBorn.compareTo(ZonedDateTime.now()) > 0) throw new IllegalArgumentException("Agent not born yet");
+        if (agentBorn.plusYears(100).compareTo(ZonedDateTime.now()) < 0) throw new IllegalArgumentException("Agent is too old");
 
         try (Connection conn = dataSource.getConnection()) {
             try(PreparedStatement ps = conn.prepareStatement(DbHelper.SQL_UPDATE_SINGLE_AGENT)) {

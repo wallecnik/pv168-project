@@ -108,7 +108,7 @@ public class AgentManagerImplTest {
     public void createAgentBornMoreThan100yo() {
         Calendar cal = Calendar.getInstance();
         //cal.setTime(new Date());
-        cal.add(Calendar.YEAR, -100);
+        cal.add(Calendar.YEAR, -101);
         Date dateBefore100Years = cal.getTime();
 
         Agent agent = new Agent(null, "name", dateBefore100Years.getTime());
@@ -207,7 +207,7 @@ public class AgentManagerImplTest {
         Agent agent = makeAgent();
 
         Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.YEAR, -100);
+        cal.add(Calendar.YEAR, -101);
         Date dateBefore100Years = cal.getTime();
 
         agent.setBorn(dateBefore100Years.getTime());
