@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96216430-f262-4eb2-be02-53bbc203cb79" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/AgentManagerImpl.class" afterPath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/AgentManagerImpl.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/tests/AgentManagerImplTest.class" afterPath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/tests/AgentManagerImplTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManagerImpl.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManagerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AgentManagerImplTest.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AgentManagerImplTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pv168-project.iws" />
@@ -43,11 +44,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AgentManagerImplTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AgentManagerImplTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AgentManagerImplTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7352025" vertical-offset="2663" max-vertical-offset="3765">
-              <caret line="209" column="35" selection-start-line="209" selection-start-column="35" selection-end-line="209" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1826" max-vertical-offset="3765">
+              <caret line="136" column="0" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,11 +59,32 @@
       <file leaf-file-name="AgentManagerImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManagerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="2955">
-              <caret line="46" column="37" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2733" max-vertical-offset="3375">
+              <caret line="214" column="0" selection-start-line="214" selection-start-column="0" selection-end-line="214" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#5159#5166#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/Constants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.21028037" vertical-offset="0" max-vertical-offset="642">
+              <caret line="11" column="76" selection-start-line="11" selection-start-column="76" selection-end-line="11" selection-end-column="76" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DbHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1050">
+              <caret line="52" column="49" selection-start-line="52" selection-start-column="49" selection-end-line="52" selection-end-column="49" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -83,10 +105,11 @@
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/ServiceFailureException.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbContract.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/config.xml" />
-        <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/Agent.java" />
-        <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManagerImpl.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AgentManagerImplTest.java" />
+        <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java" />
+        <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManagerImpl.java" />
+        <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/Constants.java" />
       </list>
     </option>
   </component>
@@ -517,7 +540,13 @@
       <option name="project" value="LOCAL" />
       <updated>1426883111774</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Doplnena ochrana data narozeni u agenta.&#10;Upraveny testy - test na starsi nez 100 let byl nedeterministicky - pravdepodobne proto, ze se pouziva stary typ casoveho udaje posunuty o persne 100 let - po uprave na posun o 101 let testy prochazi">
+      <created>1427114530983</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1427114530983</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -601,7 +630,8 @@
     <MESSAGE value="Pridany knihovny do verzovani" />
     <MESSAGE value="minor retype fix" />
     <MESSAGE value="drobna uprava ochran u delete agenta" />
-    <option name="LAST_COMMIT_MESSAGE" value="drobna uprava ochran u delete agenta" />
+    <MESSAGE value="Doplnena ochrana data narozeni u agenta.&#10;Upraveny testy - test na starsi nez 100 let byl nedeterministicky - pravdepodobne proto, ze se pouziva stary typ casoveho udaje posunuty o persne 100 let - po uprave na posun o 101 let testy prochazi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Doplnena ochrana data narozeni u agenta.&#10;Upraveny testy - test na starsi nez 100 let byl nedeterministicky - pravdepodobne proto, ze se pouziva stary typ casoveho udaje posunuty o persne 100 let - po uprave na posun o 101 let testy prochazi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -612,16 +642,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManagerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="514" max-vertical-offset="3504">
-          <caret line="110" column="19" selection-start-line="110" selection-start-column="19" selection-end-line="110" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1296" max-vertical-offset="1512">
@@ -666,6 +686,7 @@
           <caret line="110" column="19" selection-start-line="110" selection-start-column="19" selection-end-line="110" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5159#5166#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -714,6 +735,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5159#5166#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -762,6 +784,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5159#5166#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -793,6 +816,7 @@
           <caret line="14" column="51" selection-start-line="14" selection-start-column="51" selection-end-line="14" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5159#5166#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -841,6 +865,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5159#5166#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -984,25 +1009,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbContract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4429066" vertical-offset="0" max-vertical-offset="867">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/Mission.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1230">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="76" max-vertical-offset="1512">
-          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1035,23 +1045,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManagerImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbContract.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="2955">
-          <caret line="46" column="37" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.13611615" vertical-offset="0" max-vertical-offset="1102">
+          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+          <folding>
+            <element signature="e#176#177#0" expanded="true" />
+            <element signature="e#238#239#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1050">
+          <caret line="52" column="49" selection-start-line="52" selection-start-column="49" selection-end-line="52" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AgentManagerImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1826" max-vertical-offset="3765">
+          <caret line="136" column="0" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AgentManagerImplTest.java">
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManagerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7352025" vertical-offset="2663" max-vertical-offset="3765">
-          <caret line="209" column="35" selection-start-line="209" selection-start-column="35" selection-end-line="209" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2733" max-vertical-offset="3375">
+          <caret line="214" column="0" selection-start-line="214" selection-start-column="0" selection-end-line="214" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5159#5166#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21028037" vertical-offset="0" max-vertical-offset="642">
+          <caret line="11" column="76" selection-start-line="11" selection-start-column="76" selection-end-line="11" selection-end-column="76" />
+          <folding />
         </state>
       </provider>
     </entry>

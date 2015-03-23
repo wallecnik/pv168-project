@@ -5,17 +5,17 @@ import java.sql.*;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 /**
  * @author  Wallecnik
  * @version 31.2.2015
  */
 public class AgentManagerImpl implements AgentManager {
-
-    private static final int NAME_MAX_LENGTH = 255;
 
     public static final Logger logger = Logger.getLogger(AgentManagerImpl.class.getName());
 
@@ -28,14 +28,9 @@ public class AgentManagerImpl implements AgentManager {
     @Override
     public void createAgent(Agent agent) throws ServiceFailureException {
 
-        if (agent == null) throw new IllegalArgumentException("agent is null");
+        validateAgent(agent);
+
         if (agent.getId() != null) throw new IllegalArgumentException("agent id is not null");
-        if (agent.getName() == null) throw new IllegalArgumentException("agent name is null");
-        if (agent.getName().equals("")) throw new IllegalArgumentException("agent name is empty");
-        if (agent.getName().length() > NAME_MAX_LENGTH) throw new IllegalArgumentException("agent name is too long");
-        ZonedDateTime agentBorn = ZonedDateTime.ofInstant(Instant.ofEpochMilli(agent.getBorn()), ZoneId.systemDefault());
-        if (agentBorn.compareTo(ZonedDateTime.now()) > 0) throw new IllegalArgumentException("Agent not born yet");
-        if (agentBorn.plusYears(100).compareTo(ZonedDateTime.now()) < 0) throw new IllegalArgumentException("Agent is too old");
 
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(
@@ -89,8 +84,9 @@ public class AgentManagerImpl implements AgentManager {
                 }
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException sqle) {
+            logger.log(Level.SEVERE, null, sqle);
+            throw new ServiceFailureException("Error when looking up an agent with id" + id, sqle);
         }
 
         return retVal;
@@ -98,15 +94,11 @@ public class AgentManagerImpl implements AgentManager {
 
     @Override
     public void updateAgent(Agent agent) {
-        if (agent == null) throw new IllegalArgumentException("Agent pointer is null");
+
+        validateAgent(agent);
+
         if (agent.getId() == null) throw new IllegalArgumentException("Agent with null id cannot be updated");
         if (agent.getId() <= 0) throw new IllegalArgumentException("Agent's id is less than zero");
-        if (agent.getName() == null) throw new IllegalArgumentException("Agent's name is null");
-        if (agent.getName().equals("")) throw new IllegalArgumentException("Agent has an empty name");
-        if (agent.getName().length() > NAME_MAX_LENGTH) throw new IllegalArgumentException("Agent does not have valid name");
-        ZonedDateTime agentBorn = ZonedDateTime.ofInstant(Instant.ofEpochMilli(agent.getBorn()), ZoneId.systemDefault());
-        if (agentBorn.compareTo(ZonedDateTime.now()) > 0) throw new IllegalArgumentException("Agent not born yet");
-        if (agentBorn.plusYears(100).compareTo(ZonedDateTime.now()) < 0) throw new IllegalArgumentException("Agent is too old");
 
         try (Connection conn = dataSource.getConnection()) {
             try(PreparedStatement ps = conn.prepareStatement(DbHelper.SQL_UPDATE_SINGLE_AGENT)) {
@@ -150,7 +142,30 @@ public class AgentManagerImpl implements AgentManager {
 
     @Override
     public List<Agent> findAllAgents() {
-        return null;
+
+        List<Agent> retList = new ArrayList<Agent>();
+
+        try (Connection connection = dataSource.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(
+                    DbHelper.SQL_SELECT_ALL_AGENTS)) {
+                ResultSet rs = ps.executeQuery();
+
+                rs.beforeFirst();
+
+                while (rs.next()) {
+                    Agent agent = resultSetToAgent(rs);
+
+                    retList.add(agent);
+                }
+            }
+
+        } catch (SQLException sqle) {
+            logger.log(Level.SEVERE, null, sqle);
+            throw new ServiceFailureException("Error when looking up all agents", sqle);
+        }
+
+        return retList;
+
     }
 
     private Long getKeyFromRS(ResultSet resultSet, Agent agent) throws SQLException {
@@ -190,6 +205,17 @@ public class AgentManagerImpl implements AgentManager {
         Agent agent = new Agent(id, name, born);
 
         return agent;
+    }
+
+    private void validateAgent(Agent agent) throws IllegalArgumentException {
+        if (agent == null) throw new IllegalArgumentException("agent is null");
+        if (agent.getName() == null) throw new IllegalArgumentException("agent name is null");
+        if (agent.getName().equals("")) throw new IllegalArgumentException("agent name is empty");
+        if (agent.getName().length() > Constants.NAME_MAX_LENGTH) throw new IllegalArgumentException("agent name is too long");
+        if (! Pattern.matches(Constants.NAME_REGEX, agent.getName())) throw new IllegalArgumentException("agent name contains illegal characters");
+        ZonedDateTime agentBorn = ZonedDateTime.ofInstant(Instant.ofEpochMilli(agent.getBorn()), ZoneId.systemDefault());
+        if (agentBorn.compareTo(ZonedDateTime.now()) > 0) throw new IllegalArgumentException("Agent not born yet");
+        if (agentBorn.plusYears(100).compareTo(ZonedDateTime.now()) < 0) throw new IllegalArgumentException("Agent is too old");
     }
 
 }

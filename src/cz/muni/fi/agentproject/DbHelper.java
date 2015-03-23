@@ -45,6 +45,13 @@ public class DbHelper {
             "FROM " + DbContract.TABLE_NAME_AGENT + " " +
             "WHERE " + DbContract.COLUMN_AGENT_ID + " = ?";
 
+    public static final String SQL_SELECT_ALL_AGENTS = "" +
+            "SELECT " +
+            DbContract.COLUMN_AGENT_ID   + ", " +
+            DbContract.COLUMN_AGENT_NAME + ", " +
+            DbContract.COLUMN_AGENT_BORN + " " +
+            "FROM " + DbContract.TABLE_NAME_AGENT;
+
     public static final String SQL_UPDATE_SINGLE_AGENT = "" +
             "UPDATE " + DbContract.TABLE_NAME_AGENT + " " +
             "SET " +
