@@ -55,24 +55,27 @@ public class AgentManagerImpl implements AgentManager {
 
         validateAgent(agent);
 
-        if (agent.getId() != null) throw new IllegalArgumentException("agent id is not null");
+        if (agent.getId() != null) {
+            throw new IllegalArgumentException("agent id is not null");
+        }
 
-        try (Connection connection = dataSource.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(
-                    DbHelper.SQL_INSERT_INTO_AGENT, Statement.RETURN_GENERATED_KEYS)) {
-                ps.setString(1, agent.getName());
-                ps.setLong(2, agent.getBorn());
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(
+                     DbHelper.SQL_INSERT_INTO_AGENT, Statement.RETURN_GENERATED_KEYS)) {
 
-                int addedRows = ps.executeUpdate();
-                if (addedRows != 1) {
-                    throw new ServiceFailureException("Internal Error: More rows "
-                            + "inserted when trying to insert agent " + agent);
-                }
+            ps.setString(1, agent.getName());
+            ps.setLong(2, agent.getBorn());
 
-                ResultSet keyRS = ps.getGeneratedKeys();
-                Long newId = this.getKeyFromRS(keyRS, agent);
-                agent.setId(newId);
+            int addedRows = ps.executeUpdate();
+            if (addedRows != 1) {
+                throw new ServiceFailureException("Internal Error: More rows "
+                        + "inserted when trying to insert agent " + agent);
             }
+
+            ResultSet keyRS = ps.getGeneratedKeys();
+            Long newId = this.getKeyFromRS(keyRS, agent);
+            agent.setId(newId);
+
         }
         catch (SQLException sqle) {
             logger.log(Level.SEVERE, null, sqle);
@@ -95,27 +98,28 @@ public class AgentManagerImpl implements AgentManager {
 
         Agent retVal;
 
-        if (id == null) throw new IllegalArgumentException("id is null");
+        if (id == null) {
+            throw new IllegalArgumentException("id is null");
+        }
 
-        try (Connection connection = dataSource.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(
-                    DbHelper.SQL_SELECT_SINGLE_AGENT)) {
-                ps.setLong(1, id);
-                ResultSet rs = ps.executeQuery();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(DbHelper.SQL_SELECT_SINGLE_AGENT)) {
 
-                if (rs.first()) {
-                    Agent agent = resultSetToAgent(rs);
+            ps.setLong(1, id);
+            ResultSet rs = ps.executeQuery();
 
-                    if (rs.next()) {
-                        throw new ServiceFailureException( "Internal error: More entities with the same id found " +
-                                "(source id: " + id + ", found " + agent + " and " + resultSetToAgent(rs));
-                    }
+            if (rs.first()) {
+                Agent agent = resultSetToAgent(rs);
 
-                    retVal = agent;
+                if (rs.next()) {
+                    throw new ServiceFailureException( "Internal error: More entities with the same id found " +
+                            "(source id: " + id + ", found " + agent + " and " + resultSetToAgent(rs));
                 }
-                else {
-                    retVal = null;
-                }
+
+                retVal = agent;
+            }
+            else {
+                retVal = null;
             }
 
         } catch (SQLException sqle) {
@@ -144,21 +148,25 @@ public class AgentManagerImpl implements AgentManager {
 
         validateAgent(agent);
 
-        if (agent.getId() == null) throw new IllegalArgumentException("Agent with null id cannot be updated");
-        if (agent.getId() <= 0) throw new IllegalArgumentException("Agent's id is less than zero");
+        if (agent.getId() == null) {
+            throw new IllegalArgumentException("Agent with null id cannot be updated");
+        }
+        if (agent.getId() <= 0) {
+            throw new IllegalArgumentException("Agent's id is less than zero");
+        }
 
-        try (Connection conn = dataSource.getConnection()) {
-            try(PreparedStatement ps = conn.prepareStatement(DbHelper.SQL_UPDATE_SINGLE_AGENT)) {
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(DbHelper.SQL_UPDATE_SINGLE_AGENT)) {
 
-                ps.setString(1, agent.getName());
-                ps.setLong(2, agent.getBorn());
-                ps.setLong(3, agent.getId());
+            ps.setString(1, agent.getName());
+            ps.setLong(2, agent.getBorn());
+            ps.setLong(3, agent.getId());
 
-                int addedRows = ps.executeUpdate();
-                if(addedRows != 1) {
-                    throw new IllegalArgumentException("Unable to update agent " + agent);
-                }
+            int addedRows = ps.executeUpdate();
+            if(addedRows != 1) {
+                throw new IllegalArgumentException("Unable to update agent " + agent);
             }
+
         } catch (SQLException sqle) {
             logger.log(Level.SEVERE, null, sqle);
             throw new ServiceFailureException("Error when updating an agent" + agent, sqle);
@@ -175,20 +183,27 @@ public class AgentManagerImpl implements AgentManager {
      */
     @Override
     public void deleteAgent(Agent agent) throws ServiceFailureException, IllegalArgumentException {
-        if (agent == null) throw new IllegalArgumentException("Agent pointer is null");
-        if (agent.getId() == null) throw new IllegalArgumentException("Agent with null id cannot be deleted");
-        if (agent.getId() <= 0) throw new IllegalArgumentException("Agent's id is less than zero");
+        if (agent == null) {
+            throw new IllegalArgumentException("Agent pointer is null");
+        }
+        if (agent.getId() == null) {
+            throw new IllegalArgumentException("Agent with null id cannot be deleted");
+        }
+        if (agent.getId() <= 0) {
+            throw new IllegalArgumentException("Agent's id is less than zero");
+        }
 
-        try (Connection conn = dataSource.getConnection()) {
-            try(PreparedStatement ps = conn.prepareStatement(DbHelper.SQL_DELETE_SINGLE_AGENT)) {
-                Long agentId = agent.getId();
-                ps.setLong(1, agentId);
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(DbHelper.SQL_DELETE_SINGLE_AGENT)) {
 
-                int addedRows = ps.executeUpdate();
-                if(addedRows != 1) {
-                    throw new IllegalArgumentException("Did not delete agent with id =" + agentId);
-                }
+            Long agentId = agent.getId();
+            ps.setLong(1, agentId);
+
+            int addedRows = ps.executeUpdate();
+            if(addedRows != 1) {
+                throw new IllegalArgumentException("Did not delete agent with id =" + agentId);
             }
+
         } catch (SQLException sqle) {
             logger.log(Level.SEVERE, null, sqle);
             throw new ServiceFailureException("Error when deleting an agent" + agent, sqle);
@@ -207,18 +222,16 @@ public class AgentManagerImpl implements AgentManager {
 
         List<Agent> retList = new ArrayList<>();
 
-        try (Connection connection = dataSource.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(
                     DbHelper.SQL_SELECT_ALL_AGENTS)) {
-                ResultSet rs = ps.executeQuery();
 
-                rs.beforeFirst();
+            ResultSet rs = ps.executeQuery();
+            rs.beforeFirst();
 
-                while (rs.next()) {
-                    Agent agent = resultSetToAgent(rs);
-
-                    retList.add(agent);
-                }
+            while (rs.next()) {
+                Agent agent = resultSetToAgent(rs);
+                retList.add(agent);
             }
 
         } catch (SQLException sqle) {
@@ -282,14 +295,28 @@ public class AgentManagerImpl implements AgentManager {
      * constraints can throw IllegalArgumentException
      */
     private void validateAgent(Agent agent) throws IllegalArgumentException {
-        if (agent == null) throw new IllegalArgumentException("agent is null");
-        if (agent.getName() == null) throw new IllegalArgumentException("agent name is null");
-        if (agent.getName().equals("")) throw new IllegalArgumentException("agent name is empty");
-        if (agent.getName().length() > Constants.AGENT_NAME_MAX_LENGTH) throw new IllegalArgumentException("agent name is too long");
-        if (! Pattern.matches(Constants.AGENT_NAME_REGEX, agent.getName())) throw new IllegalArgumentException("agent name contains illegal characters");
+        if (agent == null) {
+            throw new IllegalArgumentException("agent is null");
+        }
+        if (agent.getName() == null) {
+            throw new IllegalArgumentException("agent name is null");
+        }
+        if (agent.getName().equals("")) {
+            throw new IllegalArgumentException("agent name is empty");
+        }
+        if (agent.getName().length() > Constants.AGENT_NAME_MAX_LENGTH) {
+            throw new IllegalArgumentException("agent name is too long");
+        }
+        if (! Pattern.matches(Constants.AGENT_NAME_REGEX, agent.getName())) {
+            throw new IllegalArgumentException("agent name contains illegal characters");
+        }
         ZonedDateTime agentBorn = ZonedDateTime.ofInstant(Instant.ofEpochMilli(agent.getBorn()), ZoneId.systemDefault());
-        if (agentBorn.compareTo(ZonedDateTime.now()) > 0) throw new IllegalArgumentException("Agent not born yet");
-        if (agentBorn.plusYears(100).compareTo(ZonedDateTime.now()) < 0) throw new IllegalArgumentException("Agent is too old");
+        if (agentBorn.compareTo(ZonedDateTime.now()) > 0) {
+            throw new IllegalArgumentException("Agent not born yet");
+        }
+        if (agentBorn.plusYears(100).compareTo(ZonedDateTime.now()) < 0) {
+            throw new IllegalArgumentException("Agent is too old");
+        }
     }
 
 }

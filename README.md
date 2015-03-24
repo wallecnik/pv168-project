@@ -3,11 +3,12 @@
 ROZDELENI PRACE
 
 Tomas:
-Agent, AgentManager, AgentManagerImpl,
-Assignment, AssignmentManager, AssignmentManagerImpl,
-testy pro Mission
+Implementace assignment
+upravit testy mission
 
 Kristy:
-Mission, MissionManager, MissionManagerImpl,
-testy pro Agent,
-testy pro Assignment
+implementace mission
+upravit testy agent (findAllAgents)
+dopsat testy assignment
+
++ podle rozdeleni udelat nebo testovat TODO's

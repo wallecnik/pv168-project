@@ -28,7 +28,7 @@ public class DbHelper {
                 DbContract.COLUMN_AGENT_ID   + " BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
                 DbContract.COLUMN_AGENT_NAME + " VARCHAR(" + Constants.AGENT_NAME_MAX_LENGTH + ") NOT NULL, " +
                 DbContract.COLUMN_AGENT_BORN + " BIGINT NOT NULL" +
-            ")";
+            ") ENGINE InnoDB";
 
     public static final String SQL_DROP_TABLE_AGENT = "" +
             "DROP TABLE IF EXISTS " + DbContract.TABLE_NAME_AGENT;
@@ -80,7 +80,7 @@ public class DbHelper {
                 DbContract.COLUMN_MISSION_REQUIRED_AGENTS + " INT UNSIGNED NOT NULL DEFAULT 1, " +
                 DbContract.COLUMN_MISSION_GOAL            + " VARCHAR(" + Constants.MISSION_GOAL_MAX_LENGTH + ") NOT NULL, " +
                 DbContract.COLUMN_MISSION_COMPLETED       + " BOOL NOT NULL DEFAULT 0" +
-            ")";
+            ") ENGINE InnoDB";
 
     public static final String SQL_DROP_TABLE_MISSION = "" +
             "DROP TABLE IF EXISTS " + DbContract.TABLE_NAME_MISSION;
@@ -141,7 +141,7 @@ public class DbHelper {
                 "FOREIGN KEY (" + DbContract.COLUMN_ASSIGNMENT_MISSION_ID + ") " +
                 "REFERENCES " + DbContract.TABLE_NAME_MISSION + "(" + DbContract.COLUMN_MISSION_ID + ") " +
                 "ON UPDATE CASCADE ON DELETE CASCADE" +
-            ")";
+            ") ENGINE InnoDB";
 
     public static final String SQL_DROP_TABLE_ASSIGNMENT = "" +
             "DROP TABLE IF EXISTS " + DbContract.TABLE_NAME_ASSIGNMENT;
