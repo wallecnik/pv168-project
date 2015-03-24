@@ -1,8 +1,6 @@
 package cz.muni.fi.agentproject;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Implemented MissionManager interface (Mission CRUD operations).
@@ -13,7 +11,7 @@ import java.util.List;
  */
 public class MissionManagerImpl implements MissionManager {
 
-    private List<Mission> missions = new ArrayList<>();
+    private Set<Mission> missions = new HashSet<>();
 
     /**
      * Creates a new mission.
@@ -105,7 +103,7 @@ public class MissionManagerImpl implements MissionManager {
      * @return      list of missions; null if no such list exists
      */
     @Override
-    public List<Mission> findAllMissions() {
-        return Collections.unmodifiableList(missions);
+    public Set<Mission> findAllMissions() {
+        return Collections.unmodifiableSet(missions);
     }
 }

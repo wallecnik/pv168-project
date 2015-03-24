@@ -1,6 +1,7 @@
 package cz.muni.fi.agentproject;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Interface for basic CRUD operations for Agent instances.
@@ -55,6 +56,6 @@ public interface AgentManager {
      *
      * @return  List of Agents
      */
-    List<Agent> findAllAgents() throws ServiceFailureException;
+    Set<Agent> findAllAgents() throws ServiceFailureException;
 
 }

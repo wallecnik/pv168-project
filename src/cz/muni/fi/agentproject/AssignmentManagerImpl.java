@@ -1,6 +1,7 @@
 package cz.muni.fi.agentproject;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author  Wallecnik
@@ -29,17 +30,17 @@ public class AssignmentManagerImpl implements AssignmentManager {
     }
 
     @Override
-    public List<Assignment> findAllAssignments() {
+    public Set<Assignment> findAllAssignments() {
         return null;
     }
 
     @Override
-    public List<Assignment> findAssignmentsForAgent(Agent agent) {
+    public Set<Assignment> findAssignmentsForAgent(Agent agent) {
         return null;
     }
 
     @Override
-    public List<Assignment> findAssignmentsforMission(Mission mission) {
+    public Set<Assignment> findAssignmentsforMission(Mission mission) {
         return null;
     }
 }

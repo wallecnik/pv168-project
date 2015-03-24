@@ -6,7 +6,9 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -218,9 +220,9 @@ public class AgentManagerImpl implements AgentManager {
      * @throws ServiceFailureException  if an error with database occurred
      */
     @Override
-    public List<Agent> findAllAgents() throws ServiceFailureException {
+    public Set<Agent> findAllAgents() throws ServiceFailureException {
 
-        List<Agent> retList = new ArrayList<>();
+        Set<Agent> retList = new HashSet<>();
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(

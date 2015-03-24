@@ -77,16 +77,20 @@ public class Mission {
 
         Mission mission = (Mission) o;
 
+        if (completed != mission.completed) return false;
         if (requiredAgents != mission.requiredAgents) return false;
         if (goal != null ? !goal.equals(mission.goal) : mission.goal != null) return false;
+        if (id != null ? !id.equals(mission.id) : mission.id != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = requiredAgents;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + requiredAgents;
         result = 31 * result + (goal != null ? goal.hashCode() : 0);
+        result = 31 * result + (completed ? 1 : 0);
         return result;
     }
 }

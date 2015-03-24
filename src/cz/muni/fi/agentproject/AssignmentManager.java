@@ -1,6 +1,7 @@
 package cz.muni.fi.agentproject;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author  Wallecnik
@@ -16,10 +17,10 @@ public interface AssignmentManager {
 
     void deleteAssignment(Assignment assignment);
 
-    List<Assignment> findAllAssignments();
+    Set<Assignment> findAllAssignments();
 
-    List<Assignment> findAssignmentsForAgent(Agent agent);
+    Set<Assignment> findAssignmentsForAgent(Agent agent);
 
-    List<Assignment> findAssignmentsforMission(Mission mission);
+    Set<Assignment> findAssignmentsforMission(Mission mission);
 
 }

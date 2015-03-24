@@ -1,6 +1,7 @@
 package cz.muni.fi.agentproject;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Interface for MissionManager.
@@ -15,5 +16,5 @@ public interface MissionManager {
     void updateMission(Mission mission);
 
     Mission findMissionById(Long id);
-    List<Mission> findAllMissions();
+    Set<Mission> findAllMissions();
 }

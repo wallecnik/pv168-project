@@ -74,6 +74,7 @@ public class Agent {
         Agent agent = (Agent) o;
 
         if (born != agent.born) return false;
+        if (id != null ? !id.equals(agent.id) : agent.id != null) return false;
         if (name != null ? !name.equals(agent.name) : agent.name != null) return false;
 
         return true;
@@ -81,7 +82,8 @@ public class Agent {
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (int) (born ^ (born >>> 32));
         return result;
     }
