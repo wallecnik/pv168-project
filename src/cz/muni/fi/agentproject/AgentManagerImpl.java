@@ -204,11 +204,10 @@ public class AgentManagerImpl implements AgentManager {
         }
     }
 
-    //TODO: not tested
     /**
-     * Returns List of all Agents in the database.
+     * Returns Set of all Agents in the database.
      *
-     * @return  List of Agents
+     * @return  Set of Agents
      * @throws ServiceFailureException  if an error with database occurred
      */
     @Override
