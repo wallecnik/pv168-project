@@ -3,19 +3,58 @@ package cz.muni.fi.agentproject;
 import java.util.List;
 
 /**
+ * Interface for basic CRUD operations for Agent instances.
+ *
+ * Implementation should check the state of the Agent instances before saving them
+ * in order to store valid data.
+ *
  * @author  Wallecnik
- * @version 31.22.2015
+ * @version 24.3.2015
  */
 public interface AgentManager {
 
-    void createAgent(Agent agent) throws ServiceFailureException;
+    /**
+     * Adds a new Agent. Provided Agent should have valid values associated. If not, the method should
+     * throw an IllegalArgumentException.
+     *
+     * A duplicate Agent can be added, meaning the agent is equal to another agent by the
+     * class's equals() method. Their difference will be in id's.
+     *
+     * @param agent  An instance of an Agent
+     */
+    void createAgent(Agent agent);
 
+    /**
+     * Retrieves an Agent or returns null if no agent with provided id was found.
+     *
+     * @param id  id of an Agent to look for
+     * @return  a new instance of an Agent or null
+     */
     Agent findAgentById(Long id);
 
+    /**
+     * Updates an existing Agent. Provided Agent should have valid values associated.
+     * If not, the method should throw an IllegalArgumentException.
+     *
+     * A duplicate Agent can be updated, meaning the agent is equal to another agent by the
+     * class's equals() method. Their difference will be in id's.
+     *
+     * @param agent  an instance of an Agent
+     */
     void updateAgent(Agent agent);
 
+    /**
+     * Deletes Agent. Provided instance of the Agent should have valid id.
+     *
+     * @param agent  an instance of an Agent
+     */
     void deleteAgent(Agent agent);
 
-    List<Agent> findAllAgents();
+    /**
+     * Returns List of all Agents.
+     *
+     * @return  List of Agents
+     */
+    List<Agent> findAllAgents() throws ServiceFailureException;
 
 }

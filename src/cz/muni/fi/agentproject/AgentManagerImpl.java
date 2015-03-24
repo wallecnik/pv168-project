@@ -12,8 +12,14 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
+ * This class manages the database for creating, retrieving, updating and deleting Agents.
+ * This implementation follows recommendations given by AgentManager interface's JavaDoc.
+ *
+ * This class uses thread safe DataSource interface for connecting to database.
+ *
  * @author  Wallecnik
- * @version 31.2.2015
+ * @author  Dužinka
+ * @version 24.3.2015
  */
 public class AgentManagerImpl implements AgentManager {
 
@@ -21,12 +27,31 @@ public class AgentManagerImpl implements AgentManager {
 
     private DataSource dataSource;
 
+    /**
+     * Constructor for objects of this class. Takes one argument implementing DataSource interface
+     * which it uses for connecting to database.
+     *
+     * @param dataSource reference to object of type DataSource
+     */
     public AgentManagerImpl(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
+    /**
+     * Adds a new Agent into the database. Provided Agent must have valid values associated. If not, the method
+     * throws an IllegalArgumentException. Possible causes are, that an agent's name contains illegal
+     * characters or agent is too old or not born yet. Complete list would be too long - see
+     * validateAgent() method for all of them.
+     *
+     * A duplicate Agent can be added, meaning the agent is equal to another agent by the
+     * class's equals() method. Their difference will be in id's.
+     *
+     * @param agent  A well formed instance of an Agent
+     * @throws ServiceFailureException   if an error occurred when using the database
+     * @throws IllegalArgumentException  if an illegal state of Agent was provided
+     */
     @Override
-    public void createAgent(Agent agent) throws ServiceFailureException {
+    public void createAgent(Agent agent) throws ServiceFailureException, IllegalArgumentException {
 
         validateAgent(agent);
 
@@ -56,10 +81,19 @@ public class AgentManagerImpl implements AgentManager {
 
     }
 
+    /**
+     * Retrieves an Agent from the database or returns null if no agent with provided id
+     * was found.
+     *
+     * @param id  id of an Agent to look for
+     * @return  a new instance of an Agent or null
+     * @throws ServiceFailureException   if more record's were found or another error occurred
+     * @throws IllegalArgumentException  if provided id is null
+     */
     @Override
-    public Agent findAgentById(Long id) {
+    public Agent findAgentById(Long id) throws ServiceFailureException, IllegalArgumentException{
 
-        Agent retVal= null;
+        Agent retVal;
 
         if (id == null) throw new IllegalArgumentException("id is null");
 
@@ -92,8 +126,21 @@ public class AgentManagerImpl implements AgentManager {
         return retVal;
     }
 
+    /**
+     * Updates an existing Agent in the database. Provided Agent must have valid values associated.
+     * If not, the method throws an IllegalArgumentException. Possible causes are, that an agent's
+     * name contains illegal characters or agent is too old or not born yet. Complete list would be
+     * too long - see validateAgent() method for all of them.
+     *
+     * A duplicate Agent can be updated, meaning the agent is equal to another agent by the
+     * class's equals() method. Their difference will be in id's.
+     *
+     * @param agent  a well formed instance of an Agent
+     * @throws ServiceFailureException   if an error with the database occurred
+     * @throws IllegalArgumentException  if the agent could not be updated e.g. is not present
+     */
     @Override
-    public void updateAgent(Agent agent) {
+    public void updateAgent(Agent agent) throws ServiceFailureException, IllegalArgumentException {
 
         validateAgent(agent);
 
@@ -118,8 +165,16 @@ public class AgentManagerImpl implements AgentManager {
         }
     }
 
+    /**
+     * Deletes Agent from the database. Provided instance of the Agent does not have to be well formed,
+     * but the Agent must have valid id.
+     *
+     * @param agent  an instance of an Agent with valid id
+     * @throws ServiceFailureException   if an error with the database occurred
+     * @throws IllegalArgumentException  if no such id was present in the database
+     */
     @Override
-    public void deleteAgent(Agent agent) {
+    public void deleteAgent(Agent agent) throws ServiceFailureException, IllegalArgumentException {
         if (agent == null) throw new IllegalArgumentException("Agent pointer is null");
         if (agent.getId() == null) throw new IllegalArgumentException("Agent with null id cannot be deleted");
         if (agent.getId() <= 0) throw new IllegalArgumentException("Agent's id is less than zero");
@@ -131,19 +186,26 @@ public class AgentManagerImpl implements AgentManager {
 
                 int addedRows = ps.executeUpdate();
                 if(addedRows != 1) {
-                    throw new ServiceFailureException("Did not delete agent with id =" + agentId);
+                    throw new IllegalArgumentException("Did not delete agent with id =" + agentId);
                 }
             }
         } catch (SQLException sqle) {
             logger.log(Level.SEVERE, null, sqle);
-            throw new ServiceFailureException("Unable to delete an agent" + agent, sqle);
+            throw new ServiceFailureException("Error when deleting an agent" + agent, sqle);
         }
     }
 
+    //TODO: not tested
+    /**
+     * Returns List of all Agents in the database.
+     *
+     * @return  List of Agents
+     * @throws ServiceFailureException  if an error with database occurred
+     */
     @Override
-    public List<Agent> findAllAgents() {
+    public List<Agent> findAllAgents() throws ServiceFailureException {
 
-        List<Agent> retList = new ArrayList<Agent>();
+        List<Agent> retList = new ArrayList<>();
 
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(
@@ -168,6 +230,10 @@ public class AgentManagerImpl implements AgentManager {
 
     }
 
+    /**
+     * Retrieves a newly generated key from given ResultSet or throws an exception
+     * if more keys or no key were found
+     */
     private Long getKeyFromRS(ResultSet resultSet, Agent agent) throws SQLException {
 
         Long newId;
@@ -196,6 +262,10 @@ public class AgentManagerImpl implements AgentManager {
         return newId;
     }
 
+    /**
+     * Transforms given ResultSet row to an instance of Agent. ResultSet must be
+     * pointed at the specific row from which this method generates the Agent.
+     */
     private Agent resultSetToAgent(ResultSet resultSet) throws SQLException {
 
         Long id     = resultSet.getLong(DbContract.COLUMN_AGENT_ID);
@@ -207,12 +277,16 @@ public class AgentManagerImpl implements AgentManager {
         return agent;
     }
 
+    /**
+     * Group of constraints to check if Agent has correct values set. Each of the
+     * constraints can throw IllegalArgumentException
+     */
     private void validateAgent(Agent agent) throws IllegalArgumentException {
         if (agent == null) throw new IllegalArgumentException("agent is null");
         if (agent.getName() == null) throw new IllegalArgumentException("agent name is null");
         if (agent.getName().equals("")) throw new IllegalArgumentException("agent name is empty");
-        if (agent.getName().length() > Constants.NAME_MAX_LENGTH) throw new IllegalArgumentException("agent name is too long");
-        if (! Pattern.matches(Constants.NAME_REGEX, agent.getName())) throw new IllegalArgumentException("agent name contains illegal characters");
+        if (agent.getName().length() > Constants.AGENT_NAME_MAX_LENGTH) throw new IllegalArgumentException("agent name is too long");
+        if (! Pattern.matches(Constants.AGENT_NAME_REGEX, agent.getName())) throw new IllegalArgumentException("agent name contains illegal characters");
         ZonedDateTime agentBorn = ZonedDateTime.ofInstant(Instant.ofEpochMilli(agent.getBorn()), ZoneId.systemDefault());
         if (agentBorn.compareTo(ZonedDateTime.now()) > 0) throw new IllegalArgumentException("Agent not born yet");
         if (agentBorn.plusYears(100).compareTo(ZonedDateTime.now()) < 0) throw new IllegalArgumentException("Agent is too old");

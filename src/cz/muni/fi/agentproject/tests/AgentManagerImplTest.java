@@ -20,7 +20,11 @@ import java.util.Date;
 import static org.junit.Assert.*;
 
 /**
- * Created by Dužinka on 7. 3. 2015.
+ * Test for implementation AgentManagerImpl of an AgentManager interface
+ *
+ * @author  Wallecnik
+ * @author  Dužinka
+ * @version 23.3.2015
  */
 public class AgentManagerImplTest {
 
