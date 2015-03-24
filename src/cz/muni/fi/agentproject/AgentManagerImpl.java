@@ -45,9 +45,6 @@ public class AgentManagerImpl implements AgentManager {
      * characters or agent is too old or not born yet. Complete list would be too long - see
      * validateAgent() method for all of them.
      *
-     * A duplicate Agent can be added, meaning the agent is equal to another agent by the
-     * class's equals() method. Their difference will be in id's.
-     *
      * @param agent  A well formed instance of an Agent
      * @throws ServiceFailureException   if an error occurred when using the database
      * @throws IllegalArgumentException  if an illegal state of Agent was provided
@@ -137,9 +134,6 @@ public class AgentManagerImpl implements AgentManager {
      * If not, the method throws an IllegalArgumentException. Possible causes are, that an agent's
      * name contains illegal characters or agent is too old or not born yet. Complete list would be
      * too long - see validateAgent() method for all of them.
-     *
-     * A duplicate Agent can be updated, meaning the agent is equal to another agent by the
-     * class's equals() method. Their difference will be in id's.
      *
      * @param agent  a well formed instance of an Agent
      * @throws ServiceFailureException   if an error with the database occurred

@@ -18,9 +18,6 @@ public interface AgentManager {
      * Adds a new Agent. Provided Agent should have valid values associated. If not, the method should
      * throw an IllegalArgumentException.
      *
-     * A duplicate Agent can be added, meaning the agent is equal to another agent by the
-     * class's equals() method. Their difference will be in id's.
-     *
      * @param agent  An instance of an Agent
      */
     void createAgent(Agent agent);
@@ -36,9 +33,6 @@ public interface AgentManager {
     /**
      * Updates an existing Agent. Provided Agent should have valid values associated.
      * If not, the method should throw an IllegalArgumentException.
-     *
-     * A duplicate Agent can be updated, meaning the agent is equal to another agent by the
-     * class's equals() method. Their difference will be in id's.
      *
      * @param agent  an instance of an Agent
      */
