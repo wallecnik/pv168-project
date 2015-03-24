@@ -4,7 +4,7 @@ ROZDELENI PRACE
 
 Tomas:
 Implementace assignment
-upravit testy mission
+upravit testy mission (db, findAllMissions)
 
 Kristy:
 implementace mission
