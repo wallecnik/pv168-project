@@ -17,6 +17,8 @@ import java.sql.SQLException;
 import java.time.Instant;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -134,16 +136,7 @@ public class AgentManagerImplTest {
         manager.createAgent(agent);
     }
 
-
     /* Update agent */
-
-    private Agent makeAgent() {
-        Agent agent = new Agent(null, "Michal Brandejs", Instant.ofEpochMilli(10L));
-        manager.createAgent(agent);
-        Long id = agent.getId();
-        Agent newAgent = manager.findAgentById(id);
-        return newAgent;
-    }
 
     @Test
     public void updateAgent() {
@@ -235,6 +228,33 @@ public class AgentManagerImplTest {
         manager.updateAgent(agent);
     }
 
+    /* Find all agents */
+
+    @Test
+    public void findAllAgents() {
+        Agent agent1 = new Agent(null, "Michal Brandejs", Instant.ofEpochMilli(10L));
+        Agent agent2 = new Agent(null, "Jiri Barnat", Instant.ofEpochMilli(8L));
+        Agent agent3 = new Agent(null, "Petr Beran", Instant.ofEpochMilli(5318008L));
+        Agent agent4 = new Agent(null, "Petr Hasil", Instant.ofEpochMilli(15L));
+
+        // must be created prior to storing due to id recovery
+        manager.createAgent(agent1);
+        manager.createAgent(agent2);
+        manager.createAgent(agent3);
+        manager.createAgent(agent4);
+
+        Set<Agent> storedAgents = new HashSet<>();
+        storedAgents.add(agent1);
+        storedAgents.add(agent2);
+        storedAgents.add(agent3);
+        storedAgents.add(agent4);
+
+        Set<Agent> foundAgents = manager.findAllAgents();
+        assertTrue(storedAgents.equals(foundAgents));
+        }
+
+    /* Delete agent */
+
     @Test
     public void deleteAgent() {
         Agent agent = new Agent(null, "Michal Brandejs", Instant.ofEpochMilli(10L));
@@ -245,6 +265,16 @@ public class AgentManagerImplTest {
 
         Agent storedAgent = manager.findAgentById(id);
         assertNull(storedAgent);
+    }
+
+    /* Private helper methods */
+
+    private Agent makeAgent() {
+        Agent agent = new Agent(null, "Michal Brandejs", Instant.ofEpochMilli(10L));
+        manager.createAgent(agent);
+        Long id = agent.getId();
+        Agent newAgent = manager.findAgentById(id);
+        return newAgent;
     }
 }
 

@@ -210,7 +210,7 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
     /**
      * Returns Set of all Agents in the database.
      *
-     * @return  Set of Agents
+     * @return Set of Agents
      * @throws ServiceFailureException  if an error with database occurred
      */
     @Override
