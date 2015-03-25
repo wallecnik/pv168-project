@@ -1,109 +1,218 @@
 package cz.muni.fi.agentproject;
 
+import javax.sql.DataSource;
+import java.sql.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * Implemented MissionManager interface (Mission CRUD operations).
+ * Implemented MissionManager interface
+ * TODO: Javadocs, settle the zero requiredAgents updateMission issue
  *
- * TODO: Possibly modify createMission() so that it actually creates a mission
- *
- * Created by Dužinka on 3. 3. 2015.
+ * @author Dužinka
+ * @version 25.03.2015
  */
-public class MissionManagerImpl implements MissionManager {
+public class MissionManagerImpl extends AbstractManager implements MissionManager {
 
-    private Set<Mission> missions = new HashSet<>();
+    public static final Logger logger = Logger.getLogger(MissionManagerImpl.class.getName());
+    private DataSource dataSource;
 
-    /**
-     * Creates a new mission.
-     * In it's current state, it accepts a mission from outside
-     * and adds it to the list of missions, if another mission with
-     * the same id isn't already present.
-     *
-     * @param newMission    mission to be created
-     */
-    @Override
-    public void createMission(Mission newMission) {
-        if (newMission == null) {
-            throw new IllegalArgumentException("createMission: null parameter");
-        }
-
-        for(Mission mission : missions) {
-            if (mission.getId() == newMission.getId()) {
-                System.err.print("Already contains a mission with the same id");
-            }
-        }
-
-        missions.add(newMission);
+    public MissionManagerImpl(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
-    /**
-     * Deletes a mission from the list of missions.
-     * @param mission   mission to be deleted
-     */
     @Override
-    public void deleteMission(Mission mission) {
+    public void createMission(Mission mission) throws ServiceFailureException, IllegalArgumentException {
+
+        validateMission(mission);
+
+        if (mission.getId() != null) {
+            throw new IllegalArgumentException("Mission id is not null.");
+        }
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(
+                     DbHelper.SQL_INSERT_INTO_MISSION, Statement.RETURN_GENERATED_KEYS)) {
+
+            ps.setString(1, mission.getGoal());
+            ps.setInt(2, mission.getRequiredAgents());
+            ps.setBoolean(3, mission.isCompleted());
+
+            int addedRows = ps.executeUpdate();
+            if (addedRows != 1) {
+                throw new ServiceFailureException("Internal Error: More rows "
+                        + "inserted when trying to insert mission " + mission);
+            }
+
+            ResultSet keyRS = ps.getGeneratedKeys();
+            Long newId = this.getKeyFromRS(keyRS, mission);
+            mission.setId(newId);
+
+        }
+        catch (SQLException sqle) {
+            logger.log(Level.SEVERE, null, sqle);
+            throw new ServiceFailureException("Error when inserting mission " + mission, sqle);
+        }
+    }
+
+    @Override
+        public void updateMission(Mission mission) throws ServiceFailureException, IllegalArgumentException {
+
+        validateMission(mission);
+
+        if (mission.getId() == null) {
+            throw new IllegalArgumentException("Mission with null id cannot be updated");
+        }
+        if (mission.getId() <= 0) {
+            throw new IllegalArgumentException("Mission id is less than zero");
+        }
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(DbHelper.SQL_UPDATE_SINGLE_MISSION)) {
+
+            ps.setString(1, mission.getGoal());
+            ps.setInt(2, mission.getRequiredAgents());
+            ps.setBoolean(3, mission.isCompleted());
+            ps.setLong(4, mission.getId());
+
+            int addedRows = ps.executeUpdate();
+            if(addedRows != 1) {
+                throw new IllegalArgumentException("Unable to update mission " + mission);
+            }
+
+        } catch (SQLException sqle) {
+            logger.log(Level.SEVERE, null, sqle);
+            throw new ServiceFailureException("Error when updating mission" + mission, sqle);
+        }
+    }
+
+    @Override
+    public void deleteMission(Mission mission) throws ServiceFailureException, IllegalArgumentException {
         if (mission == null) {
-            throw new IllegalArgumentException("deleteMission: null parameter");
+            throw new IllegalArgumentException("Mission pointer is null");
+        }
+        if (mission.getId() == null) {
+            throw new IllegalArgumentException("Mission with null id cannot be deleted");
+        }
+        if (mission.getId() <= 0) {
+            throw new IllegalArgumentException("Mission id is less than zero");
         }
 
-        for(Mission missionInList : missions) {
-            if (mission.equals(missionInList)) {
-                missions.remove(mission);
-                return;
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(DbHelper.SQL_DELETE_SINGLE_MISSION)) {
+
+            Long missionId = mission.getId();
+            ps.setLong(1, missionId);
+
+            int addedRows = ps.executeUpdate();
+            if(addedRows != 1) {
+                throw new IllegalArgumentException("Did not delete mission with id =" + missionId);
             }
-        }
 
-        System.err.print("No such mission to delete.");
+        } catch (SQLException sqle) {
+            logger.log(Level.SEVERE, null, sqle);
+            throw new ServiceFailureException("Error when deleting mission" + mission, sqle);
+        }
     }
 
-    /**
-     * Updates a mission.
-     * In fact, checks for identical id in the list of missions and if it finds it,
-     * removes the original mission from the list and adds the new one.
-     * @param mission   mission to replace the other one with the same id
-     */
     @Override
-    public void updateMission(Mission mission) {
-        if (mission == null) {
-            throw new IllegalArgumentException("updateMission: null parameter");
-        }
+    public Mission findMissionById(Long id) throws ServiceFailureException, IllegalArgumentException{
 
-        for(Mission missionInList : missions) {
-            if (mission.getId() == missionInList.getId()) {
-                missions.remove(missionInList);
-                missions.add(mission);
-                return;
-            }
-        }
+        Mission returnValue;
 
-        System.err.print("No such mission available for update.");
-    }
-
-    /**
-     * Returns single mission from a list by given id.
-     * @param id    id of the wanted mission
-     * @return      wanted mission with given id; null if not such mission is present
-     */
-    @Override
-    public Mission findMissionById(Long id) {
         if (id == null) {
-            throw new IllegalArgumentException("findMissionById: null parameter");
+            throw new IllegalArgumentException("ID is null");
+        }
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID is less than zero");
         }
 
-        for(Mission mission : missions) {
-            if (id == mission.getId()) {
-                return mission;
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(DbHelper.SQL_SELECT_SINGLE_MISSION)) {
+
+            ps.setLong(1, id);
+            ResultSet resultSet = ps.executeQuery();
+
+            if (resultSet.first()) {
+                Mission mission = resultSetToMission(resultSet);
+
+                if (resultSet.next()) {
+                    throw new ServiceFailureException( "Internal error: More entities with the same id found " +
+                            "(source id: " + id + ", found " + mission + " and " + resultSetToMission(resultSet));
+                }
+
+                returnValue = mission;
             }
+            else {
+                returnValue = null;
+            }
+
+        } catch (SQLException sqle) {
+            logger.log(Level.SEVERE, null, sqle);
+            throw new ServiceFailureException("Error when searching for mission with id " + id, sqle);
         }
-        return null;
+
+        return returnValue;
     }
 
-    /**
-     * Returns unmodifiable list of all the missions.
-     * @return      list of missions; null if no such list exists
-     */
     @Override
-    public Set<Mission> findAllMissions() {
-        return Collections.unmodifiableSet(missions);
+    public Set<Mission> findAllMissions() throws ServiceFailureException {
+
+        Set<Mission> retSet = new HashSet<>();
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(
+                     DbHelper.SQL_SELECT_ALL_MISSIONS)) {
+
+            ResultSet resultSet = ps.executeQuery();
+            resultSet.beforeFirst();
+
+            while (resultSet.next()) {
+                Mission mission = resultSetToMission(resultSet);
+                retSet.add(mission);
+            }
+
+        } catch (SQLException sqle) {
+            logger.log(Level.SEVERE, null, sqle);
+            throw new ServiceFailureException("Error when searching for all missions", sqle);
+        }
+
+        return retSet;
+    }
+
+    private Mission resultSetToMission(ResultSet resultSet) throws SQLException {
+
+        Long id             = resultSet.getLong(DbContract.COLUMN_MISSION_ID);
+        String goal         = resultSet.getString(DbContract.COLUMN_MISSION_GOAL);
+        int requiredAgents  = resultSet.getInt(DbContract.COLUMN_MISSION_REQUIRED_AGENTS);
+        boolean completed   = resultSet.getBoolean(DbContract.COLUMN_MISSION_COMPLETED);
+
+        Mission mission = new Mission(id, goal, requiredAgents, completed);
+
+        return mission;
+    }
+
+    private void validateMission(Mission mission) throws IllegalArgumentException {
+        if (mission == null) {
+            throw new IllegalArgumentException("Mission is null");
+        }
+
+        if (mission.getGoal() == null) {
+            throw new IllegalArgumentException("Mission goal is null");
+        }
+
+        if (mission.getGoal().equals("")) {
+            throw new IllegalArgumentException("Mission goal is empty");
+        }
+
+        if (mission.getGoal().length() > Constants.MISSION_GOAL_MAX_LENGTH) {
+            throw new IllegalArgumentException("Mission goal name is too long");
+        }
+
+        // zero should be fine when updating and reaching mission's agent capacity
+        if (mission.getRequiredAgents() < 0) {
+            throw new IllegalArgumentException("Mission requires negative number of agents");
+        }
     }
 }

@@ -37,7 +37,7 @@ public class MissionManagerImplTest {
         bds.setUrl(DbHelper.DB_URL);
         bds.setUsername(DbHelper.USERNAME);
         bds.setPassword(DbHelper.PASSWORD);
-        manager = new MissionManagerImpl();
+        //manager = new MissionManagerImpl();
         this.dataSource = bds;
         try (Connection connection = dataSource.getConnection()) {
             connection.prepareStatement(DbHelper.SQL_DROP_TABLE_MISSION)
@@ -45,8 +45,8 @@ public class MissionManagerImplTest {
             connection.prepareStatement(DbHelper.SQL_CREATE_TABLE_MISSION)
                     .executeUpdate();
         }
-        this.manager = new MissionManagerImpl();
-        //this.manager = new MissionManagerImpl(dataSource);
+        //this.manager = new MissionManagerImpl();
+        this.manager = new MissionManagerImpl(dataSource);
     }
 
     @After
@@ -216,7 +216,7 @@ public class MissionManagerImplTest {
         Set<Mission> newMissions = manager.findAllMissions();
 
         assertNotEquals(currentMissions, newMissions);
-        assertEquals(currentMissions.size() + 3, newMissions);
+        assertEquals(currentMissions.size() + 3, newMissions.size());
 
         newMissions.remove(mission1);
         newMissions.remove(mission2);

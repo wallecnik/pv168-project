@@ -77,8 +77,8 @@ public class DbHelper {
             "CREATE TABLE IF NOT EXISTS " + DbContract.TABLE_NAME_MISSION + " " +
             "(" +
                 DbContract.COLUMN_MISSION_ID              + " BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
-                DbContract.COLUMN_MISSION_REQUIRED_AGENTS + " INT UNSIGNED NOT NULL DEFAULT 1, " +
                 DbContract.COLUMN_MISSION_GOAL            + " TEXT(" + Constants.MISSION_GOAL_MAX_LENGTH + ") NOT NULL, " +
+                DbContract.COLUMN_MISSION_REQUIRED_AGENTS + " INT UNSIGNED NOT NULL DEFAULT 1, " +
                 DbContract.COLUMN_MISSION_COMPLETED       + " BOOL NOT NULL DEFAULT 0" +
             ") ENGINE InnoDB";
 
@@ -88,16 +88,16 @@ public class DbHelper {
     public static final String SQL_INSERT_INTO_MISSION = "" +
             "INSERT INTO " + DbContract.TABLE_NAME_MISSION + " " +
             "(" +
-                DbContract.COLUMN_MISSION_REQUIRED_AGENTS + ", " +
                 DbContract.COLUMN_MISSION_GOAL + ", " +
+                DbContract.COLUMN_MISSION_REQUIRED_AGENTS + ", " +
                 DbContract.COLUMN_MISSION_COMPLETED +
             ") VALUES (?, ?, ?)";
 
     public static final String SQL_SELECT_SINGLE_MISSION = "" +
             "SELECT " +
                 DbContract.COLUMN_MISSION_ID   + ", " +
-                DbContract.COLUMN_MISSION_REQUIRED_AGENTS + ", " +
                 DbContract.COLUMN_MISSION_GOAL + ", " +
+                DbContract.COLUMN_MISSION_REQUIRED_AGENTS + ", " +
                 DbContract.COLUMN_MISSION_COMPLETED + " " +
             "FROM " + DbContract.TABLE_NAME_MISSION + " " +
             "WHERE " + DbContract.COLUMN_MISSION_ID + " = ?";
@@ -105,16 +105,16 @@ public class DbHelper {
     public static final String SQL_SELECT_ALL_MISSIONS = "" +
             "SELECT " +
                 DbContract.COLUMN_MISSION_ID   + ", " +
-                DbContract.COLUMN_MISSION_REQUIRED_AGENTS + ", " +
                 DbContract.COLUMN_MISSION_GOAL + ", " +
+                DbContract.COLUMN_MISSION_REQUIRED_AGENTS + ", " +
                 DbContract.COLUMN_MISSION_COMPLETED + " " +
             "FROM " + DbContract.TABLE_NAME_MISSION;
 
     public static final String SQL_UPDATE_SINGLE_MISSION = "" +
             "UPDATE " + DbContract.TABLE_NAME_MISSION + " " +
             "SET " +
-                DbContract.COLUMN_MISSION_REQUIRED_AGENTS + " = ?, " +
                 DbContract.COLUMN_MISSION_GOAL + " = ?, " +
+                DbContract.COLUMN_MISSION_REQUIRED_AGENTS + " = ?, " +
                 DbContract.COLUMN_MISSION_COMPLETED + " = ? " +
             "WHERE " + DbContract.COLUMN_MISSION_ID + " = ?";
 

@@ -59,8 +59,8 @@ public class AssignmentManagerImplTest {
         goodAgent = new Agent(null, "Michal Brandejs", Instant.ofEpochMilli(10L));
 
         AgentManager agentManager = new AgentManagerImpl(dataSource);
-        MissionManager missionManager = new MissionManagerImpl();
-        //MissionManager missionManager = new MissionManagerImpl(dataSource);
+        //MissionManager missionManager = new MissionManagerImpl();
+        MissionManager missionManager = new MissionManagerImpl(dataSource);
 
         agentManager.createAgent(goodAgent);
         missionManager.createMission(goodMission);
