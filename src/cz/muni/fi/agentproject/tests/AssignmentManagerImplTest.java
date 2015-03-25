@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,19 +43,39 @@ public class AssignmentManagerImplTest {
         try (Connection connection = dataSource.getConnection()) {
             connection.prepareStatement(DbHelper.SQL_DROP_TABLE_ASSIGNMENT)
                     .executeUpdate();
+            connection.prepareStatement(DbHelper.SQL_DROP_TABLE_AGENT)
+                    .executeUpdate();
+            connection.prepareStatement(DbHelper.SQL_DROP_TABLE_MISSION)
+                    .executeUpdate();
+            connection.prepareStatement(DbHelper.SQL_CREATE_TABLE_AGENT)
+                    .executeUpdate();
+            connection.prepareStatement(DbHelper.SQL_CREATE_TABLE_MISSION)
+                    .executeUpdate();
             connection.prepareStatement(DbHelper.SQL_CREATE_TABLE_ASSIGNMENT)
                     .executeUpdate();
         }
 
-        manager = new AssignmentManagerImpl();
-        goodMission = new Mission(1L, "Make IS rule the world", 2, false);
-        goodAgent = new Agent(1L, "Michal Brandejs", 10L);
+        goodMission = new Mission(null, "Make IS rule the world", 2, false);
+        goodAgent = new Agent(null, "Michal Brandejs", Instant.ofEpochMilli(10L));
+
+        AgentManager agentManager = new AgentManagerImpl(dataSource);
+        MissionManager missionManager = new MissionManagerImpl();
+        //MissionManager missionManager = new MissionManagerImpl(dataSource);
+
+        agentManager.createAgent(goodAgent);
+        missionManager.createMission(goodMission);
+
+        manager = new AssignmentManagerImpl(dataSource, agentManager, missionManager);
     }
 
     @After
     public void tearDown() throws SQLException {
-        try (Connection connection = dataSource.getConnection()){
+        try (Connection connection = dataSource.getConnection()) {
             connection.prepareStatement(DbHelper.SQL_DROP_TABLE_ASSIGNMENT)
+                    .executeUpdate();
+            connection.prepareStatement(DbHelper.SQL_DROP_TABLE_AGENT)
+                    .executeUpdate();
+            connection.prepareStatement(DbHelper.SQL_DROP_TABLE_MISSION)
                     .executeUpdate();
         }
     }
@@ -63,7 +84,7 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void createAssignment() {
-        Assignment assignment = new Assignment(1L, goodAgent, goodMission, 1L, 2L);
+        Assignment assignment = new Assignment(1L, goodAgent, goodMission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
         manager.createAssignment(assignment);
 
         Long id = assignment.getId();
@@ -82,7 +103,7 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void createAssignmentWithNullAgent() {
-        Assignment assignment = new Assignment(1L, null, goodMission, 1L, 2L);
+        Assignment assignment = new Assignment(1L, null, goodMission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.createAssignment(assignment);
@@ -90,7 +111,7 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void createAssignmentWithNullMission() {
-        Assignment assignment = new Assignment(1L, goodAgent, null, 1L, 2L);
+        Assignment assignment = new Assignment(1L, goodAgent, null, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.createAssignment(assignment);
@@ -98,7 +119,7 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void createAssignmentEndsSoonerThanStarts() {
-        Assignment assignment = new Assignment(1L, goodAgent, goodMission, 2L, 1L);
+        Assignment assignment = new Assignment(1L, goodAgent, goodMission, Instant.ofEpochMilli(2L), Instant.ofEpochMilli(1L));
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.createAssignment(assignment);
@@ -108,17 +129,17 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void updateAssignment() {
-        Agent agent = new Agent(5L, "Jiri Barnat", 12L);
+        Agent agent = new Agent(5L, "Jiri Barnat", Instant.ofEpochMilli(12L));
         Mission mission = new Mission(30L, "Make Haskell rule the world", 1, false);
-        Assignment assignment = new Assignment(null, agent, mission, 1L, 2L);
+        Assignment assignment = new Assignment(null, agent, mission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
         manager.createAssignment(assignment);
         Long id = assignment.getId();
         Assignment newAssignment = manager.findAssignmentById(id);
 
         newAssignment.setAgent(goodAgent);
         newAssignment.setMission(goodMission);
-        newAssignment.setStartTime(3L);
-        newAssignment.setEndtime(4L);
+        newAssignment.setStartTime(Instant.ofEpochMilli(3L));
+        newAssignment.setEndTime(Instant.ofEpochMilli(4L));
 
         manager.updateAssignment(newAssignment);
         assertNotEquals(assignment, newAssignment);
@@ -126,7 +147,7 @@ public class AssignmentManagerImplTest {
         assertNotEquals(assignment.getAgent(), newAssignment.getAgent());
         assertNotEquals(assignment.getMission(), newAssignment.getMission());
         assertNotEquals(assignment.getStartTime(), newAssignment.getStartTime());
-        assertNotEquals(assignment.getEndtime(), newAssignment.getEndtime());
+        assertNotEquals(assignment.getEndTime(), newAssignment.getEndTime());
     }
 
     @Test
@@ -168,8 +189,8 @@ public class AssignmentManagerImplTest {
     @Test
     public void updateAssignmentEndsSoonerThanStarts() {
         Assignment newAssignment = makeAssignment();
-        newAssignment.setStartTime(10L);
-        newAssignment.setEndtime(5L);
+        newAssignment.setStartTime(Instant.ofEpochMilli(10L));
+        newAssignment.setEndTime(Instant.ofEpochMilli(5L));
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.updateAssignment(newAssignment);
@@ -179,13 +200,13 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void findAllAssignments() {
-        Assignment assignment1 = new Assignment(null, goodAgent, goodMission, 1L, 2L);
-        Assignment assignment2 = new Assignment(null, new Agent(10L, "Agent 2", 10L),
-                                        new Mission(10L, "Mission 2", 1, false), 6L, 8L);
-        Assignment assignment3 = new Assignment(null, new Agent(11L, "Agent 3", 20L),
-                                        new Mission(11L, "Mission 3", 1, false), 14L, 28L);
-        Assignment assignment4 = new Assignment(null, new Agent(12L, "Agent 4", 5318008L),
-                                        new Mission(12L, "Mission 4", 1, false), 1350L, 1402L);
+        Assignment assignment1 = new Assignment(null, goodAgent, goodMission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
+        Assignment assignment2 = new Assignment(null, new Agent(10L, "Agent 2", Instant.ofEpochMilli(10L)),
+                                        new Mission(10L, "Mission 2", 1, false), Instant.ofEpochMilli(6L), Instant.ofEpochMilli(8L));
+        Assignment assignment3 = new Assignment(null, new Agent(11L, "Agent 3", Instant.ofEpochMilli(20L)),
+                                        new Mission(11L, "Mission 3", 1, false), Instant.ofEpochMilli(14L), Instant.ofEpochMilli(28L));
+        Assignment assignment4 = new Assignment(null, new Agent(12L, "Agent 4", Instant.ofEpochMilli(5318008L)),
+                                        new Mission(12L, "Mission 4", 1, false), Instant.ofEpochMilli(1350L), Instant.ofEpochMilli(1402L));
 
         // must be created prior to storing due to id recovery
         manager.createAssignment(assignment1);
@@ -220,7 +241,7 @@ public class AssignmentManagerImplTest {
         Mission mission = new Mission(1L, "Make IS rule the world", 2, false);
         int requiredAgentsBefore = mission.getRequiredAgents();
 
-        Assignment assignment = new Assignment(1L, goodAgent, mission, 6L, 10L);
+        Assignment assignment = new Assignment(1L, goodAgent, mission, Instant.ofEpochMilli(6L), Instant.ofEpochMilli(10L));
         int requiredAgentsAfter = mission.getRequiredAgents();
 
         assertTrue((requiredAgentsBefore - 1) == requiredAgentsAfter);
@@ -230,7 +251,7 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void deleteAssignment() {
-        Assignment assignment = new Assignment(1L, goodAgent, goodMission, 2L, 1L);
+        Assignment assignment = new Assignment(1L, goodAgent, goodMission, Instant.ofEpochMilli(2L), Instant.ofEpochMilli(1L));
         manager.createAssignment(assignment);
 
         Long id = assignment.getId();
@@ -243,7 +264,7 @@ public class AssignmentManagerImplTest {
     @Test
     public void deleteAssignmentRequiredAgentsIncrease() {
         Mission mission = new Mission(1L, "Make IS rule the world", 2, false);
-        Assignment assignment = new Assignment(1L, goodAgent, mission, 2L, 1L);
+        Assignment assignment = new Assignment(1L, goodAgent, mission, Instant.ofEpochMilli(2L), Instant.ofEpochMilli(1L));
         manager.createAssignment(assignment);
         int requiredAgentsBefore = mission.getRequiredAgents();
 
@@ -255,7 +276,7 @@ public class AssignmentManagerImplTest {
     /* Private helper methods */
 
     private Assignment makeAssignment() {
-        Assignment assignment = new Assignment(null, goodAgent, goodMission, 1L, 2L);
+        Assignment assignment = new Assignment(null, goodAgent, goodMission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
         manager.createAssignment(assignment);
         Long id = assignment.getId();
         Assignment newAssignment = manager.findAssignmentById(id);

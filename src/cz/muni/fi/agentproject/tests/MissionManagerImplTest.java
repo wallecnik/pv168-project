@@ -1,12 +1,21 @@
 package cz.muni.fi.agentproject.tests;
 
+import cz.muni.fi.agentproject.DbHelper;
 import cz.muni.fi.agentproject.Mission;
 import cz.muni.fi.agentproject.MissionManager;
 import cz.muni.fi.agentproject.MissionManagerImpl;
+import org.apache.commons.dbcp2.BasicDataSource;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import javax.sql.DataSource;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -17,13 +26,35 @@ import static org.junit.Assert.*;
 public class MissionManagerImplTest {
 
     private MissionManager manager;
+    private DataSource dataSource;
 
     @Rule
     public ExpectedException expected = ExpectedException.none();
 
     @Before
-    public void setUp() {
+    public void setUp() throws SQLException {
+        BasicDataSource bds = new BasicDataSource();
+        bds.setUrl(DbHelper.DB_URL);
+        bds.setUsername(DbHelper.USERNAME);
+        bds.setPassword(DbHelper.PASSWORD);
         manager = new MissionManagerImpl();
+        this.dataSource = bds;
+        try (Connection connection = dataSource.getConnection()) {
+            connection.prepareStatement(DbHelper.SQL_DROP_TABLE_MISSION)
+                    .executeUpdate();
+            connection.prepareStatement(DbHelper.SQL_CREATE_TABLE_MISSION)
+                    .executeUpdate();
+        }
+        this.manager = new MissionManagerImpl();
+        //this.manager = new MissionManagerImpl(dataSource);
+    }
+
+    @After
+    public void tearDown() throws SQLException {
+        try (Connection connection = dataSource.getConnection()) {
+            connection.prepareStatement(DbHelper.SQL_DROP_TABLE_MISSION)
+                    .executeUpdate();
+        }
     }
 
     @Test
@@ -133,7 +164,7 @@ public class MissionManagerImplTest {
     }
 
     @Test
-    public void updateMissionWithNegatoverequiredAgents() {
+    public void updateMissionWithNegativeRequiredAgents() {
         Mission storedMission = createAndRetrieveMission();
         storedMission.setRequiredAgents(-1);
         expected.expect(IllegalArgumentException.class);
@@ -142,7 +173,6 @@ public class MissionManagerImplTest {
 
     @Test
     public void deleteMission() {
-
         Mission mission = new Mission(null, "Kill Usama", 100, false);
         manager.createMission(mission);
 
@@ -151,7 +181,6 @@ public class MissionManagerImplTest {
 
         Mission storedMission = manager.findMissionById(id);
         assertNull(storedMission);
-
     }
 
     @Test
@@ -162,7 +191,38 @@ public class MissionManagerImplTest {
 
     @Test
     public void deleteMissionWithWrongId() {
+        Long fakeId = Long.MAX_VALUE / 2;
+        if (manager.findMissionById(fakeId) != null) {
+            fakeId = Math.round(Math.random() * Long.MAX_VALUE / 2);
+            System.err.println("Using random value for id: " + fakeId);
+        }
 
+        Mission mission = new Mission(fakeId, null, 0, false);
+        expected.expect(IllegalArgumentException.class);
+        manager.deleteMission(mission);
+    }
+
+    @Test
+    public void createMoreMissions() {
+        Set<Mission> currentMissions = manager.findAllMissions();
+
+        Mission mission1 = new Mission(null, "goal1", 1, false);
+        manager.createMission(mission1);
+        Mission mission2 = new Mission(null, "goal2", 2, false);
+        manager.createMission(mission2);
+        Mission mission3 = new Mission(null, "goal3", 2, false);
+        manager.createMission(mission3);
+
+        Set<Mission> newMissions = manager.findAllMissions();
+
+        assertNotEquals(currentMissions, newMissions);
+        assertEquals(currentMissions.size() + 3, newMissions);
+
+        newMissions.remove(mission1);
+        newMissions.remove(mission2);
+        newMissions.remove(mission3);
+
+        assertEquals(currentMissions, newMissions);
     }
 
     private Mission createAndRetrieveMission() {

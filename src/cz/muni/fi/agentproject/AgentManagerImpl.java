@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
  * @author  Dužinka
  * @version 24.3.2015
  */
-public class AgentManagerImpl implements AgentManager {
+public class AgentManagerImpl extends AbstractManager implements AgentManager {
 
     public static final Logger logger = Logger.getLogger(AgentManagerImpl.class.getName());
 
@@ -61,7 +61,7 @@ public class AgentManagerImpl implements AgentManager {
                      DbHelper.SQL_INSERT_INTO_AGENT, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, agent.getName());
-            ps.setLong(2, agent.getBorn());
+            ps.setTimestamp(2, Timestamp.from(agent.getBorn()));
 
             int addedRows = ps.executeUpdate();
             if (addedRows != 1) {
@@ -88,7 +88,7 @@ public class AgentManagerImpl implements AgentManager {
      * @param id  id of an Agent to look for
      * @return  a new instance of an Agent or null
      * @throws ServiceFailureException   if more record's were found or another error occurred
-     * @throws IllegalArgumentException  if provided id is null
+     * @throws IllegalArgumentException  if the provided id is null or negative
      */
     @Override
     public Agent findAgentById(Long id) throws ServiceFailureException, IllegalArgumentException{
@@ -97,6 +97,9 @@ public class AgentManagerImpl implements AgentManager {
 
         if (id == null) {
             throw new IllegalArgumentException("id is null");
+        }
+        if (id <= 0) {
+            throw new IllegalArgumentException("id is negative");
         }
 
         try (Connection connection = dataSource.getConnection();
@@ -153,7 +156,7 @@ public class AgentManagerImpl implements AgentManager {
              PreparedStatement ps = conn.prepareStatement(DbHelper.SQL_UPDATE_SINGLE_AGENT)) {
 
             ps.setString(1, agent.getName());
-            ps.setLong(2, agent.getBorn());
+            ps.setTimestamp(2, Timestamp.from(agent.getBorn()));
             ps.setLong(3, agent.getId());
 
             int addedRows = ps.executeUpdate();
@@ -213,7 +216,7 @@ public class AgentManagerImpl implements AgentManager {
     @Override
     public Set<Agent> findAllAgents() throws ServiceFailureException {
 
-        Set<Agent> retList = new HashSet<>();
+        Set<Agent> retSet = new HashSet<>();
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(
@@ -224,7 +227,7 @@ public class AgentManagerImpl implements AgentManager {
 
             while (rs.next()) {
                 Agent agent = resultSetToAgent(rs);
-                retList.add(agent);
+                retSet.add(agent);
             }
 
         } catch (SQLException sqle) {
@@ -232,40 +235,8 @@ public class AgentManagerImpl implements AgentManager {
             throw new ServiceFailureException("Error when looking up all agents", sqle);
         }
 
-        return retList;
+        return retSet;
 
-    }
-
-    /**
-     * Retrieves a newly generated key from given ResultSet or throws an exception
-     * if more keys or no key were found
-     */
-    private Long getKeyFromRS(ResultSet resultSet, Agent agent) throws SQLException {
-
-        Long newId;
-
-        if (resultSet.first()) {
-            if (resultSet.getMetaData().getColumnCount() != 1) {
-                throw new ServiceFailureException("Internal Error: Generated key"
-                        + "retrieving failed when trying to insert agent " + agent
-                        + " - wrong key fields count: " + resultSet.getMetaData().getColumnCount());
-            }
-
-            newId = resultSet.getLong(1);
-
-            if (! resultSet.isLast()) {
-                throw new ServiceFailureException("Internal Error: Generated key"
-                        + "retrieving failed when trying to insert agent " + agent
-                        + " - more keys found");
-            }
-        }
-        else {
-            throw new ServiceFailureException("Internal Error: Generated key"
-                    + "retrieving failed when trying to insert agent " + agent
-                    + " - no key found");
-        }
-
-        return newId;
     }
 
     /**
@@ -274,9 +245,9 @@ public class AgentManagerImpl implements AgentManager {
      */
     private Agent resultSetToAgent(ResultSet resultSet) throws SQLException {
 
-        Long id     = resultSet.getLong(DbContract.COLUMN_AGENT_ID);
-        String name = resultSet.getString(DbContract.COLUMN_AGENT_NAME);
-        long born   = resultSet.getLong(DbContract.COLUMN_AGENT_BORN);
+        Long id      = resultSet.getLong(DbContract.COLUMN_AGENT_ID);
+        String name  = resultSet.getString(DbContract.COLUMN_AGENT_NAME);
+        Instant born = resultSet.getTimestamp(DbContract.COLUMN_AGENT_BORN).toInstant();
 
         Agent agent = new Agent(id, name, born);
 
@@ -303,7 +274,7 @@ public class AgentManagerImpl implements AgentManager {
         if (! Pattern.matches(Constants.AGENT_NAME_REGEX, agent.getName())) {
             throw new IllegalArgumentException("agent name contains illegal characters");
         }
-        ZonedDateTime agentBorn = ZonedDateTime.ofInstant(Instant.ofEpochMilli(agent.getBorn()), ZoneId.systemDefault());
+        ZonedDateTime agentBorn = ZonedDateTime.ofInstant(agent.getBorn(), ZoneId.systemDefault());
         if (agentBorn.compareTo(ZonedDateTime.now()) > 0) {
             throw new IllegalArgumentException("Agent not born yet");
         }

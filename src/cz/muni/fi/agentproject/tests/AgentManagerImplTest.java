@@ -14,10 +14,9 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -26,7 +25,7 @@ import static org.junit.Assert.*;
  *
  * @author  Wallecnik
  * @author  Dužinka
- * @version 24.3.2015
+ * @version 23.3.2015
  */
 public class AgentManagerImplTest {
 
@@ -65,7 +64,7 @@ public class AgentManagerImplTest {
 
     @Test
     public void createAgent() {
-        Agent agent = new Agent(null, "Michal Brandejs", 10L);
+        Agent agent = new Agent(null, "Michal Brandejs", Instant.ofEpochMilli(10L));
         manager.createAgent(agent);
 
         Long id = agent.getId();
@@ -84,7 +83,7 @@ public class AgentManagerImplTest {
 
     @Test
     public void createAgentWithNullName() {
-        Agent agent = new Agent(null, null, 10L);
+        Agent agent = new Agent(null, null, Instant.ofEpochMilli(10L));
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.createAgent(agent);
@@ -92,7 +91,7 @@ public class AgentManagerImplTest {
 
     @Test
     public void createAgentWithEmptyName() {
-        Agent agent = new Agent(null, "", 10L);
+        Agent agent = new Agent(null, "", Instant.ofEpochMilli(10L));
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.createAgent(agent);
@@ -100,7 +99,7 @@ public class AgentManagerImplTest {
 
     @Test
     public void createAgentNameWithIllegalSymbols() {
-        Agent agent = new Agent(null, "lol_#yolo^2", 10L);
+        Agent agent = new Agent(null, "lol_#yolo^2", Instant.ofEpochMilli(10L));
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.createAgent(agent);
@@ -117,7 +116,7 @@ public class AgentManagerImplTest {
         cal.add(Calendar.YEAR, -101);
         Date dateBefore100Years = cal.getTime();
 
-        Agent agent = new Agent(null, "name", dateBefore100Years.getTime());
+        Agent agent = new Agent(null, "name", Instant.ofEpochMilli(dateBefore100Years.getTime()));
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.createAgent(agent);
@@ -129,7 +128,7 @@ public class AgentManagerImplTest {
         cal.add(Calendar.DAY_OF_MONTH, +1);
         Date datePlus1Day = cal.getTime();
 
-        Agent agent = new Agent(null, "name", datePlus1Day.getTime());
+        Agent agent = new Agent(null, "name", Instant.ofEpochMilli(datePlus1Day.getTime()));
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.createAgent(agent);
@@ -138,15 +137,23 @@ public class AgentManagerImplTest {
 
     /* Update agent */
 
+    private Agent makeAgent() {
+        Agent agent = new Agent(null, "Michal Brandejs", Instant.ofEpochMilli(10L));
+        manager.createAgent(agent);
+        Long id = agent.getId();
+        Agent newAgent = manager.findAgentById(id);
+        return newAgent;
+    }
+
     @Test
     public void updateAgent() {
-        Agent agent = new Agent(null, "Michal Brandejs", 10L);
+        Agent agent = new Agent(null, "Michal Brandejs", Instant.ofEpochMilli(10L));
         manager.createAgent(agent);
         Long id = agent.getId();
         Agent newAgent = manager.findAgentById(id);
 
         newAgent.setName("Jiri Barnat");
-        newAgent.setBorn(20L);
+        newAgent.setBorn(Instant.ofEpochMilli(20L));
 
         manager.updateAgent(newAgent);
         assertNotEquals(agent, newAgent);
@@ -208,7 +215,7 @@ public class AgentManagerImplTest {
         cal.add(Calendar.YEAR, -101);
         Date dateBefore100Years = cal.getTime();
 
-        agent.setBorn(dateBefore100Years.getTime());
+        agent.setBorn(Instant.ofEpochMilli(dateBefore100Years.getTime()));
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.updateAgent(agent);
@@ -222,42 +229,15 @@ public class AgentManagerImplTest {
         cal.add(Calendar.DAY_OF_MONTH, +1);
         Date datePlus1Day = cal.getTime();
 
-        agent.setBorn(datePlus1Day.getTime());
+        agent.setBorn(Instant.ofEpochMilli(datePlus1Day.getTime()));
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.updateAgent(agent);
     }
 
-    /* Find all agents */
-
-    @Test
-    public void findAllAgents() {
-        Agent agent1 = new Agent(null, "Michal Brandejs", 10L);
-        Agent agent2 = new Agent(null, "Jiri Barnat", 8L);
-        Agent agent3 = new Agent(null, "Petr Beran", 5318008L);
-        Agent agent4 = new Agent(null, "Petr Hasil", 15L);
-
-        // must be created prior to storing due to id recovery
-        manager.createAgent(agent1);
-        manager.createAgent(agent2);
-        manager.createAgent(agent3);
-        manager.createAgent(agent4);
-
-        Set<Agent> storedAgents = new HashSet<>();
-        storedAgents.add(agent1);
-        storedAgents.add(agent2);
-        storedAgents.add(agent3);
-        storedAgents.add(agent4);
-
-        Set<Agent> foundAgents = manager.findAllAgents();
-        assertTrue(storedAgents.equals(foundAgents));
-    }
-
-    /* Delete agent */
-
     @Test
     public void deleteAgent() {
-        Agent agent = new Agent(null, "Michal Brandejs", 10L);
+        Agent agent = new Agent(null, "Michal Brandejs", Instant.ofEpochMilli(10L));
         manager.createAgent(agent);
 
         Long id = agent.getId();
@@ -265,16 +245,6 @@ public class AgentManagerImplTest {
 
         Agent storedAgent = manager.findAgentById(id);
         assertNull(storedAgent);
-    }
-
-    /* Private helper methods */
-
-    private Agent makeAgent() {
-        Agent agent = new Agent(null, "Michal Brandejs", 10L);
-        manager.createAgent(agent);
-        Long id = agent.getId();
-        Agent newAgent = manager.findAgentById(id);
-        return newAgent;
     }
 }
 

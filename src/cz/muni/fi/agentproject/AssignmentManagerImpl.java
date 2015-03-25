@@ -1,46 +1,320 @@
 package cz.muni.fi.agentproject;
 
-import java.util.List;
+import javax.sql.DataSource;
+import java.sql.*;
+import java.time.Instant;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author  Wallecnik
  * @version 31.22.2015
  */
-public class AssignmentManagerImpl implements AssignmentManager {
+public class AssignmentManagerImpl extends AbstractManager implements AssignmentManager {
 
+    //TODO: rewrite and complete JavaDocs to be more precise
+    public static final Logger logger = Logger.getLogger(AssignmentManagerImpl.class.getName());
+
+    private DataSource dataSource;
+    private AgentManager agentManager;
+    private MissionManager missionManager;
+
+    public AssignmentManagerImpl(DataSource dataSource, AgentManager agentManager, MissionManager missionManager) {
+        this.dataSource = dataSource;
+        this.agentManager = agentManager;
+        this.missionManager = missionManager;
+    }
+
+    /**
+     * Adds a new assignment. Provided Assignment should have valid values associated.
+     *
+     * @param assignment an instance of Assignment to store
+     * @throws IllegalArgumentException if the Assignment has invalid data
+     */
     @Override
-    public void createAssignment(Assignment assignment) {
+    public void createAssignment(Assignment assignment) throws IllegalArgumentException {
+
+        validateAssignment(assignment);
+        if (assignment.getId() != null) {
+            throw new IllegalArgumentException();
+        }
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(
+                     DbHelper.SQL_INSERT_INTO_ASSIGNMENT, Statement.RETURN_GENERATED_KEYS)) {
+
+            ps.setLong(1, assignment.getAgent().getId());
+            ps.setLong(2, assignment.getMission().getId());
+            ps.setTimestamp(3, Timestamp.from(assignment.getStartTime()));
+            if (assignment.getEndTime() != null) {
+                ps.setTimestamp(4, Timestamp.from(assignment.getEndTime()));
+            }
+            else {
+                ps.setTimestamp(4, null);
+            }
+
+            int addedRows = ps.executeUpdate();
+            if (addedRows != 1) {
+                throw new ServiceFailureException("Internal Error: More rows "
+                        + "inserted when trying to insert assignment " + assignment);
+            }
+
+            ResultSet keyRS = ps.getGeneratedKeys();
+            Long newId = this.getKeyFromRS(keyRS, assignment);
+            assignment.setId(newId);
+
+        } catch (SQLException sqle) {
+            logger.log(Level.SEVERE, null, sqle);
+            throw new ServiceFailureException("Error when inserting assignment " + assignment, sqle);
+        }
 
     }
 
+    /**
+     * Returns the Assignment associated with the given id or null if the id was not found.
+     *
+     * @param id an id to look for
+     * @return an instance of Assignment or null
+     * @throws IllegalArgumentException if the given id is null or negative
+     */
     @Override
-    public Assignment findAssignmentById(Long id) {
+    public Assignment findAssignmentById(Long id) throws IllegalArgumentException {
+
+        Assignment retVal;
+
+        if (id == null) {
+            throw new IllegalArgumentException();
+        }
+        if (id <= 0) {
+            throw new IllegalArgumentException();
+        }
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(
+                     DbHelper.SQL_SELECT_SINGLE_ASSIGNMENT)) {
+
+            ps.setLong(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.first()) {
+                retVal = resultSetToAssignment(rs);
+            }
+
+        } catch (SQLException sqle) {
+            logger.log(Level.SEVERE, null, sqle);
+            throw new ServiceFailureException("Error when looking up an assignment with id" + id, sqle);
+        }
+
         return null;
     }
 
+    /**
+     * Updates an existing Assignment. Stored Assignment is found by id in the given Assignment.
+     * Provided Assignment should have valid data associated.
+     *
+     * @param assignment an instance of Assignment to update
+     * @throws IllegalArgumentException if the Assignment has invalid data
+     */
     @Override
-    public void updateAssignment(Assignment assignment) {
+    public void updateAssignment(Assignment assignment) throws IllegalArgumentException {
+
+        validateAssignment(assignment);
+
+        if (assignment.getId() == null) {
+            throw new IllegalArgumentException();
+        }
+        if (assignment.getId() <= 0) {
+            throw new IllegalArgumentException();
+        }
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(
+                     DbHelper.SQL_UPDATE_SINGLE_ASSIGNMENT)) {
+
+            ps.setLong(1, assignment.getAgent().getId());
+            ps.setLong(2, assignment.getMission().getId());
+            ps.setTimestamp(3, Timestamp.from(assignment.getStartTime()));
+            if (assignment.getEndTime() != null) {
+                ps.setTimestamp(4, Timestamp.from(assignment.getEndTime()));
+            }
+            else {
+                ps.setTimestamp(4, null);
+            }
+            ps.setLong(5, assignment.getId());
+
+            int addedRows = ps.executeUpdate();
+            if (addedRows != 1) {
+                throw new ServiceFailureException("Unable to update assignment " + assignment);
+            }
+
+        } catch (SQLException sqle) {
+            logger.log(Level.SEVERE, null, sqle);
+            throw new ServiceFailureException("Error when updating assignment " + assignment, sqle);
+        }
 
     }
 
+    /**
+     * Deletes assignment. Stored assignment is found by id associated with the given assignment.
+     *
+     * @param assignment an instance of assignment to delete with valid id
+     * @throws IllegalArgumentException if the given assignment has invalid data
+     */
     @Override
-    public void deleteAssignment(Assignment assignment) {
+    public void deleteAssignment(Assignment assignment) throws IllegalArgumentException {
+
+        if (assignment == null) {
+            throw new IllegalArgumentException();
+        }
+        if (assignment.getId() == null) {
+            throw new IllegalArgumentException();
+        }
+        if (assignment.getId() <= 0) {
+            throw new IllegalArgumentException();
+        }
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(
+                     DbHelper.SQL_DELETE_SINGLE_ASSIGNMENT)) {
+
+            ps.setLong(1, assignment.getId());
+
+            int addedRows = ps.executeUpdate();
+            if (addedRows != 1) {
+                throw new ServiceFailureException("Unable to delete assignment " + assignment);
+            }
+
+        } catch (SQLException sqle) {
+            logger.log(Level.SEVERE, null, sqle);
+            throw new ServiceFailureException("Error when updating assignment " + assignment, sqle);
+        }
 
     }
 
+    /**
+     * Returns a Set of all assignments. If there are none, then an empty collection is returned.
+     *
+     * @return Set of all assignments
+     */
     @Override
     public Set<Assignment> findAllAssignments() {
+
+        Set<Assignment> retSet = new HashSet<>();
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(
+                     DbHelper.SQL_SELECT_ALL_ASSIGNMENTS)) {
+
+            ResultSet rs = ps.executeQuery();
+            rs.beforeFirst();
+
+            while (rs.next()) {
+                Assignment assignment = resultSetToAssignment(rs);
+                retSet.add(assignment);
+            }
+
+        } catch (SQLException sqle) {
+            logger.log(Level.SEVERE, null, sqle);
+            throw new ServiceFailureException("Error when looking up all agents", sqle);
+        }
+
+        return retSet;
+
+    }
+
+    /**
+     * Returns a Set of all assignments assigned to a specific agent. Agent should have valid id.
+     *
+     * @param agent instance of an Agent with valid id
+     * @return Set of assignments for an agent
+     * @throws IllegalArgumentException if the given Agent has invalid data
+     */
+    @Override
+    public Set<Assignment> findAssignmentsForAgent(Agent agent) throws IllegalArgumentException {
         return null;
     }
 
+    /**
+     * Returns a Set of all assignments assigned to a specific mission. Mission should have valid id.
+     *
+     * @param mission instance of a Mission with valid id
+     * @return Set of assignments for a Mission
+     * @throws IllegalArgumentException if the given Mission has invalid data
+     */
     @Override
-    public Set<Assignment> findAssignmentsForAgent(Agent agent) {
+    public Set<Assignment> findAssignmentsForMission(Mission mission) throws IllegalArgumentException {
         return null;
     }
 
-    @Override
-    public Set<Assignment> findAssignmentsforMission(Mission mission) {
-        return null;
+    private Assignment resultSetToAssignment(ResultSet resultSet) throws SQLException {
+
+        Long id = resultSet.getLong(DbContract.COLUMN_ASSIGNMENT_ID);
+        Agent agent = agentManager.findAgentById(resultSet.getLong(DbContract.COLUMN_ASSIGNMENT_AGENT_ID));
+        Mission mission = missionManager.findMissionById(resultSet.getLong(DbContract.COLUMN_ASSIGNMENT_MISSION_ID));
+        Instant startTime = resultSet.getTimestamp(DbContract.COLUMN_ASSIGNMENT_STARTTIME).toInstant();
+        Instant endTime = resultSet.getTimestamp(DbContract.COLUMN_ASSIGNMENT_ENDTIME).toInstant();
+
+        Assignment retVal = new Assignment(id, agent, mission, startTime, endTime);
+
+        return retVal;
+
     }
+
+    /**
+     * Group of constraints to check if Assignment has correct values set. Each of the
+     * constraints can throw IllegalArgumentException
+     */
+    private void validateAssignment(Assignment assignment) {
+        if (assignment == null) {
+            throw new IllegalArgumentException();
+        }
+        if (assignment.getAgent() == null) {
+            throw new IllegalArgumentException();
+        }
+        if (assignment.getAgent().getId() == null) {
+            throw new IllegalArgumentException();
+        }
+        if (assignment.getAgent().getId() <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (assignment.getMission() == null) {
+            throw new IllegalArgumentException();
+        }
+        if (assignment.getMission().getId() == null) {
+            throw new IllegalArgumentException();
+        }
+        if (assignment.getMission().getId() <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (assignment.getStartTime() == null) {
+            throw new IllegalArgumentException();
+        }
+        if (assignment.getStartTime().compareTo(Instant.now()) > 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

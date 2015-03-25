@@ -27,7 +27,7 @@ public class DbHelper {
             "(" +
                 DbContract.COLUMN_AGENT_ID   + " BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
                 DbContract.COLUMN_AGENT_NAME + " VARCHAR(" + Constants.AGENT_NAME_MAX_LENGTH + ") NOT NULL, " +
-                DbContract.COLUMN_AGENT_BORN + " BIGINT NOT NULL" +
+                DbContract.COLUMN_AGENT_BORN + " DATETIME(" + Constants.TIMESTAMP_DECIMAL_PRECISION + ") NOT NULL" +
             ") ENGINE InnoDB";
 
     public static final String SQL_DROP_TABLE_AGENT = "" +
@@ -78,7 +78,7 @@ public class DbHelper {
             "(" +
                 DbContract.COLUMN_MISSION_ID              + " BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
                 DbContract.COLUMN_MISSION_REQUIRED_AGENTS + " INT UNSIGNED NOT NULL DEFAULT 1, " +
-                DbContract.COLUMN_MISSION_GOAL            + " VARCHAR(" + Constants.MISSION_GOAL_MAX_LENGTH + ") NOT NULL, " +
+                DbContract.COLUMN_MISSION_GOAL            + " TEXT(" + Constants.MISSION_GOAL_MAX_LENGTH + ") NOT NULL, " +
                 DbContract.COLUMN_MISSION_COMPLETED       + " BOOL NOT NULL DEFAULT 0" +
             ") ENGINE InnoDB";
 
@@ -133,8 +133,8 @@ public class DbHelper {
                 DbContract.COLUMN_ASSIGNMENT_ID         + " BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
                 DbContract.COLUMN_ASSIGNMENT_AGENT_ID   + " BIGINT UNSIGNED NOT NULL, " +
                 DbContract.COLUMN_ASSIGNMENT_MISSION_ID + " BIGINT UNSIGNED NOT NULL, " +
-                DbContract.COLUMN_ASSIGNMENT_STARTTIME  + " BIGINT NOT NULL DEFAULT now(), " +
-                DbContract.COLUMN_ASSIGNMENT_ENDTIME    + " BIGINT NULL DEFAULT null, " +
+                DbContract.COLUMN_ASSIGNMENT_STARTTIME  + " DATETIME(\" + Constants.TIMESTAMP_DECIMAL_PRECISION + \") NOT NULL, " +
+                DbContract.COLUMN_ASSIGNMENT_ENDTIME    + " DATETIME(\" + Constants.TIMESTAMP_DECIMAL_PRECISION + \") NULL DEFAULT NULL, " +
                 "FOREIGN KEY (" + DbContract.COLUMN_ASSIGNMENT_AGENT_ID + ") " +
                 "REFERENCES " + DbContract.TABLE_NAME_AGENT + "(" + DbContract.COLUMN_AGENT_ID + ") " +
                 "ON UPDATE CASCADE ON DELETE CASCADE, " +
@@ -153,7 +153,7 @@ public class DbHelper {
                 DbContract.COLUMN_ASSIGNMENT_MISSION_ID + ", " +
                 DbContract.COLUMN_ASSIGNMENT_STARTTIME + ", " +
                 DbContract.COLUMN_ASSIGNMENT_ENDTIME +
-            ") VALUES (?, ?, ?)";
+            ") VALUES (?, ?, ?, ?)";
 
     public static final String SQL_SELECT_SINGLE_ASSIGNMENT = "" +
             "SELECT " +
