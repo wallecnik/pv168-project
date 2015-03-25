@@ -174,6 +174,26 @@ public class DbHelper {
                 DbContract.COLUMN_ASSIGNMENT_ENDTIME + " " +
             "FROM " + DbContract.TABLE_NAME_ASSIGNMENT;
 
+    public static final String SQL_SELECT_ALL_ASSIGNMENTS_FOR_AGENT = "" +
+            "SELECT " +
+            DbContract.COLUMN_ASSIGNMENT_ID   + ", " +
+            DbContract.COLUMN_ASSIGNMENT_AGENT_ID + ", " +
+            DbContract.COLUMN_ASSIGNMENT_MISSION_ID + ", " +
+            DbContract.COLUMN_ASSIGNMENT_STARTTIME + ", " +
+            DbContract.COLUMN_ASSIGNMENT_ENDTIME + " " +
+            "FROM " + DbContract.TABLE_NAME_ASSIGNMENT + " " +
+            "WHERE " + DbContract.COLUMN_ASSIGNMENT_AGENT_ID + " = ?";
+
+    public static final String SQL_SELECT_ALL_ASSIGNMENTS_FOR_MISSION = "" +
+            "SELECT " +
+            DbContract.COLUMN_ASSIGNMENT_ID   + ", " +
+            DbContract.COLUMN_ASSIGNMENT_AGENT_ID + ", " +
+            DbContract.COLUMN_ASSIGNMENT_MISSION_ID + ", " +
+            DbContract.COLUMN_ASSIGNMENT_STARTTIME + ", " +
+            DbContract.COLUMN_ASSIGNMENT_ENDTIME + " " +
+            "FROM " + DbContract.TABLE_NAME_ASSIGNMENT + " " +
+            "WHERE " + DbContract.COLUMN_ASSIGNMENT_MISSION_ID + " = ?";
+
     public static final String SQL_UPDATE_SINGLE_ASSIGNMENT = "" +
             "UPDATE " + DbContract.TABLE_NAME_MISSION + " " +
             "SET " +

@@ -82,7 +82,7 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
     @Override
     public Assignment findAssignmentById(Long id) throws IllegalArgumentException {
 
-        Assignment retVal;
+        Assignment retVal = null;
 
         if (id == null) {
             throw new IllegalArgumentException();
@@ -108,7 +108,7 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
             throw new ServiceFailureException("Error when looking up an assignment with id" + id, sqle);
         }
 
-        return null;
+        return retVal;
     }
 
     /**
@@ -234,7 +234,42 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
      */
     @Override
     public Set<Assignment> findAssignmentsForAgent(Agent agent) throws IllegalArgumentException {
-        return null;
+
+        if (agent == null) {
+            throw new IllegalArgumentException("Agent pointer is null");
+        }
+        if (agent.getId() == null) {
+            throw new IllegalArgumentException("Agent with null id cannot be deleted");
+        }
+        if (agent.getId() <= 0) {
+            throw new IllegalArgumentException("Agent's id is less than zero");
+        }
+        if (agentManager.findAgentById(agent.getId()) == null) {
+            throw new IllegalArgumentException("No such agent exists");
+        }
+
+        Set<Assignment> retSet = new HashSet<>();
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(
+                     DbHelper.SQL_SELECT_ALL_ASSIGNMENTS_FOR_AGENT)) {
+
+            ps.setLong(1, agent.getId());
+
+            ResultSet rs = ps.executeQuery();
+            rs.beforeFirst();
+
+            while (rs.next()) {
+                Assignment assignment = resultSetToAssignment(rs);
+                retSet.add(assignment);
+            }
+
+        } catch (SQLException sqle) {
+            logger.log(Level.SEVERE, null, sqle);
+            throw new ServiceFailureException("Error when looking up all assignment for agent " + agent, sqle);
+        }
+
+        return retSet;
     }
 
     /**
@@ -246,7 +281,43 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
      */
     @Override
     public Set<Assignment> findAssignmentsForMission(Mission mission) throws IllegalArgumentException {
-        return null;
+
+        if (mission == null) {
+            throw new IllegalArgumentException("Mission pointer is null");
+        }
+        if (mission.getId() == null) {
+            throw new IllegalArgumentException("mission with null id cannot be deleted");
+        }
+        if (mission.getId() <= 0) {
+            throw new IllegalArgumentException("Mission's id is less than zero");
+        }
+        if (agentManager.findAgentById(mission.getId()) == null) {
+            throw new IllegalArgumentException("No such mission exists");
+        }
+
+        Set<Assignment> retSet = new HashSet<>();
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement ps = connection.prepareStatement(
+                     DbHelper.SQL_SELECT_ALL_ASSIGNMENTS_FOR_MISSION)) {
+
+            ps.setLong(1, mission.getId());
+
+            ResultSet rs = ps.executeQuery();
+            rs.beforeFirst();
+
+            while (rs.next()) {
+                Assignment assignment = resultSetToAssignment(rs);
+                retSet.add(assignment);
+            }
+
+        } catch (SQLException sqle) {
+            logger.log(Level.SEVERE, null, sqle);
+            throw new ServiceFailureException("Error when looking up all assignment for mission " + mission, sqle);
+        }
+
+        return retSet;
+
     }
 
     private Assignment resultSetToAssignment(ResultSet resultSet) throws SQLException {
