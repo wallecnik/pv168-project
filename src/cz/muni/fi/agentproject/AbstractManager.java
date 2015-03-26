@@ -2,9 +2,14 @@ package cz.muni.fi.agentproject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
 
 /**
- * Created by Wallecnik on 24.03.15.
+ * This implements some methods used in all managers or methods that are dependent
+ * on each other.
+ *
+ * @author Wallecnik
+ * @version 26.3.2015
  */
 public abstract class AbstractManager {
 
@@ -39,5 +44,43 @@ public abstract class AbstractManager {
 
         return newId;
     }
+
+    /**
+     * Transforms given ResultSet row to an instance of Agent. ResultSet must be
+     * pointed at the specific row from which this method generates the Agent.
+     */
+    protected Agent resultSetToAgent(ResultSet resultSet) throws SQLException {
+
+        Long id      = resultSet.getLong(DbContract.COLUMN_AGENT_ID);
+        String name  = resultSet.getString(DbContract.COLUMN_AGENT_NAME);
+        Instant born = resultSet.getTimestamp(DbContract.COLUMN_AGENT_BORN).toInstant();
+
+        return new Agent(id, name, born);
+
+    }
+
+    protected Mission resultSetToMission(ResultSet resultSet) throws SQLException {
+
+        Long id             = resultSet.getLong(DbContract.COLUMN_MISSION_ID);
+        String goal         = resultSet.getString(DbContract.COLUMN_MISSION_GOAL);
+        int requiredAgents  = resultSet.getInt(DbContract.COLUMN_MISSION_REQUIRED_AGENTS);
+        boolean completed   = resultSet.getBoolean(DbContract.COLUMN_MISSION_COMPLETED);
+
+        return new Mission(id, goal, requiredAgents, completed);
+
+    }
+
+    protected Assignment resultSetToAssignment(ResultSet resultSet) throws SQLException {
+
+        Long id = resultSet.getLong(DbContract.COLUMN_ASSIGNMENT_ID);
+        Agent agent = resultSetToAgent(resultSet);
+        Mission mission = resultSetToMission(resultSet);
+        Instant startTime = resultSet.getTimestamp(DbContract.COLUMN_ASSIGNMENT_START_TIME).toInstant();
+        Instant endTime = resultSet.getTimestamp(DbContract.COLUMN_ASSIGNMENT_END_TIME).toInstant();
+
+        return new Assignment(id, agent, mission, startTime, endTime);
+
+    }
+
 
 }

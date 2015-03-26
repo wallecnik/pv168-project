@@ -24,10 +24,14 @@ import static org.junit.Assert.*;
  */
 public class AssignmentManagerImplTest {
 
+    private DataSource dataSource;
+
     private AssignmentManager manager;
+    private AgentManager agentManager;
+    private MissionManager missionManager;
+
     private Mission goodMission;
     private Agent goodAgent;
-    private DataSource dataSource;
 
 
     @Rule
@@ -58,9 +62,9 @@ public class AssignmentManagerImplTest {
         goodMission = new Mission(null, "Make IS rule the world", 2, false);
         goodAgent = new Agent(null, "Michal Brandejs", Instant.ofEpochMilli(10L));
 
-        AgentManager agentManager = new AgentManagerImpl(dataSource);
+        agentManager = new AgentManagerImpl(dataSource);
         //MissionManager missionManager = new MissionManagerImpl();
-        MissionManager missionManager = new MissionManagerImpl(dataSource);
+        missionManager = new MissionManagerImpl(dataSource);
 
         agentManager.createAgent(goodAgent);
         missionManager.createMission(goodMission);
@@ -70,14 +74,15 @@ public class AssignmentManagerImplTest {
 
     @After
     public void tearDown() throws SQLException {
-        try (Connection connection = dataSource.getConnection()) {
+
+/*        try (Connection connection = dataSource.getConnection()) {
             connection.prepareStatement(DbHelper.SQL_DROP_TABLE_ASSIGNMENT)
                     .executeUpdate();
             connection.prepareStatement(DbHelper.SQL_DROP_TABLE_AGENT)
                     .executeUpdate();
             connection.prepareStatement(DbHelper.SQL_DROP_TABLE_MISSION)
                     .executeUpdate();
-        }
+        }*/
     }
 
     /* Create assignment */
@@ -134,8 +139,14 @@ public class AssignmentManagerImplTest {
         Long id = assignment.getId();
         Assignment newAssignment = manager.findAssignmentById(id);
 
-        newAssignment.setAgent(goodAgent);
-        newAssignment.setMission(goodMission);
+        Agent newAgent = new Agent(null, "Jmeno", Instant.ofEpochMilli(100L));
+        agentManager.createAgent(newAgent);
+
+        Mission newMission = new Mission(null, "Kill someone", 3, false);
+        missionManager.createMission(newMission);
+
+        newAssignment.setAgent(newAgent);
+        newAssignment.setMission(newMission);
         newAssignment.setStartTime(Instant.ofEpochMilli(3L));
         newAssignment.setEndTime(Instant.ofEpochMilli(4L));
 
@@ -249,7 +260,7 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void deleteAssignment() {
-        Assignment assignment = new Assignment(null, goodAgent, goodMission, Instant.ofEpochMilli(2L), Instant.ofEpochMilli(1L));
+        Assignment assignment = new Assignment(null, goodAgent, goodMission, Instant.ofEpochMilli(2L), Instant.ofEpochMilli(3L));
         manager.createAssignment(assignment);
 
         Long id = assignment.getId();
@@ -262,7 +273,7 @@ public class AssignmentManagerImplTest {
     @Test
     public void deleteAssignmentRequiredAgentsIncrease() {
         Mission mission = new Mission(1L, "Make IS rule the world", 2, false);
-        Assignment assignment = new Assignment(1L, goodAgent, mission, Instant.ofEpochMilli(2L), Instant.ofEpochMilli(1L));
+        Assignment assignment = new Assignment(1L, goodAgent, mission, Instant.ofEpochMilli(2L), Instant.ofEpochMilli(3L));
         manager.createAssignment(assignment);
         int requiredAgentsBefore = mission.getRequiredAgents();
 

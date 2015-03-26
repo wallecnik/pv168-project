@@ -2,7 +2,6 @@ package cz.muni.fi.agentproject;
 
 import javax.sql.DataSource;
 import java.sql.*;
-import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
@@ -237,21 +236,6 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
 
         return retSet;
 
-    }
-
-    /**
-     * Transforms given ResultSet row to an instance of Agent. ResultSet must be
-     * pointed at the specific row from which this method generates the Agent.
-     */
-    private Agent resultSetToAgent(ResultSet resultSet) throws SQLException {
-
-        Long id      = resultSet.getLong(DbContract.COLUMN_AGENT_ID);
-        String name  = resultSet.getString(DbContract.COLUMN_AGENT_NAME);
-        Instant born = resultSet.getTimestamp(DbContract.COLUMN_AGENT_BORN).toInstant();
-
-        Agent agent = new Agent(id, name, born);
-
-        return agent;
     }
 
     /**

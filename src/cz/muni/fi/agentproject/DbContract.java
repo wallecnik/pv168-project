@@ -16,27 +16,27 @@ public class DbContract {
      * Table Agent
      */
     public static final String TABLE_NAME_AGENT = "agent";
-    public static final String COLUMN_AGENT_ID = "id";
-    public static final String COLUMN_AGENT_NAME = "name";
-    public static final String COLUMN_AGENT_BORN = "born";
+    public static final String COLUMN_AGENT_ID = "agent_id";
+    public static final String COLUMN_AGENT_NAME = "agent_name";
+    public static final String COLUMN_AGENT_BORN = "agent_born";
 
     /**
      * Table Mission
      */
     public static final String TABLE_NAME_MISSION = "mission";
-    public static final String COLUMN_MISSION_ID = "id";
-    public static final String COLUMN_MISSION_REQUIRED_AGENTS = "required_agents";
-    public static final String COLUMN_MISSION_GOAL = "goal";
-    public static final String COLUMN_MISSION_COMPLETED = "completed";
+    public static final String COLUMN_MISSION_ID = "mission_id";
+    public static final String COLUMN_MISSION_REQUIRED_AGENTS = "mission_required_agents";
+    public static final String COLUMN_MISSION_GOAL = "mission_goal";
+    public static final String COLUMN_MISSION_COMPLETED = "mission_completed";
 
     /**
      * Table Assignment
      */
     public static final String TABLE_NAME_ASSIGNMENT = "assignment";
-    public static final String COLUMN_ASSIGNMENT_ID = "id";
-    public static final String COLUMN_ASSIGNMENT_AGENT_ID = "agent_id";
-    public static final String COLUMN_ASSIGNMENT_MISSION_ID = "mission_id";
-    public static final String COLUMN_ASSIGNMENT_STARTTIME = "startTime";
-    public static final String COLUMN_ASSIGNMENT_ENDTIME = "endTime";
+    public static final String COLUMN_ASSIGNMENT_ID = "assignment_id";
+    public static final String COLUMN_ASSIGNMENT_AGENT_ID = COLUMN_AGENT_ID;
+    public static final String COLUMN_ASSIGNMENT_MISSION_ID = COLUMN_MISSION_ID;
+    public static final String COLUMN_ASSIGNMENT_START_TIME = "assignment_start_time";
+    public static final String COLUMN_ASSIGNMENT_END_TIME = "assignment_end_time";
 
 }

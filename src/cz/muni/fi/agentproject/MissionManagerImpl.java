@@ -181,18 +181,6 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
         return retSet;
     }
 
-    private Mission resultSetToMission(ResultSet resultSet) throws SQLException {
-
-        Long id             = resultSet.getLong(DbContract.COLUMN_MISSION_ID);
-        String goal         = resultSet.getString(DbContract.COLUMN_MISSION_GOAL);
-        int requiredAgents  = resultSet.getInt(DbContract.COLUMN_MISSION_REQUIRED_AGENTS);
-        boolean completed   = resultSet.getBoolean(DbContract.COLUMN_MISSION_COMPLETED);
-
-        Mission mission = new Mission(id, goal, requiredAgents, completed);
-
-        return mission;
-    }
-
     private void validateMission(Mission mission) throws IllegalArgumentException {
         if (mission == null) {
             throw new IllegalArgumentException("Mission is null");

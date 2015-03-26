@@ -23,50 +23,38 @@ public class DbHelper {
      */
 
     public static final String SQL_CREATE_TABLE_AGENT = "" +
-            "CREATE TABLE IF NOT EXISTS " + DbContract.TABLE_NAME_AGENT + " " +
+            "CREATE TABLE IF NOT EXISTS agent " +
             "(" +
-                DbContract.COLUMN_AGENT_ID   + " BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
-                DbContract.COLUMN_AGENT_NAME + " VARCHAR(" + Constants.AGENT_NAME_MAX_LENGTH + ") NOT NULL, " +
-                DbContract.COLUMN_AGENT_BORN + " DATETIME(" + Constants.TIMESTAMP_DECIMAL_PRECISION + ") NOT NULL" +
+                "agent_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
+                "agent_name     VARCHAR(" + Constants.AGENT_NAME_MAX_LENGTH + ") NOT NULL, " +
+                "agent_born     DATETIME(" + Constants.TIMESTAMP_DECIMAL_PRECISION + ") NOT NULL" +
             ") ENGINE InnoDB";
 
     public static final String SQL_DROP_TABLE_AGENT = "" +
-            "DROP TABLE IF EXISTS " + DbContract.TABLE_NAME_AGENT;
+            "DROP TABLE IF EXISTS agent";
 
     public static final String SQL_INSERT_INTO_AGENT = "" +
-            "INSERT INTO " + DbContract.TABLE_NAME_AGENT + " " +
-            "(" +
-                DbContract.COLUMN_AGENT_NAME + ", " +
-                DbContract.COLUMN_AGENT_BORN +
-            ") VALUES (?, ?)";
+            "INSERT INTO agent " +
+            "(agent_name, agent_born) " +
+            "VALUES (?, ?)";
 
     public static final String SQL_SELECT_SINGLE_AGENT = "" +
-            "SELECT " +
-                DbContract.COLUMN_AGENT_ID   + ", " +
-                DbContract.COLUMN_AGENT_NAME + ", " +
-                DbContract.COLUMN_AGENT_BORN + " " +
-            "FROM " + DbContract.TABLE_NAME_AGENT + " " +
-            "WHERE " + DbContract.COLUMN_AGENT_ID + " = ?";
+            "SELECT * " +
+            "FROM agent " +
+            "WHERE agent_id = ?";
 
     public static final String SQL_SELECT_ALL_AGENTS = "" +
-            "SELECT " +
-                DbContract.COLUMN_AGENT_ID   + ", " +
-                DbContract.COLUMN_AGENT_NAME + ", " +
-                DbContract.COLUMN_AGENT_BORN + " " +
-            "FROM " + DbContract.TABLE_NAME_AGENT;
+            "SELECT * " +
+            "FROM agent";
 
     public static final String SQL_UPDATE_SINGLE_AGENT = "" +
-            "UPDATE " + DbContract.TABLE_NAME_AGENT + " " +
-            "SET " +
-                DbContract.COLUMN_AGENT_NAME + " = ?, " +
-                DbContract.COLUMN_AGENT_BORN + " = ? " +
-            "WHERE " + DbContract.COLUMN_AGENT_ID + " = ?";
+            "UPDATE agent " +
+            "SET agent_name = ?, agent_born = ? " +
+            "WHERE agent_id = ?";
 
     public static final String SQL_DELETE_SINGLE_AGENT = "" +
-            "DELETE FROM " + DbContract.TABLE_NAME_AGENT + " " +
-            "WHERE " + DbContract.COLUMN_AGENT_ID + " = ?";
-
-    //TODO: ASSIGNMENT and MISSION SQL commands are NOT TESTED!!!
+            "DELETE FROM agent " +
+            "WHERE agent_id = ?";
 
     /**
      * SQL commands to manipulate with missions.
@@ -74,53 +62,39 @@ public class DbHelper {
      */
 
     public static final String SQL_CREATE_TABLE_MISSION = "" +
-            "CREATE TABLE IF NOT EXISTS " + DbContract.TABLE_NAME_MISSION + " " +
+            "CREATE TABLE IF NOT EXISTS mission " +
             "(" +
-                DbContract.COLUMN_MISSION_ID              + " BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
-                DbContract.COLUMN_MISSION_GOAL            + " TEXT(" + Constants.MISSION_GOAL_MAX_LENGTH + ") NOT NULL, " +
-                DbContract.COLUMN_MISSION_REQUIRED_AGENTS + " INT UNSIGNED NOT NULL DEFAULT 1, " +
-                DbContract.COLUMN_MISSION_COMPLETED       + " BOOL NOT NULL DEFAULT 0" +
-            ")";
+                "mission_id      BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
+                "mission_goal            TEXT(" + Constants.MISSION_GOAL_MAX_LENGTH + ") NOT NULL, " +
+                "mission_required_agents INT UNSIGNED NOT NULL DEFAULT 1, " +
+                "mission_completed       BOOL NOT NULL DEFAULT 0" +
+            ") ENGINE InnoDB";
 
     public static final String SQL_DROP_TABLE_MISSION = "" +
-            "DROP TABLE IF EXISTS " + DbContract.TABLE_NAME_MISSION;
+            "DROP TABLE IF EXISTS mission";
 
     public static final String SQL_INSERT_INTO_MISSION = "" +
-            "INSERT INTO " + DbContract.TABLE_NAME_MISSION + " " +
-            "(" +
-                DbContract.COLUMN_MISSION_GOAL + ", " +
-                DbContract.COLUMN_MISSION_REQUIRED_AGENTS + ", " +
-                DbContract.COLUMN_MISSION_COMPLETED +
-            ") VALUES (?, ?, ?)";
+            "INSERT INTO mission " +
+            "(mission_goal, mission_required_agents, mission_completed) " +
+            "VALUES (?, ?, ?)";
 
     public static final String SQL_SELECT_SINGLE_MISSION = "" +
-            "SELECT " +
-                DbContract.COLUMN_MISSION_ID   + ", " +
-                DbContract.COLUMN_MISSION_GOAL + ", " +
-                DbContract.COLUMN_MISSION_REQUIRED_AGENTS + ", " +
-                DbContract.COLUMN_MISSION_COMPLETED + " " +
-            "FROM " + DbContract.TABLE_NAME_MISSION + " " +
-            "WHERE " + DbContract.COLUMN_MISSION_ID + " = ?";
+            "SELECT * " +
+            "FROM mission " +
+            "WHERE mission_id = ?";
 
     public static final String SQL_SELECT_ALL_MISSIONS = "" +
-            "SELECT " +
-                DbContract.COLUMN_MISSION_ID   + ", " +
-                DbContract.COLUMN_MISSION_GOAL + ", " +
-                DbContract.COLUMN_MISSION_REQUIRED_AGENTS + ", " +
-                DbContract.COLUMN_MISSION_COMPLETED + " " +
-            "FROM " + DbContract.TABLE_NAME_MISSION;
+            "SELECT * " +
+            "FROM mission";
 
     public static final String SQL_UPDATE_SINGLE_MISSION = "" +
-            "UPDATE " + DbContract.TABLE_NAME_MISSION + " " +
-            "SET " +
-                DbContract.COLUMN_MISSION_GOAL + " = ?, " +
-                DbContract.COLUMN_MISSION_REQUIRED_AGENTS + " = ?, " +
-                DbContract.COLUMN_MISSION_COMPLETED + " = ? " +
-            "WHERE " + DbContract.COLUMN_MISSION_ID + " = ?";
+            "UPDATE mission " +
+            "SET mission_goal = ?, mission_required_agents = ?, mission_completed = ? " +
+            "WHERE mission_id = ?";
 
     public static final String SQL_DELETE_SINGLE_MISSION = "" +
-            "DELETE FROM " + DbContract.TABLE_NAME_MISSION + " " +
-            "WHERE " + DbContract.COLUMN_MISSION_ID + " = ?";
+            "DELETE FROM mission " +
+            "WHERE mission_id = ?";
 
     /**
      * SQL commands to manipulate with assignments.
@@ -128,84 +102,58 @@ public class DbHelper {
      */
 
     public static final String SQL_CREATE_TABLE_ASSIGNMENT = "" +
-            "CREATE TABLE IF NOT EXISTS " + DbContract.TABLE_NAME_ASSIGNMENT + " " +
+            "CREATE TABLE IF NOT EXISTS assignment " +
             "(" +
-                DbContract.COLUMN_ASSIGNMENT_ID         + " BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
-                DbContract.COLUMN_ASSIGNMENT_AGENT_ID   + " BIGINT UNSIGNED NOT NULL, " +
-                DbContract.COLUMN_ASSIGNMENT_MISSION_ID + " BIGINT UNSIGNED NOT NULL, " +
-                DbContract.COLUMN_ASSIGNMENT_STARTTIME  + " DATETIME(" + Constants.TIMESTAMP_DECIMAL_PRECISION + ") NOT NULL, " +
-                DbContract.COLUMN_ASSIGNMENT_ENDTIME    + " DATETIME(" + Constants.TIMESTAMP_DECIMAL_PRECISION + ") NULL DEFAULT NULL, " +
-                "FOREIGN KEY (" + DbContract.COLUMN_ASSIGNMENT_AGENT_ID + ") " +
-                "REFERENCES " + DbContract.TABLE_NAME_AGENT + "(" + DbContract.COLUMN_AGENT_ID + ") " +
+                "assignment_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
+                "agent_id      BIGINT UNSIGNED NOT NULL, " +
+                "mission_id    BIGINT UNSIGNED NOT NULL, " +
+                "assignment_start_time    DATETIME(" + Constants.TIMESTAMP_DECIMAL_PRECISION + ") NOT NULL, " +
+                "assignment_end_time      DATETIME(" + Constants.TIMESTAMP_DECIMAL_PRECISION + ") NULL DEFAULT NULL, " +
+
+                "FOREIGN KEY (agent_id) " +
+                "REFERENCES agent(agent_id) " +
                 "ON UPDATE CASCADE ON DELETE CASCADE, " +
-                "FOREIGN KEY (" + DbContract.COLUMN_ASSIGNMENT_MISSION_ID + ") " +
-                "REFERENCES " + DbContract.TABLE_NAME_MISSION + "(" + DbContract.COLUMN_MISSION_ID + ") " +
+
+                "FOREIGN KEY (mission_id) " +
+                "REFERENCES mission(mission_id) " +
                 "ON UPDATE CASCADE ON DELETE CASCADE" +
             ") ENGINE InnoDB";
 
     public static final String SQL_DROP_TABLE_ASSIGNMENT = "" +
-            "DROP TABLE IF EXISTS " + DbContract.TABLE_NAME_ASSIGNMENT;
+            "DROP TABLE IF EXISTS assignment";
 
     public static final String SQL_INSERT_INTO_ASSIGNMENT = "" +
-            "INSERT INTO " + DbContract.TABLE_NAME_ASSIGNMENT + " " +
-            "(" +
-                DbContract.COLUMN_ASSIGNMENT_AGENT_ID + ", " +
-                DbContract.COLUMN_ASSIGNMENT_MISSION_ID + ", " +
-                DbContract.COLUMN_ASSIGNMENT_STARTTIME + ", " +
-                DbContract.COLUMN_ASSIGNMENT_ENDTIME +
-            ") VALUES (?, ?, ?, ?)";
+            "INSERT INTO assignment " +
+            "(agent_id, mission_id, assignment_start_time, assignment_end_time) " +
+            "VALUES (?, ?, ?, ?)";
 
     public static final String SQL_SELECT_SINGLE_ASSIGNMENT = "" +
-            "SELECT " +
-                DbContract.COLUMN_ASSIGNMENT_ID   + ", " +
-                DbContract.COLUMN_ASSIGNMENT_AGENT_ID + ", " +
-                DbContract.COLUMN_ASSIGNMENT_MISSION_ID + ", " +
-                DbContract.COLUMN_ASSIGNMENT_STARTTIME + ", " +
-                DbContract.COLUMN_ASSIGNMENT_ENDTIME + " " +
-            "FROM " + DbContract.TABLE_NAME_ASSIGNMENT + " " +
-            "WHERE " + DbContract.COLUMN_ASSIGNMENT_ID + " = ?";
+            "SELECT * " +
+            "FROM (assignment NATURAL JOIN agent NATURAL JOIN mission) " +
+            "WHERE assignment_id = ?";
 
     public static final String SQL_SELECT_ALL_ASSIGNMENTS = "" +
-            "SELECT " +
-                DbContract.COLUMN_ASSIGNMENT_ID   + ", " +
-                DbContract.COLUMN_ASSIGNMENT_AGENT_ID + ", " +
-                DbContract.COLUMN_ASSIGNMENT_MISSION_ID + ", " +
-                DbContract.COLUMN_ASSIGNMENT_STARTTIME + ", " +
-                DbContract.COLUMN_ASSIGNMENT_ENDTIME + " " +
-            "FROM " + DbContract.TABLE_NAME_ASSIGNMENT;
+            "SELECT * " +
+            "FROM (assignment NATURAL JOIN agent NATURAL JOIN mission)";
 
     public static final String SQL_SELECT_ALL_ASSIGNMENTS_FOR_AGENT = "" +
-            "SELECT " +
-                DbContract.COLUMN_ASSIGNMENT_ID   + ", " +
-                DbContract.COLUMN_ASSIGNMENT_AGENT_ID + ", " +
-                DbContract.COLUMN_ASSIGNMENT_MISSION_ID + ", " +
-                DbContract.COLUMN_ASSIGNMENT_STARTTIME + ", " +
-                DbContract.COLUMN_ASSIGNMENT_ENDTIME + " " +
-            "FROM " + DbContract.TABLE_NAME_ASSIGNMENT + " " +
-            "WHERE " + DbContract.COLUMN_ASSIGNMENT_AGENT_ID + " = ?";
+            "SELECT * " +
+            "FROM (assignment NATURAL JOIN agent NATURAL JOIN mission) " +
+            "WHERE agent_id = ?";
 
     public static final String SQL_SELECT_ALL_ASSIGNMENTS_FOR_MISSION = "" +
-            "SELECT " +
-                DbContract.COLUMN_ASSIGNMENT_ID   + ", " +
-                DbContract.COLUMN_ASSIGNMENT_AGENT_ID + ", " +
-                DbContract.COLUMN_ASSIGNMENT_MISSION_ID + ", " +
-                DbContract.COLUMN_ASSIGNMENT_STARTTIME + ", " +
-                DbContract.COLUMN_ASSIGNMENT_ENDTIME + " " +
-            "FROM " + DbContract.TABLE_NAME_ASSIGNMENT + " " +
-            "WHERE " + DbContract.COLUMN_ASSIGNMENT_MISSION_ID + " = ?";
+            "SELECT * " +
+            "FROM (assignment NATURAL JOIN agent NATURAL JOIN mission) " +
+            "WHERE mission_id = ?";
 
     public static final String SQL_UPDATE_SINGLE_ASSIGNMENT = "" +
-            "UPDATE " + DbContract.TABLE_NAME_MISSION + " " +
-            "SET " +
-                DbContract.COLUMN_ASSIGNMENT_AGENT_ID + " = ?, " +
-                DbContract.COLUMN_ASSIGNMENT_MISSION_ID + " = ?, " +
-                DbContract.COLUMN_ASSIGNMENT_STARTTIME + " = ?, " +
-                DbContract.COLUMN_ASSIGNMENT_ENDTIME + " = ? " +
-            "WHERE " + DbContract.COLUMN_ASSIGNMENT_ID + " = ?";
+            "UPDATE assignment " +
+            "SET agent_id = ?, mission_id = ?, assignment_start_time = ?, assignment_end_time = ?" +
+            "WHERE assignment_id = ?";
 
     public static final String SQL_DELETE_SINGLE_ASSIGNMENT = "" +
-            "DELETE FROM " + DbContract.TABLE_NAME_ASSIGNMENT + " " +
-            "WHERE " + DbContract.COLUMN_ASSIGNMENT_ID + " = ?";
+            "DELETE FROM assignment " +
+            "WHERE assignment_id = ?";
 
 
 }

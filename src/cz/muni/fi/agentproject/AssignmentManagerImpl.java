@@ -291,7 +291,7 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
         if (mission.getId() <= 0) {
             throw new IllegalArgumentException("Mission's id is less than zero");
         }
-        if (agentManager.findAgentById(mission.getId()) == null) {
+        if (missionManager.findMissionById(mission.getId()) == null) {
             throw new IllegalArgumentException("No such mission exists");
         }
 
@@ -317,22 +317,6 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
         }
 
         return retSet;
-
-    }
-
-    private Assignment resultSetToAssignment(ResultSet resultSet) throws SQLException {
-
-        //TODO use NATURAL JOIN to get data in one db query instead of getting assignments, agents and mission separately
-
-        Long id = resultSet.getLong(DbContract.COLUMN_ASSIGNMENT_ID);
-        Agent agent = agentManager.findAgentById(resultSet.getLong(DbContract.COLUMN_ASSIGNMENT_AGENT_ID));
-        Mission mission = missionManager.findMissionById(resultSet.getLong(DbContract.COLUMN_ASSIGNMENT_MISSION_ID));
-        Instant startTime = resultSet.getTimestamp(DbContract.COLUMN_ASSIGNMENT_STARTTIME).toInstant();
-        Instant endTime = resultSet.getTimestamp(DbContract.COLUMN_ASSIGNMENT_ENDTIME).toInstant();
-
-        Assignment retVal = new Assignment(id, agent, mission, startTime, endTime);
-
-        return retVal;
 
     }
 
@@ -371,6 +355,11 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
         }
         if (assignment.getStartTime().compareTo(Instant.now()) > 0) {
             throw new IllegalArgumentException();
+        }
+        if (assignment.getEndTime() != null) {
+            if (assignment.getStartTime().compareTo(assignment.getEndTime()) > 0) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 
