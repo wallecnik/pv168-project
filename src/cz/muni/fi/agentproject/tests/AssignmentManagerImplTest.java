@@ -84,7 +84,7 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void createAssignment() {
-        Assignment assignment = new Assignment(1L, goodAgent, goodMission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
+        Assignment assignment = new Assignment(null, goodAgent, goodMission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
         manager.createAssignment(assignment);
 
         Long id = assignment.getId();
@@ -103,7 +103,7 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void createAssignmentWithNullAgent() {
-        Assignment assignment = new Assignment(1L, null, goodMission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
+        Assignment assignment = new Assignment(null, null, goodMission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.createAssignment(assignment);
@@ -111,7 +111,7 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void createAssignmentWithNullMission() {
-        Assignment assignment = new Assignment(1L, goodAgent, null, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
+        Assignment assignment = new Assignment(null, goodAgent, null, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.createAssignment(assignment);
@@ -119,7 +119,7 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void createAssignmentEndsSoonerThanStarts() {
-        Assignment assignment = new Assignment(1L, goodAgent, goodMission, Instant.ofEpochMilli(2L), Instant.ofEpochMilli(1L));
+        Assignment assignment = new Assignment(null, goodAgent, goodMission, Instant.ofEpochMilli(2L), Instant.ofEpochMilli(1L));
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.createAssignment(assignment);
@@ -129,9 +129,7 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void updateAssignment() {
-        Agent agent = new Agent(5L, "Jiri Barnat", Instant.ofEpochMilli(12L));
-        Mission mission = new Mission(30L, "Make Haskell rule the world", 1, false);
-        Assignment assignment = new Assignment(null, agent, mission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
+        Assignment assignment = new Assignment(null, goodAgent, goodMission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
         manager.createAssignment(assignment);
         Long id = assignment.getId();
         Assignment newAssignment = manager.findAssignmentById(id);
@@ -251,7 +249,7 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void deleteAssignment() {
-        Assignment assignment = new Assignment(1L, goodAgent, goodMission, Instant.ofEpochMilli(2L), Instant.ofEpochMilli(1L));
+        Assignment assignment = new Assignment(null, goodAgent, goodMission, Instant.ofEpochMilli(2L), Instant.ofEpochMilli(1L));
         manager.createAssignment(assignment);
 
         Long id = assignment.getId();

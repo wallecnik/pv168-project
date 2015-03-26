@@ -37,7 +37,6 @@ public class MissionManagerImplTest {
         bds.setUrl(DbHelper.DB_URL);
         bds.setUsername(DbHelper.USERNAME);
         bds.setPassword(DbHelper.PASSWORD);
-        //manager = new MissionManagerImpl();
         this.dataSource = bds;
         try (Connection connection = dataSource.getConnection()) {
             connection.prepareStatement(DbHelper.SQL_DROP_TABLE_MISSION)
@@ -45,7 +44,6 @@ public class MissionManagerImplTest {
             connection.prepareStatement(DbHelper.SQL_CREATE_TABLE_MISSION)
                     .executeUpdate();
         }
-        //this.manager = new MissionManagerImpl();
         this.manager = new MissionManagerImpl(dataSource);
     }
 
