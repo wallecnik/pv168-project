@@ -56,7 +56,7 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
             }
 
             int addedRows = ps.executeUpdate();
-            if (addedRows != 1) {
+            if (addedRows > 1) {
                 throw new ServiceFailureException("Internal Error: More rows "
                         + "inserted when trying to insert assignment " + assignment);
             }
@@ -322,6 +322,8 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
 
     private Assignment resultSetToAssignment(ResultSet resultSet) throws SQLException {
 
+        //TODO use NATURAL JOIN to get data in one db query instead of getting assignments, agents and mission separately
+
         Long id = resultSet.getLong(DbContract.COLUMN_ASSIGNMENT_ID);
         Agent agent = agentManager.findAgentById(resultSet.getLong(DbContract.COLUMN_ASSIGNMENT_AGENT_ID));
         Mission mission = missionManager.findMissionById(resultSet.getLong(DbContract.COLUMN_ASSIGNMENT_MISSION_ID));
@@ -339,6 +341,10 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
      * constraints can throw IllegalArgumentException
      */
     private void validateAssignment(Assignment assignment) {
+
+        //TODO do not allow same agent assigned twice
+        //TODO do not allow more agents than requiredAgents to be assigned
+
         if (assignment == null) {
             throw new IllegalArgumentException();
         }

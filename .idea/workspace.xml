@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="96216430-f262-4eb2-be02-53bbc203cb79" name="Default" comment="Doimplementovan AssignmentManagerImpl">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/AgentManagerImpl.class" afterPath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/AgentManagerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/tests/AgentManagerImplTest.class" afterPath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/tests/AgentManagerImplTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/AssignmentManagerImpl.class" afterPath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/AssignmentManagerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/MissionManagerImpl.class" afterPath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/MissionManagerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/tests/MissionManagerImplTest.class" afterPath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/tests/MissionManagerImplTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AssignmentManagerImplTest.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AssignmentManagerImplTest.java" />
+    <list default="true" id="96216430-f262-4eb2-be02-53bbc203cb79" name="Default" comment="updated todos">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AssignmentManagerImpl.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AssignmentManagerImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/MissionManagerImplTest.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/MissionManagerImplTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pv168-project.iws" />
@@ -53,11 +47,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AssignmentManagerImpl.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AssignmentManagerImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/AssignmentManagerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2094" max-vertical-offset="5955">
-              <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.8035714" vertical-offset="4590" max-vertical-offset="6045">
+              <caret line="324" column="98" selection-start-line="324" selection-start-column="98" selection-end-line="324" selection-end-column="98" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -75,20 +69,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DbHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java">
+      <file leaf-file-name="Mission.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/Mission.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1770" max-vertical-offset="3495">
-              <caret line="136" column="113" selection-start-line="136" selection-start-column="113" selection-end-line="136" selection-end-column="113" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1290">
+              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AssignmentManagerImplTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DbHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2505" max-vertical-offset="3495">
+              <caret line="192" column="60" selection-start-line="192" selection-start-column="60" selection-end-line="192" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AssignmentManagerImplTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AssignmentManagerImplTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5585586" vertical-offset="1929" max-vertical-offset="4335">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1884" max-vertical-offset="4335">
               <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -145,11 +149,11 @@
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/Constants.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManagerImpl.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AgentManagerImplTest.java" />
-        <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AssignmentManagerImpl.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/MissionManagerImpl.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/MissionManagerImplTest.java" />
-        <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AssignmentManagerImplTest.java" />
+        <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java" />
+        <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AssignmentManagerImpl.java" />
       </list>
     </option>
   </component>
@@ -714,7 +718,13 @@
       <option name="project" value="LOCAL" />
       <updated>1427285999242</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="minor rewrite of assignment tests">
+      <created>1427360966245</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1427360966245</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -755,7 +765,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40684932" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32739726" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5026502" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.50136983" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="GhcMod" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cabal" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -764,7 +774,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25605816" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.50547945" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.50547945" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27848774" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" x="100" y="100" width="1720" height="1000" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994652" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -810,7 +820,9 @@
     <MESSAGE value="Zmena casove reprezentace na Instant a Timestamp z long u Agenta a Assignment&#10;Upraveny sql skripty na DATETIME misto long pro cas&#10;Upraveny testy Agenta na Instant&#10;Pridan AbstractManager&#10;Drobna uprava konstant&#10;Upraveny testy Mission na pouziti databaze&#10;Castecna implementace Assignment&#10;&#10;Mirna uprava testu assignment" />
     <MESSAGE value="Correction of over-committed work" />
     <MESSAGE value="Doimplementovan AssignmentManagerImpl" />
-    <option name="LAST_COMMIT_MESSAGE" value="Doimplementovan AssignmentManagerImpl" />
+    <MESSAGE value="minor rewrite of assignment tests" />
+    <MESSAGE value="updated todos" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated todos" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1143,14 +1155,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/Mission.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23504274" vertical-offset="0" max-vertical-offset="1290">
-          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/MissionManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3846154" vertical-offset="0" max-vertical-offset="702">
@@ -1186,14 +1190,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/MissionManagerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3270">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AgentManagerImplTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4290">
@@ -1214,28 +1210,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java">
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/MissionManagerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1770" max-vertical-offset="3495">
-          <caret line="136" column="113" selection-start-line="136" selection-start-column="113" selection-end-line="136" selection-end-column="113" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3270">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/AssignmentManagerImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/Mission.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2094" max-vertical-offset="5955">
-          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1290">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2505" max-vertical-offset="3495">
+          <caret line="192" column="60" selection-start-line="192" selection-start-column="60" selection-end-line="192" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AssignmentManagerImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1929" max-vertical-offset="4335">
+          <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AssignmentManagerImplTest.java">
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/AssignmentManagerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5585586" vertical-offset="1929" max-vertical-offset="4335">
-          <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.8035714" vertical-offset="4590" max-vertical-offset="6045">
+          <caret line="324" column="98" selection-start-line="324" selection-start-column="98" selection-end-line="324" selection-end-column="98" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
