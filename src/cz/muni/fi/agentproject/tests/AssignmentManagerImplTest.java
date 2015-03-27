@@ -13,14 +13,17 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
 
 /**
  * @author Dužinka
- * @version 24.03.2015
+ * @version 28.03.2015
+ * TODO: specify the exception thrown at requiredAgentsNumberCheck() and assignOneAgentTwice()
  */
 public class AssignmentManagerImplTest {
 
@@ -63,7 +66,6 @@ public class AssignmentManagerImplTest {
         goodAgent = new Agent(null, "Michal Brandejs", Instant.ofEpochMilli(10L));
 
         agentManager = new AgentManagerImpl(dataSource);
-        //MissionManager missionManager = new MissionManagerImpl();
         missionManager = new MissionManagerImpl(dataSource);
 
         agentManager.createAgent(goodAgent);
@@ -75,14 +77,14 @@ public class AssignmentManagerImplTest {
     @After
     public void tearDown() throws SQLException {
 
-/*        try (Connection connection = dataSource.getConnection()) {
+        try (Connection connection = dataSource.getConnection()) {
             connection.prepareStatement(DbHelper.SQL_DROP_TABLE_ASSIGNMENT)
                     .executeUpdate();
             connection.prepareStatement(DbHelper.SQL_DROP_TABLE_AGENT)
                     .executeUpdate();
             connection.prepareStatement(DbHelper.SQL_DROP_TABLE_MISSION)
                     .executeUpdate();
-        }*/
+        }
     }
 
     /* Create assignment */
@@ -209,25 +211,19 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void findAllAssignments() {
-        Assignment assignment1 = new Assignment(null, goodAgent, goodMission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
-        Assignment assignment2 = new Assignment(null, new Agent(10L, "Agent 2", Instant.ofEpochMilli(10L)),
-                                        new Mission(10L, "Mission 2", 1, false), Instant.ofEpochMilli(6L), Instant.ofEpochMilli(8L));
-        Assignment assignment3 = new Assignment(null, new Agent(11L, "Agent 3", Instant.ofEpochMilli(20L)),
-                                        new Mission(11L, "Mission 3", 1, false), Instant.ofEpochMilli(14L), Instant.ofEpochMilli(28L));
-        Assignment assignment4 = new Assignment(null, new Agent(12L, "Agent 4", Instant.ofEpochMilli(5318008L)),
-                                        new Mission(12L, "Mission 4", 1, false), Instant.ofEpochMilli(1350L), Instant.ofEpochMilli(1402L));
+        makeMultipleAgents();
+        List<Agent> agents = new ArrayList<>(agentManager.findAllAgents());
+        makeMultipleMissions();
+        List<Mission> missions = new ArrayList<>(missionManager.findAllMissions());
 
-        // must be created prior to storing due to id recovery
-        manager.createAssignment(assignment1);
-        manager.createAssignment(assignment2);
-        manager.createAssignment(assignment3);
-        manager.createAssignment(assignment4);
-
+        Assignment assignment;
         Set<Assignment> storedAssignments = new HashSet<>();
-        storedAssignments.add(assignment1);
-        storedAssignments.add(assignment2);
-        storedAssignments.add(assignment3);
-        storedAssignments.add(assignment4);
+
+        int size = agents.size() > missions.size() ? missions.size() : agents.size();
+        for(int i = 0; i < size; i++) {
+            assignment = makeAssignment(agents.get(i), missions.get(i));
+            storedAssignments.add(assignment);
+        }
 
         Set<Assignment> foundAssignments = manager.findAllAssignments();
         assertTrue(storedAssignments.equals(foundAssignments));
@@ -235,25 +231,34 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void findAssignmentsForAgent() {
-        // TODO
-        // check also for completed missions and zero agent requirement
+        makeMultipleMissions();
+        List<Mission> missions = new ArrayList<>(missionManager.findAllMissions());
+        Assignment assignment;
+        Set<Assignment> storedAssignments = new HashSet<>();
+
+        for(Mission mission : missions) {
+            assignment = makeAssignment(goodAgent, mission);
+            storedAssignments.add(assignment);
+        }
+
+        Set<Assignment> foundAssignments = manager.findAssignmentsForAgent(goodAgent);
+        assertTrue(storedAssignments.equals(foundAssignments));
     }
 
     @Test
     public void findAssignmentsForMission() {
-        // TODO
-        // check for border states of requiredAgents
-    }
+        makeMultipleAgents();
+        List<Agent> agents = new ArrayList<>(agentManager.findAllAgents());
+        Assignment assignment;
+        Set<Assignment> storedAssignments = new HashSet<>();
 
-    @Test
-    public void requiredAgentsDecrease() {
-        Mission mission = new Mission(1L, "Make IS rule the world", 2, false);
-        int requiredAgentsBefore = mission.getRequiredAgents();
+        for(Agent agent : agents) {
+            assignment = makeAssignment(agent, goodMission);
+            storedAssignments.add(assignment);
+        }
 
-        Assignment assignment = new Assignment(1L, goodAgent, mission, Instant.ofEpochMilli(6L), Instant.ofEpochMilli(10L));
-        int requiredAgentsAfter = mission.getRequiredAgents();
-
-        assertTrue((requiredAgentsBefore - 1) == requiredAgentsAfter);
+        Set<Assignment> foundAssignments = manager.findAssignmentsForMission(goodMission);
+        assertTrue(storedAssignments.equals(foundAssignments));
     }
 
     /* Delete assignment */
@@ -270,25 +275,68 @@ public class AssignmentManagerImplTest {
         assertNull(storedAssignment);
     }
 
-    @Test
-    public void deleteAssignmentRequiredAgentsIncrease() {
-        Mission mission = new Mission(1L, "Make IS rule the world", 2, false);
-        Assignment assignment = new Assignment(1L, goodAgent, mission, Instant.ofEpochMilli(2L), Instant.ofEpochMilli(3L));
-        manager.createAssignment(assignment);
-        int requiredAgentsBefore = mission.getRequiredAgents();
+    /* Check for valid number of agents in a mission*/
 
-        manager.deleteAssignment(assignment);
-        int requiredAgentsAfter = mission.getRequiredAgents();
-        assertTrue((requiredAgentsBefore + 1) == requiredAgentsAfter);
+    @Test
+    public void requiredAgentsNumberCheck() {
+        // goodMission requires 2 agents; make an assignment with goodAgent and goodMission
+        Assignment assignment = makeAssignment();
+        Agent agent1 = new Agent(null, "Krecek", Instant.ofEpochMilli(5318008L));
+        Agent agent2 = new Agent(null, "Cincila", Instant.ofEpochMilli(8086L));
+        agentManager.createAgent(agent1);
+        agentManager.createAgent(agent2);
+
+        assignment = makeAssignment(agent1, goodMission);
+        expectedEx.expect(Exception.class);             // type of exception could be more specific
+        assignment = makeAssignment(agent2, goodMission);
+    }
+
+    @Test
+    public void assignOneAgentTwice() {
+        Assignment assignment = makeAssignment();
+        expectedEx.expect(Exception.class);
+        assignment = makeAssignment();
     }
 
     /* Private helper methods */
 
     private Assignment makeAssignment() {
-        Assignment assignment = new Assignment(null, goodAgent, goodMission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
+        return makeAssignment(goodAgent, goodMission);
+    }
+
+    private Assignment makeAssignment(Agent agent, Mission mission) {
+        Assignment assignment = new Assignment(null, agent, mission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
         manager.createAssignment(assignment);
         Long id = assignment.getId();
         Assignment newAssignment = manager.findAssignmentById(id);
         return newAssignment;
+    }
+
+    private void makeMultipleAgents() {
+        Agent agent1 = new Agent(null, "Agent First", Instant.ofEpochMilli(10L));
+        Agent agent2 = new Agent(null, "Agent Second", Instant.ofEpochMilli(5318008L));
+        Agent agent3 = new Agent(null, "Agent Third", Instant.ofEpochMilli(386L));
+        Agent agent4 = new Agent(null, "Agent Fourth", Instant.ofEpochMilli(486L));
+        Agent agent5 = new Agent(null, "Agent Fifth", Instant.ofEpochMilli(8080L));
+
+        agentManager.createAgent(agent1);
+        agentManager.createAgent(agent2);
+        agentManager.createAgent(agent3);
+        agentManager.createAgent(agent4);
+        agentManager.createAgent(agent5);
+    }
+
+    private void makeMultipleMissions() {
+        Mission mission1 = new Mission(null, "Mission 1", 1, false);
+        Mission mission2 = new Mission(null, "Mission 2", 1, false);
+        Mission mission3 = new Mission(null, "Mission 3", 1, false);
+        Mission mission4 = new Mission(null, "Mission 4", 2, false);
+        Mission mission5 = new Mission(null, "Mission 5", 3, false);
+
+        missionManager.createMission(mission1);
+        missionManager.createMission(mission2);
+        missionManager.createMission(mission3);
+        missionManager.createMission(mission4);
+        missionManager.createMission(mission5);
     }
 }
