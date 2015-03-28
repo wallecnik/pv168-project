@@ -28,7 +28,7 @@ public class DbHelper {
                 "agent_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
                 "agent_name     VARCHAR(" + Constants.AGENT_NAME_MAX_LENGTH + ") NOT NULL, " +
                 "agent_born     DATETIME(" + Constants.TIMESTAMP_DECIMAL_PRECISION + ") NOT NULL" +
-            ") ENGINE InnoDB";
+            ") ENGINE = MyIsam";
 
     public static final String SQL_DROP_TABLE_AGENT = "" +
             "DROP TABLE IF EXISTS agent";
@@ -68,7 +68,7 @@ public class DbHelper {
                 "mission_goal            TEXT(" + Constants.MISSION_GOAL_MAX_LENGTH + ") NOT NULL, " +
                 "mission_required_agents INT UNSIGNED NOT NULL DEFAULT 1, " +
                 "mission_completed       BOOL NOT NULL DEFAULT 0" +
-            ") ENGINE InnoDB";
+            ") ENGINE = MyIsam";
 
     public static final String SQL_DROP_TABLE_MISSION = "" +
             "DROP TABLE IF EXISTS mission";
@@ -117,15 +117,24 @@ public class DbHelper {
                 "FOREIGN KEY (mission_id) " +
                 "REFERENCES mission(mission_id) " +
                 "ON UPDATE CASCADE ON DELETE CASCADE" +
-            ") ENGINE InnoDB";
+            ") ENGINE = MyIsam";
 
     public static final String SQL_DROP_TABLE_ASSIGNMENT = "" +
             "DROP TABLE IF EXISTS assignment";
 
     public static final String SQL_INSERT_INTO_ASSIGNMENT = "" +
             "INSERT INTO assignment " +
-            "(agent_id, mission_id, assignment_start_time, assignment_end_time) " +
-            "VALUES (?, ?, ?, ?)";
+            "SELECT NewRow.* " +
+            "FROM (SELECT " +
+                "null AS assignment_id, " +
+                "? AS agent_id, " +
+                "? AS mission_id, " +
+                "? AS assignment_start_time, " +
+                "? AS assignment_end_time" +
+            ") AS NewRow " +
+            "WHERE (SELECT mission_required_agents FROM mission WHERE mission_id = ?) " +
+                "> (SELECT count(*) FROM assignment WHERE mission_id = ?)" +
+                "and (SELECT count(*) FROM assignment WHERE agent_id = ? and mission_id = ?) = 0";
 
     public static final String SQL_SELECT_SINGLE_ASSIGNMENT = "" +
             "SELECT * " +

@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 public class AssignmentManagerImpl extends AbstractManager implements AssignmentManager {
 
     //TODO: rewrite and complete JavaDocs to be more precise
+    //TODO: fill in exception messages
     public static final Logger logger = Logger.getLogger(AssignmentManagerImpl.class.getName());
 
     private DataSource dataSource;
@@ -54,11 +55,20 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
             else {
                 ps.setTimestamp(4, null);
             }
+            ps.setLong(5, assignment.getMission().getId());
+            ps.setLong(6, assignment.getMission().getId());
+            ps.setLong(7, assignment.getAgent().getId());
+            ps.setLong(8, assignment.getMission().getId());
 
             int addedRows = ps.executeUpdate();
             if (addedRows > 1) {
                 throw new ServiceFailureException("Internal Error: More rows "
                         + "inserted when trying to insert assignment " + assignment);
+            }
+            if (addedRows == 0) {
+                throw new IllegalArgumentException("Trying to insert duplicate assignment or " +
+                        "assign more agents than the mission requires when" +
+                        "inserting assignment: " + assignment);
             }
 
             ResultSet keyRS = ps.getGeneratedKeys();
