@@ -1,6 +1,5 @@
 package cz.muni.fi.agentproject;
 
-import java.util.List;
 import java.util.Set;
 
 /**

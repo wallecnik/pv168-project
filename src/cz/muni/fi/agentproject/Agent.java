@@ -1,8 +1,6 @@
 package cz.muni.fi.agentproject;
 
 import java.time.Instant;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * This class represents a secret agent. It's just a holder of few attributes like structure in C.
