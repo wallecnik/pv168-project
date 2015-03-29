@@ -251,13 +251,15 @@ public class AssignmentManagerImplTest {
         List<Agent> agents = new ArrayList<>(agentManager.findAllAgents());
         Assignment assignment;
         Set<Assignment> storedAssignments = new HashSet<>();
+        Mission missionWithLotsOfAgents = new Mission(null, "Need more agents", 50, false);
+        missionManager.createMission(missionWithLotsOfAgents);
 
         for(Agent agent : agents) {
-            assignment = makeAssignment(agent, goodMission);
+            assignment = makeAssignment(agent, missionWithLotsOfAgents);
             storedAssignments.add(assignment);
         }
 
-        Set<Assignment> foundAssignments = manager.findAssignmentsForMission(goodMission);
+        Set<Assignment> foundAssignments = manager.findAssignmentsForMission(missionWithLotsOfAgents);
         assertTrue(storedAssignments.equals(foundAssignments));
     }
 
@@ -293,10 +295,22 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void assignOneAgentTwice() {
-        Assignment assignment = makeAssignment();
+        Assignment assignment1 = makeAssignment();
         expectedEx.expect(Exception.class);
-        assignment = makeAssignment();
+        Assignment assignment2 = makeAssignment();
     }
+
+    /*@Test
+    public void assignOneAgentTwiceViaUpdate() {
+        Assignment assignment1 = makeAssignment();
+
+        Agent secondAgent = new Agent(null, "Jarda", Instant.ofEpochMilli(2L));
+        agentManager.createAgent(secondAgent);
+        Assignment assignment2 = makeAssignment(secondAgent, goodMission);
+
+        expectedEx.expect(Exception.class);
+        assignment2.setAgent(goodAgent); // via update - how? Required agents: the same
+    }*/
 
     /* Private helper methods */
 
