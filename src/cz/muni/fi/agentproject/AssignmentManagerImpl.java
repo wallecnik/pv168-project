@@ -9,19 +9,28 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * This class manages the database for creating, retrieving, updating and deleting Assignments.
+ * This implementation follows recommendations given by AssignmentManager interface's JavaDoc.
+ *
+ * This class uses thread safe DataSource interface for connecting to database.
+ *
  * @author  Wallecnik
- * @version 31.22.2015
+ * @version 29.3.2015
  */
 public class AssignmentManagerImpl extends AbstractManager implements AssignmentManager {
 
-    //TODO: rewrite and complete JavaDocs to be more precise
-    //TODO: fill in exception messages
     public static final Logger logger = Logger.getLogger(AssignmentManagerImpl.class.getName());
 
     private DataSource dataSource;
     private AgentManager agentManager;
     private MissionManager missionManager;
 
+    /**
+     * Constructor for objects of this class. Takes one argument implementing DataSource interface
+     * which it uses for connecting to database.
+     *
+     * @param dataSource reference to object of type DataSource
+     */
     public AssignmentManagerImpl(DataSource dataSource, AgentManager agentManager, MissionManager missionManager) {
         this.dataSource = dataSource;
         this.agentManager = agentManager;
@@ -29,17 +38,22 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
     }
 
     /**
-     * Adds a new assignment. Provided Assignment should have valid values associated.
+     * Adds a new Assignment into the database. Provided Assignment must have valid values
+     * associated. If not, the method throws an IllegalArgumentException. Possible
+     * causes are, that an assignment ends sooner than it starts or agent or mission
+     * have invalid id's. Complete list would be too long - see validateAssignment() method
+     * for all of them.
      *
-     * @param assignment an instance of Assignment to store
-     * @throws IllegalArgumentException if the Assignment has invalid data
+     * @param assignment a well formed instance of Assignment to store
+     * @throws IllegalArgumentException  if the Assignment has invalid data
+     * @throws ServiceFailureException   if an unpredictable error occurred
      */
     @Override
     public void createAssignment(Assignment assignment) throws IllegalArgumentException {
 
         validateAssignment(assignment);
         if (assignment.getId() != null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("is is not null");
         }
 
         try (Connection connection = dataSource.getConnection();
@@ -61,14 +75,9 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
             ps.setLong(8, assignment.getMission().getId());
 
             int addedRows = ps.executeUpdate();
-            if (addedRows > 1) {
-                throw new ServiceFailureException("Internal Error: More rows "
-                        + "inserted when trying to insert assignment " + assignment);
-            }
-            if (addedRows == 0) {
-                throw new IllegalArgumentException("Trying to insert duplicate assignment or " +
-                        "assign more agents than the mission requires when" +
-                        "inserting assignment: " + assignment);
+            if (addedRows != 1) {
+                //Presentation layer is probably not sending correct data
+                throw new ServiceFailureException("Unable to insert assignment " + assignment);
             }
 
             ResultSet keyRS = ps.getGeneratedKeys();
@@ -83,11 +92,13 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
     }
 
     /**
-     * Returns the Assignment associated with the given id or null if the id was not found.
+     * Returns the Assignment from the database associated with the given id
+     * or null if the id was not found.
      *
      * @param id an id to look for
      * @return an instance of Assignment or null
-     * @throws IllegalArgumentException if the given id is null or negative
+     * @throws IllegalArgumentException  if the given id is null or negative
+     * @throws ServiceFailureException   if an unpredictable error occurred
      */
     @Override
     public Assignment findAssignmentById(Long id) throws IllegalArgumentException {
@@ -95,10 +106,10 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
         Assignment retVal = null;
 
         if (id == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("id is null");
         }
         if (id <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("id is negative");
         }
 
         try (Connection connection = dataSource.getConnection();
@@ -122,11 +133,15 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
     }
 
     /**
-     * Updates an existing Assignment. Stored Assignment is found by id in the given Assignment.
-     * Provided Assignment should have valid data associated.
+     * Updates an Assignment in the database. Provided Assignment must have valid values
+     * associated. If not, the method throws an IllegalArgumentException. Possible
+     * causes are, that an assignment ends sooner than it starts or agent or mission
+     * have invalid id's. Complete list would be too long - see validateAssignment() method
+     * for all of them.
      *
      * @param assignment an instance of Assignment to update
-     * @throws IllegalArgumentException if the Assignment has invalid data
+     * @throws IllegalArgumentException  if the Assignment has invalid data
+     * @throws ServiceFailureException   if an unpredictable error occurred
      */
     @Override
     public void updateAssignment(Assignment assignment) throws IllegalArgumentException {
@@ -134,10 +149,10 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
         validateAssignment(assignment);
 
         if (assignment.getId() == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("id is null");
         }
         if (assignment.getId() <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("id is negative");
         }
 
         try (Connection connection = dataSource.getConnection();
@@ -154,9 +169,15 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
                 ps.setTimestamp(4, null);
             }
             ps.setLong(5, assignment.getId());
+            ps.setLong(6, assignment.getMission().getId());
+            ps.setLong(7, assignment.getMission().getId());
+            ps.setLong(8, assignment.getAgent().getId());
+            ps.setLong(9, assignment.getMission().getId());
+            ps.setLong(10, assignment.getId());
 
             int addedRows = ps.executeUpdate();
             if (addedRows != 1) {
+                //Presentation layer is probably not sending correct data
                 throw new ServiceFailureException("Unable to update assignment " + assignment);
             }
 
@@ -168,22 +189,24 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
     }
 
     /**
-     * Deletes assignment. Stored assignment is found by id associated with the given assignment.
+     * Deletes assignment. Stored assignment does not have to be well formed, valid id
+     * associated with the given assignment is enough.
      *
      * @param assignment an instance of assignment to delete with valid id
-     * @throws IllegalArgumentException if the given assignment has invalid data
+     * @throws IllegalArgumentException  if the given assignment has invalid data
+     * @throws ServiceFailureException   if an unpredictable error occurred
      */
     @Override
     public void deleteAssignment(Assignment assignment) throws IllegalArgumentException {
 
         if (assignment == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("assignment is null");
         }
         if (assignment.getId() == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("id is null");
         }
         if (assignment.getId() <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("id is negative");
         }
 
         try (Connection connection = dataSource.getConnection();
@@ -208,6 +231,7 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
      * Returns a Set of all assignments. If there are none, then an empty collection is returned.
      *
      * @return Set of all assignments
+     * @throws ServiceFailureException  if an unpredictable error occurred
      */
     @Override
     public Set<Assignment> findAllAssignments() {
@@ -236,11 +260,13 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
     }
 
     /**
-     * Returns a Set of all assignments assigned to a specific agent. Agent should have valid id.
+     * Returns a Set of all assignments assigned to a specific agent. Agent should have
+     * valid id. Otherwise, the assignments in returned in collection are non-deterministic.
      *
      * @param agent instance of an Agent with valid id
      * @return Set of assignments for an agent
-     * @throws IllegalArgumentException if the given Agent has invalid data
+     * @throws IllegalArgumentException  if the given Agent has invalid data
+     * @throws ServiceFailureException   if an unpredictable error occurred
      */
     @Override
     public Set<Assignment> findAssignmentsForAgent(Agent agent) throws IllegalArgumentException {
@@ -283,11 +309,13 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
     }
 
     /**
-     * Returns a Set of all assignments assigned to a specific mission. Mission should have valid id.
+     * Returns a Set of all assignments assigned to a specific mission. Mission should have
+     * valid id. Otherwise, the assignments in returned in collection are non-deterministic.
      *
      * @param mission instance of a Mission with valid id
      * @return Set of assignments for a Mission
-     * @throws IllegalArgumentException if the given Mission has invalid data
+     * @throws IllegalArgumentException  if the given Mission has invalid data
+     * @throws ServiceFailureException   if an unpredictable error occurred
      */
     @Override
     public Set<Assignment> findAssignmentsForMission(Mission mission) throws IllegalArgumentException {
@@ -336,39 +364,36 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
      */
     private void validateAssignment(Assignment assignment) {
 
-        //TODO do not allow same agent assigned twice
-        //TODO do not allow more agents than requiredAgents to be assigned
-
         if (assignment == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("assignment is null");
         }
         if (assignment.getAgent() == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("agent is null");
         }
         if (assignment.getAgent().getId() == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("agent id is null");
         }
         if (assignment.getAgent().getId() <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("agent id is negative");
         }
         if (assignment.getMission() == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("mission is null");
         }
         if (assignment.getMission().getId() == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("mission id is null");
         }
         if (assignment.getMission().getId() <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("mission id is negative");
         }
         if (assignment.getStartTime() == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("start time is null");
         }
         if (assignment.getStartTime().compareTo(Instant.now()) > 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("assignment starts in the future");
         }
         if (assignment.getEndTime() != null) {
             if (assignment.getStartTime().compareTo(assignment.getEndTime()) > 0) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("assignment end sooner than starts");
             }
         }
     }

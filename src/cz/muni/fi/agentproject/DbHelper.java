@@ -1,7 +1,7 @@
 package cz.muni.fi.agentproject;
 
 /**
- * Holds sql commands
+ * Holds sql commands for prepared statement usage
  *
  * @author Wallecnik
  * @version 18.3.2015
@@ -28,7 +28,7 @@ public class DbHelper {
                 "agent_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
                 "agent_name     VARCHAR(" + Constants.AGENT_NAME_MAX_LENGTH + ") NOT NULL, " +
                 "agent_born     DATETIME(" + Constants.TIMESTAMP_DECIMAL_PRECISION + ") NOT NULL" +
-            ") ENGINE = MyIsam";
+            ") ENGINE = InnoDB";
 
     public static final String SQL_DROP_TABLE_AGENT = "" +
             "DROP TABLE IF EXISTS agent";
@@ -68,7 +68,7 @@ public class DbHelper {
                 "mission_goal            TEXT(" + Constants.MISSION_GOAL_MAX_LENGTH + ") NOT NULL, " +
                 "mission_required_agents INT UNSIGNED NOT NULL DEFAULT 1, " +
                 "mission_completed       BOOL NOT NULL DEFAULT 0" +
-            ") ENGINE = MyIsam";
+            ") ENGINE = InnoDB";
 
     public static final String SQL_DROP_TABLE_MISSION = "" +
             "DROP TABLE IF EXISTS mission";
@@ -117,7 +117,7 @@ public class DbHelper {
                 "FOREIGN KEY (mission_id) " +
                 "REFERENCES mission(mission_id) " +
                 "ON UPDATE CASCADE ON DELETE CASCADE" +
-            ") ENGINE = MyIsam";
+            ") ENGINE = InnoDB";
 
     public static final String SQL_DROP_TABLE_ASSIGNMENT = "" +
             "DROP TABLE IF EXISTS assignment";
@@ -132,9 +132,24 @@ public class DbHelper {
                 "? AS assignment_start_time, " +
                 "? AS assignment_end_time" +
             ") AS NewRow " +
-            "WHERE (SELECT mission_required_agents FROM mission WHERE mission_id = ?) " +
-                "> (SELECT count(*) FROM assignment WHERE mission_id = ?)" +
-                "and (SELECT count(*) FROM assignment WHERE agent_id = ? and mission_id = ?) = 0";
+            "WHERE " +
+                "(" +
+                    "SELECT mission_required_agents " +
+                    "FROM mission " +
+                    "WHERE mission_id = ?" +
+                ") > " +
+                "(" +
+                    "SELECT count(*) " +
+                    "FROM assignment " +
+                    "WHERE mission_id = ?" +
+                ") AND " +
+                "(" +
+                    "SELECT count(*) " +
+                    "FROM assignment " +
+                    "WHERE " +
+                        "agent_id = ? AND " +
+                        "mission_id = ?" +
+                ") = 0";
 
     public static final String SQL_SELECT_SINGLE_ASSIGNMENT = "" +
             "SELECT * " +
@@ -157,8 +172,35 @@ public class DbHelper {
 
     public static final String SQL_UPDATE_SINGLE_ASSIGNMENT = "" +
             "UPDATE assignment " +
-            "SET agent_id = ?, mission_id = ?, assignment_start_time = ?, assignment_end_time = ?" +
-            "WHERE assignment_id = ?";
+            "SET " +
+                "agent_id = ?, " +
+                "mission_id = ?, " +
+                "assignment_start_time = ?, " +
+                "assignment_end_time = ? " +
+            "WHERE " +
+                "assignment_id = ? AND " +
+                "(" +
+                    "SELECT mission_required_agents " +
+                    "FROM mission " +
+                    "WHERE mission_id = ?" +
+                ") > " +
+                "(" +
+                    "SELECT * FROM (" +
+                        "SELECT count(*) " +
+                        "FROM assignment " +
+                        "WHERE mission_id = ?" +
+                    ") tmp1" +
+                ") AND " +
+                "(" +
+                    "SELECT * FROM (" +
+                        "SELECT count(*) " +
+                        "FROM assignment " +
+                        "WHERE " +
+                            "agent_id = ? AND " +
+                            "mission_id = ? AND " +
+                            "assignment_id <> ?" +
+                    ") tmp2" +
+                ") = 0";
 
     public static final String SQL_DELETE_SINGLE_ASSIGNMENT = "" +
             "DELETE FROM assignment " +

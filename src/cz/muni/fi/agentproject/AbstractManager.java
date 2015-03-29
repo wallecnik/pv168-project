@@ -9,7 +9,7 @@ import java.time.Instant;
  * on each other.
  *
  * @author Wallecnik
- * @version 26.3.2015
+ * @version 29.3.2015
  */
 public abstract class AbstractManager {
 
@@ -59,6 +59,10 @@ public abstract class AbstractManager {
 
     }
 
+    /**
+     * Transforms given ResultSet row to an instance of Mission. ResultSet must be
+     * pointed at the specific row from which this method generates the Agent.
+     */
     protected Mission resultSetToMission(ResultSet resultSet) throws SQLException {
 
         Long id             = resultSet.getLong(DbContract.COLUMN_MISSION_ID);
@@ -70,6 +74,10 @@ public abstract class AbstractManager {
 
     }
 
+    /**
+     * Transforms given ResultSet row to an instance of Assignment. ResultSet must be
+     * pointed at the specific row from which this method generates the Agent.
+     */
     protected Assignment resultSetToAssignment(ResultSet resultSet) throws SQLException {
 
         Long id = resultSet.getLong(DbContract.COLUMN_ASSIGNMENT_ID);

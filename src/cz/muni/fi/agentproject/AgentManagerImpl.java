@@ -207,7 +207,8 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
     }
 
     /**
-     * Returns Set of all Agents in the database.
+     * Returns Set of all Agents in the database. If there are none, than an empty
+     * collection is returned
      *
      * @return Set of Agents
      * @throws ServiceFailureException  if an error with database occurred

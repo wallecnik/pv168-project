@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="96216430-f262-4eb2-be02-53bbc203cb79" name="Default" comment="Upraven skript na vkladani assignment s ochranou na validni data v databazi&#10;Upraven">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/AgentManagerImpl.class" afterPath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/AgentManagerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/tests/AgentManagerImplTest.class" afterPath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/tests/AgentManagerImplTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/AssignmentManagerImpl.class" afterPath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/AssignmentManagerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/tests/MissionManagerImplTest.class" afterPath="$PROJECT_DIR$/out/production/pv168-project/cz/muni/fi/agentproject/tests/MissionManagerImplTest.class" />
+    <list default="true" id="96216430-f262-4eb2-be02-53bbc203cb79" name="Default" comment="Finalni implementace AssignmentManagerImpl">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AbstractManager.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AbstractManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManagerImpl.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManagerImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/Assignment.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/Assignment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AssignmentManagerImpl.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AssignmentManagerImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/TestingMain.java" afterPath="$PROJECT_DIR$/src/cz/muni/fi/agentproject/TestingMain.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pv168-project.iws" />
@@ -54,8 +54,8 @@
       <file leaf-file-name="AssignmentManagerImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/AssignmentManagerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="909" max-vertical-offset="6030">
-              <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6405">
+              <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -63,26 +63,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DbHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java">
+      <file leaf-file-name="Assignment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/Assignment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1875" max-vertical-offset="2850">
-              <caret line="136" column="91" selection-start-line="136" selection-start-column="91" selection-end-line="136" selection-end-column="91" />
+            <state vertical-scroll-proportion="0.3323442" vertical-offset="938" max-vertical-offset="1605">
+              <caret line="90" column="8" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AssignmentManagerImplTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AssignmentManagerImplTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.15811966" vertical-offset="3714" max-vertical-offset="5220">
-              <caret line="255" column="0" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#10627#10628#0" expanded="true" />
-                <element signature="e#10688#10689#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -103,19 +89,19 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManager.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AssignmentManager.java" />
-        <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/Assignment.java" />
-        <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/TestingMain.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/Agent.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/Constants.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AgentManagerImplTest.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/MissionManagerImplTest.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbContract.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/MissionManagerImpl.java" />
-        <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManagerImpl.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AbstractManager.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java" />
-        <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AssignmentManagerImpl.java" />
+        <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/TestingMain.java" />
         <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AssignmentManagerImplTest.java" />
+        <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManagerImpl.java" />
+        <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/AssignmentManagerImpl.java" />
+        <option value="$PROJECT_DIR$/src/cz/muni/fi/agentproject/Assignment.java" />
       </list>
     </option>
   </component>
@@ -698,7 +684,13 @@
       <option name="project" value="LOCAL" />
       <updated>1427386948918</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Upraven skript na vkladani assignment s ochranou na validni data v databazi a odpovidajici manager">
+      <created>1427581031948</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1427581031948</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -734,12 +726,13 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40684932" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32739726" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="GhcMod" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cabal" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -757,7 +750,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -797,7 +789,9 @@
     <MESSAGE value="minor rewrite of assignment tests" />
     <MESSAGE value="updated todos" />
     <MESSAGE value="prepsany sql skripty na pouziti bez vnorenych promennych - lepe se to cte&#10;sql pro assignment ted vyuziva natural join tabulek - pri hledani assignmentu je potreba uz jen jeden dotaz&#10;metody resultSetToSomething vytazeny do abstract managera&#10;&#10;drobne opravy testu assignment" />
-    <option name="LAST_COMMIT_MESSAGE" value="prepsany sql skripty na pouziti bez vnorenych promennych - lepe se to cte&#10;sql pro assignment ted vyuziva natural join tabulek - pri hledani assignmentu je potreba uz jen jeden dotaz&#10;metody resultSetToSomething vytazeny do abstract managera&#10;&#10;drobne opravy testu assignment" />
+    <MESSAGE value="Upraven skript na vkladani assignment s ochranou na validni data v databazi a odpovidajici manager" />
+    <MESSAGE value="Finalni implementace AssignmentManagerImpl" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finalni implementace AssignmentManagerImpl" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -814,8 +808,6 @@
           <caret line="87" column="10" selection-start-line="87" selection-start-column="10" selection-end-line="87" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10627#10628#0" expanded="true" />
-            <element signature="e#10688#10689#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -824,7 +816,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="585" max-vertical-offset="795">
           <caret line="41" column="49" selection-start-line="41" selection-start-column="49" selection-end-line="41" selection-end-column="49" />
-          <folding />
+          <folding>
+            <element signature="e#187#188#0" expanded="true" />
+            <element signature="e#249#250#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -865,7 +860,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="585" max-vertical-offset="795">
           <caret line="41" column="49" selection-start-line="41" selection-start-column="49" selection-end-line="41" selection-end-column="49" />
-          <folding />
+          <folding>
+            <element signature="e#187#188#0" expanded="true" />
+            <element signature="e#249#250#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -899,7 +897,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#187#188#0" expanded="true" />
+            <element signature="e#249#250#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1017,17 +1018,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/AssignmentManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="113" max-vertical-offset="1215">
-          <caret line="72" column="36" selection-start-line="72" selection-start-column="36" selection-end-line="72" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/src.zip!/java/sql/PreparedStatement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33303085" vertical-offset="1943" max-vertical-offset="19500">
           <caret line="180" column="9" selection-start-line="180" selection-start-column="9" selection-end-line="180" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1049,6 +1044,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33303085" vertical-offset="323" max-vertical-offset="8850">
           <caret line="71" column="42" selection-start-line="71" selection-start-column="42" selection-end-line="71" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1056,6 +1052,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33303085" vertical-offset="9848" max-vertical-offset="64065">
           <caret line="707" column="16" selection-start-line="707" selection-start-column="16" selection-end-line="707" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1081,33 +1078,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/TestingMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14972776" vertical-offset="0" max-vertical-offset="1102">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.25641027" vertical-offset="0" max-vertical-offset="702">
           <caret line="14" column="83" selection-start-line="14" selection-start-column="83" selection-end-line="14" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/Assignment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5655271" vertical-offset="458" max-vertical-offset="1560">
-          <caret line="77" column="37" selection-start-line="77" selection-start-column="37" selection-end-line="77" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/Agent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1755">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1147,28 +1121,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManagerImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbContract.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4110">
-          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.74786323" vertical-offset="0" max-vertical-offset="702">
+          <caret line="37" column="79" selection-start-line="37" selection-start-column="79" selection-end-line="37" selection-end-column="79" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0" vertical-offset="0" max-vertical-offset="285">
-          <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/AbstractManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="888" max-vertical-offset="1350">
-          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.1923077" vertical-offset="0" max-vertical-offset="1470">
+          <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5982906" vertical-offset="0" max-vertical-offset="930">
+          <caret line="28" column="78" selection-start-line="28" selection-start-column="78" selection-end-line="28" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/Agent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10683761" vertical-offset="0" max-vertical-offset="1755">
+          <caret line="7" column="98" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/AssignmentManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.5384616" vertical-offset="0" max-vertical-offset="1215">
+          <caret line="72" column="36" selection-start-line="72" selection-start-column="36" selection-end-line="72" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -1181,49 +1169,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2735043" vertical-offset="228" max-vertical-offset="930">
-          <caret line="28" column="78" selection-start-line="28" selection-start-column="78" selection-end-line="28" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbContract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74786323" vertical-offset="0" max-vertical-offset="702">
-          <caret line="37" column="79" selection-start-line="37" selection-start-column="79" selection-end-line="37" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/DbHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1590" max-vertical-offset="2850">
-          <caret line="136" column="91" selection-start-line="136" selection-start-column="91" selection-end-line="136" selection-end-column="91" />
+        <state vertical-scroll-proportion="0.06410257" vertical-offset="0" max-vertical-offset="3510">
+          <caret line="3" column="50" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
+          <folding>
+            <element signature="e#187#188#0" expanded="true" />
+            <element signature="e#249#250#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13392857" vertical-offset="0" max-vertical-offset="672">
+          <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
           <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AssignmentManagerImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25641027" vertical-offset="990" max-vertical-offset="5190">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/TestingMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.06837607" vertical-offset="123" max-vertical-offset="825">
+          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/AgentManagerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35470086" vertical-offset="2871" max-vertical-offset="4125">
+          <caret line="210" column="7" selection-start-line="210" selection-start-column="7" selection-end-line="210" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/AssignmentManagerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="909" max-vertical-offset="6030">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6405">
+          <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/tests/AssignmentManagerImplTest.java">
+    <entry file="file://$PROJECT_DIR$/src/cz/muni/fi/agentproject/Assignment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15811966" vertical-offset="3714" max-vertical-offset="5220">
-          <caret line="255" column="0" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#10627#10628#0" expanded="true" />
-            <element signature="e#10688#10689#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.3323442" vertical-offset="938" max-vertical-offset="1605">
+          <caret line="90" column="8" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>

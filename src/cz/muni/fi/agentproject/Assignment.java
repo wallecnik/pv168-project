@@ -3,8 +3,11 @@ package cz.muni.fi.agentproject;
 import java.time.Instant;
 
 /**
+ * This class represents an assignment of an agent to a mission.
+ * It's just a holder for a few attributes like structure in C.
+ *
  * @author  Wallecnik
- * @version 31.22.2015
+ * @version 31.2.2015
  */
 public class Assignment {
 
