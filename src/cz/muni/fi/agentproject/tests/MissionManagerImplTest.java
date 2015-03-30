@@ -147,13 +147,6 @@ public class MissionManagerImplTest {
     }
 
     @Test
-    public void updateMissionWithNullDescription() {
-        Mission storedMission = createAndRetrieveMission();
-        expected.expect(IllegalArgumentException.class);
-        manager.updateMission(storedMission);
-    }
-
-    @Test
     public void updateMissionWithZeroRequiredAgents() {
         Mission storedMission = createAndRetrieveMission();
         storedMission.setRequiredAgents(0);

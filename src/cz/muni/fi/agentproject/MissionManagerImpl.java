@@ -198,9 +198,8 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
             throw new IllegalArgumentException("Mission goal name is too long");
         }
 
-        // zero should be fine when updating and reaching mission's agent capacity
-        if (mission.getRequiredAgents() < 0) {
-            throw new IllegalArgumentException("Mission requires negative number of agents");
+        if (mission.getRequiredAgents() <= 0) {
+            throw new IllegalArgumentException("Mission requires positive number of agents");
         }
     }
 }
