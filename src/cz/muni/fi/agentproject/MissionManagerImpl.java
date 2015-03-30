@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 /**
  * Implemented MissionManager interface
- * TODO: Javadocs, settle the zero requiredAgents updateMission issue
+ * TODO: Javadocs
  *
  * @author Dužinka
  * @version 25.03.2015

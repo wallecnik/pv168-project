@@ -22,8 +22,9 @@ import static org.junit.Assert.*;
 
 /**
  * @author Dužinka
- * @version 28.03.2015
- * TODO: specify the exception thrown at requiredAgentsNumberCheck() and assignOneAgentTwice()
+ * @version 30.03.2015
+ *
+ * TODO: assignMoreAgentsThanPermittedViaUpdate() -- isn't update mission in database enough?
  */
 public class AssignmentManagerImplTest {
 
@@ -277,7 +278,7 @@ public class AssignmentManagerImplTest {
         assertNull(storedAssignment);
     }
 
-    /* Check for valid number of agents in a mission*/
+    /* Check for valid number of agents in a mission & for valid assignments */
 
     @Test
     public void requiredAgentsNumberCheck() {
@@ -289,7 +290,7 @@ public class AssignmentManagerImplTest {
         agentManager.createAgent(agent2);
 
         assignment = makeAssignment(agent1, goodMission);
-        expectedEx.expect(Exception.class);             // type of exception could be more specific
+        expectedEx.expect(IllegalArgumentException.class);
         assignment = makeAssignment(agent2, goodMission);
     }
 
@@ -300,17 +301,46 @@ public class AssignmentManagerImplTest {
         Assignment assignment2 = makeAssignment();
     }
 
-    /*@Test
+    @Test
     public void assignOneAgentTwiceViaUpdate() {
         Assignment assignment1 = makeAssignment();
 
-        Agent secondAgent = new Agent(null, "Jarda", Instant.ofEpochMilli(2L));
-        agentManager.createAgent(secondAgent);
-        Assignment assignment2 = makeAssignment(secondAgent, goodMission);
+        Agent agent2 = new Agent(null, "Jarda", Instant.ofEpochMilli(2L));
+        agentManager.createAgent(agent2);
+        Assignment assignment2 = makeAssignment(agent2, goodMission);
 
-        expectedEx.expect(Exception.class);
-        assignment2.setAgent(goodAgent); // via update - how? Required agents: the same
-    }*/
+        expectedEx.expect(IllegalArgumentException.class);
+        assignment2.setAgent(goodAgent);
+        manager.updateAssignment(assignment2);
+    }
+
+    @Test
+    public void assignMoreAgentsThanPermittedViaUpdate() {
+        Mission mission = new Mission(null, "Let's fight some bad guys in blood fluid!", 2, false);
+        Agent agent1 = new Agent(null, "Red blood cell", Instant.ofEpochMilli(40L));
+        Agent agent2 = new Agent(null, "White blood cell", Instant.ofEpochMilli(60L));
+        missionManager.createMission(mission);
+        agentManager.createAgent(agent1);
+        agentManager.createAgent(agent2);
+        Assignment assignment1 = makeAssignment(agent1, mission);
+        Assignment assignment2 = makeAssignment(agent2, mission);
+
+        expectedEx.expect(IllegalArgumentException.class);
+        mission.setRequiredAgents(1);
+        missionManager.updateMission(mission);
+        manager.updateAssignment(assignment2); // should be here?
+    }
+
+    @Test
+    public void assignZeroRequiredAgentsViaUpdate() {
+        Mission mission = new Mission(null, "I don't need anybody! Soon...", 1, false);
+        missionManager.createMission(mission);
+        Assignment assignment = makeAssignment(goodAgent, mission);
+
+        expectedEx.expect(IllegalArgumentException.class);
+        mission.setRequiredAgents(0);
+        missionManager.updateMission(mission);
+    }
 
     /* Private helper methods */
 
