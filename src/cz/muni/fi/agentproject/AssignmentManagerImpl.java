@@ -75,8 +75,12 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
             ps.setLong(8, assignment.getMission().getId());
 
             int addedRows = ps.executeUpdate();
+            if (addedRows == 0) {
+                //The database protection probably aborted insertion
+                throw new IllegalArgumentException("Error. Probable cause: Attempting to insert an agent twice or more agent to a mission. " +
+                        "Assignment: " + assignment);
+            }
             if (addedRows != 1) {
-                //Presentation layer is probably not sending correct data
                 throw new ServiceFailureException("Unable to insert assignment " + assignment);
             }
 
@@ -176,8 +180,12 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
             ps.setLong(10, assignment.getId());
 
             int addedRows = ps.executeUpdate();
+            if (addedRows == 0) {
+                //The database protection probably aborted insertion
+                throw new IllegalArgumentException("Error. Probable cause: Attempting to update an agent twice or more agent to a mission. " +
+                        "Assignment: " + assignment);
+            }
             if (addedRows != 1) {
-                //Presentation layer is probably not sending correct data
                 throw new ServiceFailureException("Unable to update assignment " + assignment);
             }
 
