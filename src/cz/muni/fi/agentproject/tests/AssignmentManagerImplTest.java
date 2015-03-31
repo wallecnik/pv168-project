@@ -328,7 +328,6 @@ public class AssignmentManagerImplTest {
         expectedEx.expect(IllegalArgumentException.class);
         mission.setRequiredAgents(1);
         missionManager.updateMission(mission);
-        manager.updateAssignment(assignment2); // should be here?
     }
 
     @Test

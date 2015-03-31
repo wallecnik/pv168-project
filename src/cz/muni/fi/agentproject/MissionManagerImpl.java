@@ -75,6 +75,8 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
             ps.setInt(2, mission.getRequiredAgents());
             ps.setBoolean(3, mission.isCompleted());
             ps.setLong(4, mission.getId());
+            ps.setLong(5, mission.getId());
+            ps.setInt(6, mission.getRequiredAgents());
 
             int addedRows = ps.executeUpdate();
             if(addedRows != 1) {
