@@ -39,9 +39,17 @@ public class MissionManagerImplTest {
         bds.setPassword(DbHelper.PASSWORD);
         this.dataSource = bds;
         try (Connection connection = dataSource.getConnection()) {
+            connection.prepareStatement(DbHelper.SQL_DROP_TABLE_ASSIGNMENT)
+                    .executeUpdate();
+            connection.prepareStatement(DbHelper.SQL_DROP_TABLE_AGENT)
+                    .executeUpdate();
             connection.prepareStatement(DbHelper.SQL_DROP_TABLE_MISSION)
                     .executeUpdate();
+            connection.prepareStatement(DbHelper.SQL_CREATE_TABLE_AGENT)
+                    .executeUpdate();
             connection.prepareStatement(DbHelper.SQL_CREATE_TABLE_MISSION)
+                    .executeUpdate();
+            connection.prepareStatement(DbHelper.SQL_CREATE_TABLE_ASSIGNMENT)
                     .executeUpdate();
         }
         this.manager = new MissionManagerImpl(dataSource);
@@ -50,6 +58,10 @@ public class MissionManagerImplTest {
     @After
     public void tearDown() throws SQLException {
         try (Connection connection = dataSource.getConnection()) {
+            connection.prepareStatement(DbHelper.SQL_DROP_TABLE_ASSIGNMENT)
+                    .executeUpdate();
+            connection.prepareStatement(DbHelper.SQL_DROP_TABLE_AGENT)
+                    .executeUpdate();
             connection.prepareStatement(DbHelper.SQL_DROP_TABLE_MISSION)
                     .executeUpdate();
         }
