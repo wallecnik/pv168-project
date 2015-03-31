@@ -8,10 +8,9 @@ import java.util.logging.Logger;
 
 /**
  * Implemented MissionManager interface
- * TODO: Javadocs
  *
  * @author Dužinka
- * @version 25.03.2015
+ * @version 31.03.2015
  */
 public class MissionManagerImpl extends AbstractManager implements MissionManager {
 
@@ -22,6 +21,16 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
         this.dataSource = dataSource;
     }
 
+    /**
+     * Creates mission in the database.
+     * Mission constraints solved at private validateMission().
+     *
+     * @param mission                       mission to be pushed into database
+     * @throws ServiceFailureException      when SQL Exception occurs or wrong number
+     *                                          of rows added to the dabatase
+     * @throws IllegalArgumentException     when mission has false parameters
+     *                                          (inherited from validateMission())
+     */
     @Override
     public void createMission(Mission mission) throws ServiceFailureException, IllegalArgumentException {
 
@@ -56,6 +65,16 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
         }
     }
 
+    /**
+     * Updates a mission in a database with the provided one.
+     * Mission constraints solved at private validateMission().
+     *
+     * @param mission                       mission with new parameters
+     * @throws ServiceFailureException      when SQL Exception occurs or wrong number
+     *                                          of rows added to the dabatase
+     * @throws IllegalArgumentException     when mission has false parameters
+     *                                          (inherited from validateMission())
+     */
     @Override
         public void updateMission(Mission mission) throws ServiceFailureException, IllegalArgumentException {
 
@@ -89,6 +108,14 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
         }
     }
 
+    /**
+     * Deletes given mission from database.
+     *
+     * @param mission                       mission to be deleted from database
+     * @throws ServiceFailureException      when SQL Exception occurs
+     * @throws IllegalArgumentException     when provided mission wasn't deleted
+     *                                          or has bad parameters
+     */
     @Override
     public void deleteMission(Mission mission) throws ServiceFailureException, IllegalArgumentException {
         if (mission == null) {
@@ -118,6 +145,15 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
         }
     }
 
+    /**
+     * Find a specific mission by its ID.
+     *
+     * @param id
+     * @return                              Mission instance
+     * @throws ServiceFailureException      when SQL Exception occurs
+     *                                          or more missions with the same ID are found
+     * @throws IllegalArgumentException     when ID isn't valid
+     */
     @Override
     public Mission findMissionById(Long id) throws ServiceFailureException, IllegalArgumentException{
 
@@ -158,6 +194,12 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
         return returnValue;
     }
 
+    /**
+     * Finds all missions.
+     *
+     * @return                          Set of Mission instances
+     * @throws ServiceFailureException  when SQL Exception occurs
+     */
     @Override
     public Set<Mission> findAllMissions() throws ServiceFailureException {
 
@@ -183,6 +225,12 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
         return retSet;
     }
 
+    /**
+     * Checks if the provided mission has valid parameters.
+     *
+     * @param mission                       Mission instance
+     * @throws IllegalArgumentException     when given parameter isn't valid
+     */
     private void validateMission(Mission mission) throws IllegalArgumentException {
         if (mission == null) {
             throw new IllegalArgumentException("Mission is null");

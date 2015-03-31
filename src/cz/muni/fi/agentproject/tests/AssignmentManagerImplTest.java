@@ -22,9 +22,7 @@ import static org.junit.Assert.*;
 
 /**
  * @author Dužinka
- * @version 30.03.2015
- *
- * TODO: assignMoreAgentsThanPermittedViaUpdate() -- isn't update mission in database enough?
+ * @version 31.03.2015
  */
 public class AssignmentManagerImplTest {
 
