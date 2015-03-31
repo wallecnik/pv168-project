@@ -90,7 +90,12 @@ public class DbHelper {
     public static final String SQL_UPDATE_SINGLE_MISSION = "" +
             "UPDATE mission " +
             "SET mission_goal = ?, mission_required_agents = ?, mission_completed = ? " +
-            "WHERE mission_id = ?";
+            "WHERE mission_id = ? AND " +
+                "(" +
+                    "SELECT count(*) " +
+                    "FROM assignment " +
+                    "WHERE mission_id = ?" +
+                ") <= ?";
 
     public static final String SQL_DELETE_SINGLE_MISSION = "" +
             "DELETE FROM mission " +
