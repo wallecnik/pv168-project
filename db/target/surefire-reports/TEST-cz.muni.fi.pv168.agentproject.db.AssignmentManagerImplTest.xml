@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="20" failures="0" name="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" time="12.736" errors="0" skipped="0">
+  <properties>
+    <property name="idea.version" value="14.1.1"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib"/>
+    <property name="java.vm.version" value="25.31-b07"/>
+    <property name="gopherProxySet" value="false"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="idea.launcher.port" value="7547"/>
+    <property name="user.country" value="CZ"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/Users/Wallecnik/Dropbox/dokumenty/programming/00_Git/pv168-project"/>
+    <property name="java.runtime.version" value="1.8.0_31-b13"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/endorsed"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="java.io.tmpdir" value="/var/folders/95/wn47d9px41j285gjn_n26bpc0000gn/T/"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="classworlds.conf" value="/Applications/IntelliJ IDEA 14.app/Contents/plugins/maven/lib/maven3/bin/m2.conf"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/Wallecnik/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.9.5"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="user.home" value="/Users/Wallecnik"/>
+    <property name="user.timezone" value="Europe/Prague"/>
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="idea.launcher.bin.path" value="/Applications/IntelliJ IDEA 14.app/Contents/bin"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="Wallecnik"/>
+    <property name="java.class.path" value="/Applications/IntelliJ IDEA 14.app/Contents/plugins/maven/lib/maven3/boot/plexus-classworlds-2.4.jar:/Applications/IntelliJ IDEA 14.app/Contents/lib/idea_rt.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre"/>
+    <property name="sun.java.command" value="com.intellij.rt.execution.application.AppMain org.codehaus.classworlds.Launcher -Didea.version=14.1.1 install"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="cs"/>
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_31"/>
+    <property name="java.ext.dirs" value="/Users/Wallecnik/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="/Applications/IntelliJ IDEA 14.app/Contents/plugins/maven/lib/maven3"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="assignOneAgentTwiceViaUpdate" time="1.348"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="requiredAgentsNumberCheck" time="0.557"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="createAssignment" time="0.683"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="updateAssignmentWithNullAgent" time="0.635"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="updateAssignmentNull" time="0.51"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="updateAssignmentWithWrongId" time="1.013"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="createAssignmentNull" time="1.034"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="deleteAssignment" time="0.526"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="createAssignmentWithNullMission" time="0.517"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="createAssignmentWithNullAgent" time="0.579"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="updateAssignment" time="0.525"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="assignOneAgentTwice" time="0.572"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="assignZeroRequiredAgentsViaUpdate" time="0.412"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="findAssignmentsForAgent" time="0.505"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="updateAssignmentWithNullMission" time="0.486"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="createAssignmentEndsSoonerThanStarts" time="0.476"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="findAssignmentsForMission" time="0.557"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="updateAssignmentEndsSoonerThanStarts" time="0.614"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="assignMoreAgentsThanPermittedViaUpdate" time="0.596"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AssignmentManagerImplTest" name="findAllAssignments" time="0.588"/>
+</testsuite>
