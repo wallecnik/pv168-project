@@ -85,41 +85,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AgentServlet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/src/main/java/cz/muni/fi/pv168/agentproject/web/AgentServlet.java">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="80" column="51" selection-start-line="80" selection-start-column="51" selection-end-line="91" selection-end-column="75" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings_cs.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/src/main/resources/values/strings_cs.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.068966">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.4219601">
+              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding />
             </state>
-          </provider>
-          <provider editor-type-id="ResourceBundle">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.properties" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/src/main/resources/values/strings.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4054054">
-              <caret line="29" column="65" selection-start-line="29" selection-start-column="65" selection-end-line="32" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="ResourceBundle">
-            <state />
           </provider>
         </entry>
       </file>
@@ -1000,12 +972,12 @@
       <created>1429632221306</created>
       <option name="number" value="Default" />
       <updated>1429632221306</updated>
-      <workItem from="1429632222733" duration="4280000" />
+      <workItem from="1429632222733" duration="4610000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4280000" />
+    <option name="totallyTimeSpent" value="4610000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="0" />
@@ -1122,14 +1094,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4219601">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4219601">
@@ -1172,27 +1136,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/main/java/cz/muni/fi/pv168/agentproject/web/AgentServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="51" selection-start-line="80" selection-start-column="51" selection-end-line="91" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/src/main/resources/values/strings_cs.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.068966">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="ResourceBundle">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/src/main/java/cz/muni/fi/pv168/agentproject/db/AgentManagerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.469147">
@@ -1203,13 +1146,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/src/main/resources/values/strings.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4054054">
-          <caret line="29" column="65" selection-start-line="29" selection-start-column="65" selection-end-line="32" selection-end-column="62" />
+        <state vertical-scroll-proportion="0.29356945">
+          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
           <folding />
         </state>
       </provider>
       <provider editor-type-id="ResourceBundle">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/resources/values/strings_cs.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46132338">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="ResourceBundle">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/src/main/java/cz/muni/fi/pv168/agentproject/web/AgentServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25862068">
+          <caret line="80" column="51" selection-start-line="80" selection-start-column="51" selection-end-line="91" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4219601">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
