@@ -5,6 +5,13 @@ import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+/**
+ * This filter filters every request and response that comes in and out of the server.
+ * Filter sets encoding to UTF-8
+ *
+ * @author Wallecnik
+ * @version 1.0-SNAPSHOT
+ */
 @WebFilter("/*")
 public class GeneralFilter implements Filter {
 

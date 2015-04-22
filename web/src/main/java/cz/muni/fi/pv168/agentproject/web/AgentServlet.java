@@ -18,7 +18,13 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
- * Created by Wallecnik on 17.04.15.
+ * Interface for cz.muni.fi.pv168.agentproject.Agent entities. This only prepares data and forward them,
+ * nothing is printed out. This can handle basic CRUD operations over entity.
+ *
+ * This class uses agentManager created by StartListener.
+ *
+ * @author Wallecnik
+ * @version 1.0-SNAPSHOT
  */
 @WebServlet(AgentServlet.AGENT_URL + "/*")
 public class AgentServlet extends HttpServlet{
@@ -49,7 +55,7 @@ public class AgentServlet extends HttpServlet{
         switch (action) {
             case "/edit":
                 id = Long.valueOf(request.getParameter("id"));
-                //no return because editing and adding is similar
+                //no return because editing and adding needs similar input protection
             case "/add":
                 name = request.getParameter("name");
                 String day   = request.getParameter("day");

@@ -10,6 +10,12 @@ import javax.servlet.annotation.WebListener;
 import javax.sql.DataSource;
 import java.util.logging.Logger;
 
+/**
+ * This listener sets up connection to the database and creates entity managers.
+ *
+ * @author Wallecnik
+ * @version 1.0-SNAPSHOT
+ */
 @WebListener
 public class StartListener implements ServletContextListener {
 

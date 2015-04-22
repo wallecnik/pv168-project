@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="17" failures="0" name="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" time="5.696" errors="0" skipped="0">
+<testsuite tests="17" failures="0" name="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" time="8.291" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="14.1.1"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -12,12 +12,12 @@
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
-    <property name="idea.launcher.port" value="7547"/>
+    <property name="idea.launcher.port" value="7535"/>
     <property name="user.country" value="CZ"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/Wallecnik/Dropbox/dokumenty/programming/00_Git/pv168-project"/>
+    <property name="user.dir" value="/Users/Wallecnik/Dropbox/dokumenty/programming/00_Git/pv168-project/db"/>
     <property name="java.runtime.version" value="1.8.0_31-b13"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/jre/lib/endorsed"/>
@@ -64,21 +64,21 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="updateAgentBornMoreThan100yo" time="1.214"/>
-  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="deleteAgent" time="0.296"/>
-  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="updateAgentWithWrongId" time="0.287"/>
-  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="createAgentWithEmptyName" time="0.192"/>
-  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="findAllAgents" time="0.201"/>
-  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="updateAgent" time="0.16"/>
-  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="createAgent" time="0.329"/>
-  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="updateAgentNull" time="0.213"/>
-  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="createAgentNotBornYet" time="0.383"/>
-  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="updateAgentNameWithIllegalSymbols" time="0.333"/>
-  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="createAgentBornMoreThan100yo" time="0.241"/>
-  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="createAgentWithNullName" time="0.315"/>
-  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="updateAgentWithNullName" time="0.534"/>
-  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="updateAgentNotBornYet" time="0.312"/>
-  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="createAgentNull" time="0.16"/>
-  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="createAgentNameWithIllegalSymbols" time="0.191"/>
-  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="updateAgentWithEmptyName" time="0.24"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="updateAgentBornMoreThan100yo" time="1.3"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="deleteAgent" time="0.364"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="updateAgentWithWrongId" time="0.721"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="createAgentWithEmptyName" time="0.333"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="findAllAgents" time="0.38"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="updateAgent" time="0.307"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="createAgent" time="0.671"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="updateAgentNull" time="0.405"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="createAgentNotBornYet" time="0.435"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="updateAgentNameWithIllegalSymbols" time="0.469"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="createAgentBornMoreThan100yo" time="0.225"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="createAgentWithNullName" time="0.304"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="updateAgentWithNullName" time="0.537"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="updateAgentNotBornYet" time="0.424"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="createAgentNull" time="0.391"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="createAgentNameWithIllegalSymbols" time="0.496"/>
+  <testcase classname="cz.muni.fi.pv168.agentproject.db.AgentManagerImplTest" name="updateAgentWithEmptyName" time="0.436"/>
 </testsuite>
