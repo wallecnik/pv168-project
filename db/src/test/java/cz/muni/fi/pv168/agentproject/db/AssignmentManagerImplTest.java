@@ -91,7 +91,7 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void createAssignment() {
-        Assignment assignment = new Assignment(null, goodAgent, goodMission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
+        Assignment assignment = new Assignment(null, goodAgent, goodMission, Instant.ofEpochMilli(1L));
         manager.createAssignment(assignment);
 
         Long id = assignment.getId();
@@ -110,7 +110,7 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void createAssignmentWithNullAgent() {
-        Assignment assignment = new Assignment(null, null, goodMission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
+        Assignment assignment = new Assignment(null, null, goodMission, Instant.ofEpochMilli(1L));
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.createAssignment(assignment);
@@ -118,15 +118,7 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void createAssignmentWithNullMission() {
-        Assignment assignment = new Assignment(null, goodAgent, null, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
-
-        expectedEx.expect(IllegalArgumentException.class);
-        manager.createAssignment(assignment);
-    }
-
-    @Test
-    public void createAssignmentEndsSoonerThanStarts() {
-        Assignment assignment = new Assignment(null, goodAgent, goodMission, Instant.ofEpochMilli(2L), Instant.ofEpochMilli(1L));
+        Assignment assignment = new Assignment(null, goodAgent, null, Instant.ofEpochMilli(1L));
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.createAssignment(assignment);
@@ -136,7 +128,7 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void updateAssignment() {
-        Assignment assignment = new Assignment(null, goodAgent, goodMission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
+        Assignment assignment = new Assignment(null, goodAgent, goodMission, Instant.ofEpochMilli(1L));
         manager.createAssignment(assignment);
         Long id = assignment.getId();
         Assignment newAssignment = manager.findAssignmentById(id);
@@ -150,7 +142,6 @@ public class AssignmentManagerImplTest {
         newAssignment.setAgent(newAgent);
         newAssignment.setMission(newMission);
         newAssignment.setStartTime(Instant.ofEpochMilli(3L));
-        newAssignment.setEndTime(Instant.ofEpochMilli(4L));
 
         manager.updateAssignment(newAssignment);
         assertNotEquals(assignment, newAssignment);
@@ -158,7 +149,6 @@ public class AssignmentManagerImplTest {
         assertNotEquals(assignment.getAgent(), newAssignment.getAgent());
         assertNotEquals(assignment.getMission(), newAssignment.getMission());
         assertNotEquals(assignment.getStartTime(), newAssignment.getStartTime());
-        assertNotEquals(assignment.getEndTime(), newAssignment.getEndTime());
     }
 
     @Test
@@ -192,16 +182,6 @@ public class AssignmentManagerImplTest {
     public void updateAssignmentWithNullMission() {
         Assignment newAssignment = makeAssignment();
         newAssignment.setMission(null);
-
-        expectedEx.expect(IllegalArgumentException.class);
-        manager.updateAssignment(newAssignment);
-    }
-
-    @Test
-    public void updateAssignmentEndsSoonerThanStarts() {
-        Assignment newAssignment = makeAssignment();
-        newAssignment.setStartTime(Instant.ofEpochMilli(10L));
-        newAssignment.setEndTime(Instant.ofEpochMilli(5L));
 
         expectedEx.expect(IllegalArgumentException.class);
         manager.updateAssignment(newAssignment);
@@ -267,7 +247,7 @@ public class AssignmentManagerImplTest {
 
     @Test
     public void deleteAssignment() {
-        Assignment assignment = new Assignment(null, goodAgent, goodMission, Instant.ofEpochMilli(2L), Instant.ofEpochMilli(3L));
+        Assignment assignment = new Assignment(null, goodAgent, goodMission, Instant.ofEpochMilli(2L));
         manager.createAssignment(assignment);
 
         Long id = assignment.getId();
@@ -347,7 +327,7 @@ public class AssignmentManagerImplTest {
     }
 
     private Assignment makeAssignment(Agent agent, Mission mission) {
-        Assignment assignment = new Assignment(null, agent, mission, Instant.ofEpochMilli(1L), Instant.ofEpochMilli(2L));
+        Assignment assignment = new Assignment(null, agent, mission, Instant.ofEpochMilli(1L));
         manager.createAssignment(assignment);
         Long id = assignment.getId();
         Assignment newAssignment = manager.findAssignmentById(id);

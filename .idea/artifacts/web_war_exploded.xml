@@ -24,7 +24,6 @@
         <element id="file-copy" path="$PROJECT_DIR$/web/target/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="web/web/Web" />
-      <element id="dir-copy" path="$PROJECT_DIR$/web/src/main/resources" />
     </root>
   </artifact>
 </component>

@@ -2,23 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>agentproject</artifactId>
+        <groupId>cz.muni.fi.pv168.agentproject</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cz.muni.fi.pv168.agentproject</groupId>
-    <artifactId>agentproject</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
-    <modules>
-        <module>web</module>
-        <module>db</module>
-        <module>gui</module>
-    </modules>
-
-    <packaging>pom</packaging>
+    <artifactId>gui</artifactId>
 
     <build>
         <plugins>
-            <!-- Java language version -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -30,5 +24,5 @@
             </plugin>
         </plugins>
     </build>
-    
+
 </project>

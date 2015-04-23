@@ -65,16 +65,10 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
             ps.setLong(1, assignment.getAgent().getId());
             ps.setLong(2, assignment.getMission().getId());
             ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.ofInstant(assignment.getStartTime(), ZoneId.of("UTC"))));
-            if (assignment.getEndTime() != null) {
-                ps.setTimestamp(4, Timestamp.valueOf(LocalDateTime.ofInstant(assignment.getEndTime(), ZoneId.of("UTC"))));
-            }
-            else {
-                ps.setTimestamp(4, null);
-            }
+            ps.setLong(4, assignment.getMission().getId());
             ps.setLong(5, assignment.getMission().getId());
-            ps.setLong(6, assignment.getMission().getId());
-            ps.setLong(7, assignment.getAgent().getId());
-            ps.setLong(8, assignment.getMission().getId());
+            ps.setLong(6, assignment.getAgent().getId());
+            ps.setLong(7, assignment.getMission().getId());
 
             int addedRows = ps.executeUpdate();
             if (addedRows == 0) {
@@ -168,18 +162,12 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
             ps.setLong(1, assignment.getAgent().getId());
             ps.setLong(2, assignment.getMission().getId());
             ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.ofInstant(assignment.getStartTime(), ZoneId.of("UTC"))));
-            if (assignment.getEndTime() != null) {
-                ps.setTimestamp(4, Timestamp.valueOf(LocalDateTime.ofInstant(assignment.getEndTime(), ZoneId.of("UTC"))));
-            }
-            else {
-                ps.setTimestamp(4, null);
-            }
-            ps.setLong(5, assignment.getId());
+            ps.setLong(4, assignment.getId());
+            ps.setLong(5, assignment.getMission().getId());
             ps.setLong(6, assignment.getMission().getId());
-            ps.setLong(7, assignment.getMission().getId());
-            ps.setLong(8, assignment.getAgent().getId());
-            ps.setLong(9, assignment.getMission().getId());
-            ps.setLong(10, assignment.getId());
+            ps.setLong(7, assignment.getAgent().getId());
+            ps.setLong(8, assignment.getMission().getId());
+            ps.setLong(9, assignment.getId());
 
             int addedRows = ps.executeUpdate();
             if (addedRows == 0) {
@@ -400,11 +388,6 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
         }
         if (assignment.getStartTime().compareTo(Instant.now()) > 0) {
             throw new IllegalArgumentException("assignment starts in the future");
-        }
-        if (assignment.getEndTime() != null) {
-            if (assignment.getStartTime().compareTo(assignment.getEndTime()) > 0) {
-                throw new IllegalArgumentException("assignment end sooner than starts");
-            }
         }
     }
 

@@ -86,12 +86,7 @@ public abstract class AbstractManager {
         Mission mission = resultSetToMission(resultSet);
         Instant startTime = resultSet.getTimestamp(DbContract.COLUMN_ASSIGNMENT_START_TIME).toLocalDateTime().atZone(ZoneId.of("UTC")).toInstant();
 
-        Instant endTime = null;
-        if (resultSet.getTimestamp(DbContract.COLUMN_ASSIGNMENT_END_TIME) != null) {
-            endTime = resultSet.getTimestamp(DbContract.COLUMN_ASSIGNMENT_END_TIME).toLocalDateTime().atZone(ZoneId.of("UTC")).toInstant();
-        }
-
-        return new Assignment(id, agent, mission, startTime, endTime);
+        return new Assignment(id, agent, mission, startTime);
 
     }
 

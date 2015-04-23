@@ -115,7 +115,6 @@ public class DbHelper {
                 "agent_id      BIGINT UNSIGNED NOT NULL, " +
                 "mission_id    BIGINT UNSIGNED NOT NULL, " +
                 "assignment_start_time    DATETIME(" + Constants.TIMESTAMP_DECIMAL_PRECISION + ") NOT NULL, " +
-                "assignment_end_time      DATETIME(" + Constants.TIMESTAMP_DECIMAL_PRECISION + ") NULL DEFAULT NULL, " +
 
                 "FOREIGN KEY (agent_id) " +
                 "REFERENCES agent(agent_id) " +
@@ -137,8 +136,7 @@ public class DbHelper {
                 "null AS assignment_id, " +
                 "? AS agent_id, " +
                 "? AS mission_id, " +
-                "? AS assignment_start_time, " +
-                "? AS assignment_end_time" +
+                "? AS assignment_start_time " +
             ") AS NewRow " +
             "WHERE " +
                 "(" +
@@ -183,8 +181,7 @@ public class DbHelper {
             "SET " +
                 "agent_id = ?, " +
                 "mission_id = ?, " +
-                "assignment_start_time = ?, " +
-                "assignment_end_time = ? " +
+                "assignment_start_time = ? " +
             "WHERE " +
                 "assignment_id = ? AND " +
                 "(" +
