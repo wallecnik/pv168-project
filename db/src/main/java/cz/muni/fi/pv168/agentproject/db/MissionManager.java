@@ -1,8 +1,6 @@
 package cz.muni.fi.pv168.agentproject.db;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Interface for MissionManager.
@@ -17,7 +15,7 @@ public interface MissionManager {
     void updateMission(Mission mission);
 
     Mission findMissionById(Long id);
-    Set<Mission> findAllMissions();
+    List<Mission> findAllMissions();
     List<Mission> sortById();
     List<Mission> sortByGoal();
     List<Mission> sortByRequiredAgents();

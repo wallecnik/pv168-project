@@ -13,7 +13,7 @@
             <lh><f:message key="main.header.work_with"/></lh>
             <li><a href="${pageContext.request.contextPath}/agents"><f:message key="main.select.agents"/></a></li>
             <li><a href="${pageContext.request.contextPath}/missions"><f:message key="main.select.missions"/></a></li>
-            <li><a href="${pageContext.request.contextPath}/assignments"><f:message key="main.select.assignments"/></a></li>
+            <li><a href="${pageContext.request.contextPath}/assignments.jsp"><f:message key="main.select.assignments"/></a></li>
         </ol>
     </body>
 </html>

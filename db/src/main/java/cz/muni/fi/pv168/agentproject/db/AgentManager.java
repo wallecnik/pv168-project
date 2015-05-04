@@ -1,6 +1,6 @@
 package cz.muni.fi.pv168.agentproject.db;
 
-import java.util.SortedSet;
+import java.util.List;
 
 /**
  * Interface for basic CRUD operations for Agent instances.
@@ -51,6 +51,6 @@ public interface AgentManager {
      *
      * @return  List of Agents
      */
-    SortedSet<Agent> findAllAgents();
+    List<Agent> findAllAgents();
 
 }

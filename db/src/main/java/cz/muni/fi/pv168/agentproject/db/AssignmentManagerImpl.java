@@ -5,7 +5,9 @@ import java.sql.*;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -267,7 +269,7 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
      * @throws ServiceFailureException   if an unpredictable error occurred
      */
     @Override
-    public Set<Assignment> findAssignmentsForAgent(Agent agent) throws IllegalArgumentException {
+    public List<Assignment> findAssignmentsForAgent(Agent agent) throws IllegalArgumentException {
 
         if (agent == null) {
             throw new IllegalArgumentException("Agent pointer is null");
@@ -282,7 +284,7 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
             throw new IllegalArgumentException("No such agent exists");
         }
 
-        Set<Assignment> retSet = new HashSet<>();
+        List<Assignment> retSet = new ArrayList<>();
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(
@@ -316,7 +318,7 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
      * @throws ServiceFailureException   if an unpredictable error occurred
      */
     @Override
-    public Set<Assignment> findAssignmentsForMission(Mission mission) throws IllegalArgumentException {
+    public List<Assignment> findAssignmentsForMission(Mission mission) throws IllegalArgumentException {
 
         if (mission == null) {
             throw new IllegalArgumentException("Mission pointer is null");
@@ -331,7 +333,7 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
             throw new IllegalArgumentException("No such mission exists");
         }
 
-        Set<Assignment> retSet = new HashSet<>();
+        List<Assignment> retSet = new ArrayList<>();
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(

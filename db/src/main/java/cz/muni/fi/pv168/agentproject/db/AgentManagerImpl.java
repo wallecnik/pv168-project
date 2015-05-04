@@ -5,8 +5,8 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -215,9 +215,9 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
      * @throws ServiceFailureException  if an error with database occurred
      */
     @Override
-    public SortedSet<Agent> findAllAgents() throws ServiceFailureException {
+    public List<Agent> findAllAgents() throws ServiceFailureException {
 
-        SortedSet<Agent> retSet = new TreeSet<>();
+        List<Agent> retList = new ArrayList<>();
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(
@@ -228,7 +228,7 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
 
             while (rs.next()) {
                 Agent agent = resultSetToAgent(rs);
-                retSet.add(agent);
+                retList.add(agent);
             }
 
         } catch (SQLException sqle) {
@@ -236,7 +236,7 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
             throw new ServiceFailureException("Error when looking up all agents", sqle);
         }
 
-        return retSet;
+        return retList;
 
     }
 

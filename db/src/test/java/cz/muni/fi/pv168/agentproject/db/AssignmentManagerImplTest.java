@@ -221,7 +221,7 @@ public class AssignmentManagerImplTest {
             storedAssignments.add(assignment);
         }
 
-        Set<Assignment> foundAssignments = manager.findAssignmentsForAgent(goodAgent);
+        List<Assignment> foundAssignments = manager.findAssignmentsForAgent(goodAgent);
         assertTrue(storedAssignments.equals(foundAssignments));
     }
 
@@ -239,7 +239,7 @@ public class AssignmentManagerImplTest {
             storedAssignments.add(assignment);
         }
 
-        Set<Assignment> foundAssignments = manager.findAssignmentsForMission(missionWithLotsOfAgents);
+        List<Assignment> foundAssignments = manager.findAssignmentsForMission(missionWithLotsOfAgents);
         assertTrue(storedAssignments.equals(foundAssignments));
     }
 

@@ -1,5 +1,6 @@
 package cz.muni.fi.pv168.agentproject.db;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -61,7 +62,7 @@ public interface AssignmentManager {
      * @return Set of assignments for an agent
      * @throws IllegalArgumentException if the given Agent has invalid data
      */
-    Set<Assignment> findAssignmentsForAgent(Agent agent) throws IllegalArgumentException;
+    List<Assignment> findAssignmentsForAgent(Agent agent) throws IllegalArgumentException;
 
     /**
      * Returns a Set of all assignments assigned to a specific mission. Mission should have valid id.
@@ -70,6 +71,6 @@ public interface AssignmentManager {
      * @return Set of assignments for a Mission
      * @throws IllegalArgumentException if the given Mission has invalid data
      */
-    Set<Assignment> findAssignmentsForMission(Mission mission) throws IllegalArgumentException;
+    List<Assignment> findAssignmentsForMission(Mission mission) throws IllegalArgumentException;
 
 }

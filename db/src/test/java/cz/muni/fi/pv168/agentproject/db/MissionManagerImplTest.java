@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -203,7 +204,7 @@ public class MissionManagerImplTest {
 
     @Test
     public void createMoreMissions() {
-        Set<Mission> currentMissions = manager.findAllMissions();
+        List<Mission> currentMissions = manager.findAllMissions();
 
         Mission mission1 = new Mission(null, "goal1", 1, false);
         manager.createMission(mission1);
@@ -212,7 +213,7 @@ public class MissionManagerImplTest {
         Mission mission3 = new Mission(null, "goal3", 2, false);
         manager.createMission(mission3);
 
-        Set<Mission> newMissions = manager.findAllMissions();
+        List<Mission> newMissions = manager.findAllMissions();
 
         assertNotEquals(currentMissions, newMissions);
         assertEquals(currentMissions.size() + 3, newMissions.size());

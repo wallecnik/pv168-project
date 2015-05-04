@@ -201,9 +201,9 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
      * @throws ServiceFailureException  when SQL Exception occurs
      */
     @Override
-    public Set<Mission> findAllMissions() throws ServiceFailureException {
+    public List<Mission> findAllMissions() throws ServiceFailureException {
 
-        Set<Mission> retSet = new HashSet<>();
+        List<Mission> retSet = new ArrayList<>();
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement ps = connection.prepareStatement(

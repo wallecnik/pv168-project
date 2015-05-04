@@ -1,20 +1,17 @@
 package cz.muni.fi.pv168.agentproject.db;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import org.apache.commons.dbcp2.BasicDataSource;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.Instant;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -245,7 +242,7 @@ public class AgentManagerImplTest {
         storedAgents.add(agent3);
         storedAgents.add(agent4);
 
-        Set<Agent> foundAgents = manager.findAllAgents();
+        List<Agent> foundAgents = manager.findAllAgents();
         assertTrue(storedAgents.equals(foundAgents));
         }
 
