@@ -111,6 +111,7 @@ public class Gui {
             }
         });
 
+        // TODO: Unable to catch ANY exception here! Not sure why.
         assignButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -128,6 +129,7 @@ public class Gui {
                                 assignmentTableManager.addAssignment(agent, mission);
                             }
                             catch (IllegalArgumentException iae) {
+                                System.out.println("Caught");
                                 JOptionPane.showMessageDialog(parent, iae.getMessage(),
                                         "Add assignment", JOptionPane.WARNING_MESSAGE);
                             }

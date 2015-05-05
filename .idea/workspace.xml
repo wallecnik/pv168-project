@@ -2,64 +2,64 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="fca7e3e2-dc79-4ac0-97c6-828edaace3ef" name="Default" comment="Assignment endtime deleted. Created snapshot of swing UI&#10;">
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\Assignment.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\ServiceFailureException.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\Constants.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\AgentManager.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\MissionManagerImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\AbstractManager.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\AgentManagerImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\tests\AgentManagerImplTest.class" afterPath="" />
       <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\lib\commons-dbcp2-2.0-javadoc.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\MissionManager.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\Mission.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\lib\com.springsource.org.junit-4.11.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\AssignmentManagerImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\MissionManager.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\lib\commons-pool2-2.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\AssignmentManager.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\MissionManagerImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\.idea\shelf\Uncommitted_changes_before_update_operation_at_25_03_15_21_52_[Default].patch" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\.idea\libraries\org_junit_com_springsource_org_junit_4_11_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\lib\commons-dbcp2-2.0-sources.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\Mission.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\Constants.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\DbContract.java" afterPath="" />
       <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\TestingMain.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\AbstractManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Text_Introduction.txt" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\AgentManagerImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\tests\AgentManagerImplTest.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\Agent.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\Assignment.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\tests\AssignmentManagerImplTest.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\tests\AssignmentManagerImplTest.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\AgentManager.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\TestingMain.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\ServiceFailureException.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\tests\MissionManagerImplTest.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\lib\commons-dbcp2-2.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\DbHelper.java" afterPath="" />
       <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\lib\com.springsource.org.junit-4.11.0-sources.jar" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\DbContract.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\tests\MissionManagerImplTest.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\Agent.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\AssignmentManager.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\lib\mysql-connector-java-5.1.34.jar" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\DbHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\AssignmentManagerImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\Agent.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\AssignmentManager.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\tests\AgentManagerImplTest.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\AgentManagerImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\Assignment.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\DbContract.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\TestingMain.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\lib\commons-dbcp2-2.0-sources.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\.idea\libraries\org_junit_com_springsource_org_junit_4_11_0.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/PV168.vpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Text_Introduction.txt" afterPath="" />
       <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\lib\commons-logging-1.1.3.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pv168-project.iml" afterPath="$PROJECT_DIR$/pv168-project.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\lib\commons-pool2-2.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\MissionManagerImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\Agent.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\.idea\shelf\Uncommitted_changes_before_update_operation_at_25_03_15_21_52_[Default].patch" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\tests\AssignmentManagerImplTest.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\ServiceFailureException.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\MissionManager.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\tests\AssignmentManagerImplTest.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\tests\MissionManagerImplTest.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\AssignmentManagerImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\AgentManagerImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\AgentManager.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\MissionManagerImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\Mission.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\lib\mysql-connector-java-5.1.34.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\AgentManager.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\Assignment.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\AbstractManager.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\Mission.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\DbHelper.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\tests\AgentManagerImplTest.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\DbContract.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\tests\MissionManagerImplTest.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\ServiceFailureException.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\AssignmentManagerImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\MissionManager.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\AssignmentManager.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\Constants.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\DbHelper.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\lib\commons-dbcp2-2.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\src\cz\muni\fi\agentproject\AbstractManager.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\out\production\pv168-project\cz\muni\fi\agentproject\Constants.class" afterPath="" />
+      <change type="DELETED" beforePath="D:\Dokumenty\VŠ\4 - semestr\PV168\pv168-project\lib\com.springsource.org.junit-4.11.0.jar" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pv168-project.iml" afterPath="$PROJECT_DIR$/pv168-project.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pv168-project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -97,8 +97,8 @@
       <file leaf-file-name="Gui.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/Gui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46846846" vertical-offset="216" max-vertical-offset="7104">
-              <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.17117117" vertical-offset="2598" max-vertical-offset="7152">
+              <caret line="113" column="36" selection-start-line="113" selection-start-column="36" selection-end-line="113" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -109,14 +109,10 @@
       <file leaf-file-name="AssignmentTableManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/AssignmentTableManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1968">
-              <caret line="72" column="9" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="621" max-vertical-offset="2040">
+              <caret line="38" column="71" selection-start-line="38" selection-start-column="71" selection-end-line="38" selection-end-column="71" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1056#1057#0" expanded="true" />
-                <element signature="e#1124#1125#0" expanded="true" />
-                <element signature="e#1681#1682#0" expanded="true" />
-                <element signature="e#1757#1758#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -125,36 +121,12 @@
       <file leaf-file-name="MissionTableModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/MissionTableModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4992">
-              <caret line="155" column="9" selection-start-line="153" selection-start-column="8" selection-end-line="155" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="4350" max-vertical-offset="5040">
+              <caret line="219" column="70" selection-start-line="219" selection-start-column="70" selection-end-line="219" selection-end-column="70" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#608#609#0" expanded="true" />
-                <element signature="e#646#647#0" expanded="true" />
-                <element signature="e#770#771#0" expanded="true" />
-                <element signature="e#805#806#0" expanded="true" />
-                <element signature="e#2553#2554#0" expanded="true" />
-                <element signature="e#2631#2632#0" expanded="true" />
-                <element signature="e#2883#2884#0" expanded="true" />
-                <element signature="e#2961#2962#0" expanded="true" />
-                <element signature="e#3212#3213#0" expanded="true" />
-                <element signature="e#3290#3291#0" expanded="true" />
-                <element signature="e#4100#4101#0" expanded="true" />
-                <element signature="e#4170#4171#0" expanded="true" />
-                <element signature="e#4563#4564#0" expanded="true" />
-                <element signature="e#4625#4626#0" expanded="true" />
-                <element signature="e#4755#4756#0" expanded="true" />
-                <element signature="e#4795#4796#0" expanded="true" />
-                <element signature="e#4825#4826#0" expanded="true" />
-                <element signature="e#4870#4871#0" expanded="true" />
-                <element signature="e#4902#4903#0" expanded="true" />
-                <element signature="e#4949#4950#0" expanded="true" />
-                <element signature="e#4991#4992#0" expanded="true" />
-                <element signature="e#5048#5049#0" expanded="true" />
-                <element signature="e#5085#5086#0" expanded="true" />
-                <element signature="e#5137#5138#0" expanded="true" />
-                <element signature="e#5493#5494#0" expanded="true" />
-                <element signature="e#5541#5542#0" expanded="true" />
+                <element signature="e#2560#2561#0" expanded="true" />
+                <element signature="e#2646#2647#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -182,14 +154,12 @@
       <file leaf-file-name="AddMission.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/AddMission.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="864" max-vertical-offset="3048">
-              <caret line="50" column="54" selection-start-line="50" selection-start-column="54" selection-end-line="50" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2160" max-vertical-offset="3000">
+              <caret line="106" column="4" selection-start-line="106" selection-start-column="4" selection-end-line="112" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1709#1710#0" expanded="true" />
                 <element signature="e#1757#1758#0" expanded="true" />
-                <element signature="e#3871#3872#0" expanded="true" />
-                <element signature="e#3901#3902#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -257,14 +227,14 @@
         <option value="$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/AddMission.java" />
         <option value="$PROJECT_DIR$/db/src/main/java/cz/muni/fi/pv168/agentproject/db/Mission.java" />
         <option value="$PROJECT_DIR$/db/src/main/java/cz/muni/fi/pv168/agentproject/db/Agent.java" />
-        <option value="$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/MissionTableModel.java" />
-        <option value="$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/AssignmentTableManager.java" />
-        <option value="$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/Gui.form" />
         <option value="$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/AddMission.form" />
         <option value="$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/AgentTableModel.java" />
         <option value="$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/AddAgent.form" />
-        <option value="$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/Gui.java" />
         <option value="$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/AddAgent.java" />
+        <option value="$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/MissionTableModel.java" />
+        <option value="$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/AssignmentTableManager.java" />
+        <option value="$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/Gui.form" />
+        <option value="$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/Gui.java" />
       </list>
     </option>
   </component>
@@ -404,8 +374,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -612,6 +580,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -1158,15 +1128,16 @@
       <workItem from="1430233030123" duration="3572000" />
       <workItem from="1430387618887" duration="24237000" />
       <workItem from="1430773893460" duration="2616000" />
-      <workItem from="1430826364264" duration="26868000" />
+      <workItem from="1430826364264" duration="26968000" />
+      <workItem from="1430860039148" duration="2828000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73740000" />
+    <option name="totallyTimeSpent" value="76668000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1195,7 +1166,6 @@
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32777777" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
@@ -1203,6 +1173,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32777777" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1234,16 +1205,33 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/Gui.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/AddMission.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="864" max-vertical-offset="3048">
+          <caret line="50" column="54" selection-start-line="50" selection-start-column="54" selection-end-line="50" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1709#1710#0" expanded="true" />
+            <element signature="e#1757#1758#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/AgentTableModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="936" max-vertical-offset="5184">
           <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6862#6863#0" expanded="true" />
-            <element signature="e#6900#6901#0" expanded="true" />
-            <element signature="e#6945#6946#0" expanded="true" />
-            <element signature="e#6989#6990#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#6862#6863#0" expanded="false" />
+            <element signature="e#6900#6901#0" expanded="false" />
+            <element signature="e#6945#6946#0" expanded="false" />
+            <element signature="e#6989#6990#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1252,9 +1240,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="1008">
           <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1284,32 +1270,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#608#609#0" expanded="true" />
-            <element signature="e#646#647#0" expanded="true" />
-            <element signature="e#770#771#0" expanded="true" />
-            <element signature="e#805#806#0" expanded="true" />
-            <element signature="e#2553#2554#0" expanded="true" />
-            <element signature="e#2631#2632#0" expanded="true" />
-            <element signature="e#2883#2884#0" expanded="true" />
-            <element signature="e#2961#2962#0" expanded="true" />
-            <element signature="e#3212#3213#0" expanded="true" />
-            <element signature="e#3290#3291#0" expanded="true" />
-            <element signature="e#4100#4101#0" expanded="true" />
-            <element signature="e#4170#4171#0" expanded="true" />
-            <element signature="e#4563#4564#0" expanded="true" />
-            <element signature="e#4625#4626#0" expanded="true" />
-            <element signature="e#4755#4756#0" expanded="true" />
-            <element signature="e#4795#4796#0" expanded="true" />
-            <element signature="e#4825#4826#0" expanded="true" />
-            <element signature="e#4870#4871#0" expanded="true" />
-            <element signature="e#4902#4903#0" expanded="true" />
-            <element signature="e#4949#4950#0" expanded="true" />
-            <element signature="e#4991#4992#0" expanded="true" />
-            <element signature="e#5048#5049#0" expanded="true" />
-            <element signature="e#5085#5086#0" expanded="true" />
-            <element signature="e#5137#5138#0" expanded="true" />
-            <element signature="e#5493#5494#0" expanded="true" />
-            <element signature="e#5541#5542#0" expanded="true" />
+            <element signature="e#2560#2561#0" expanded="true" />
+            <element signature="e#2646#2647#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1322,8 +1284,6 @@
             <element signature="imports" expanded="true" />
             <element signature="e#1709#1710#0" expanded="true" />
             <element signature="e#1757#1758#0" expanded="true" />
-            <element signature="e#3871#3872#0" expanded="true" />
-            <element signature="e#3901#3902#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1382,7 +1342,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.508547" vertical-offset="0" max-vertical-offset="0">
           <caret line="31" column="38" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1411,7 +1370,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.42497262" vertical-offset="0" max-vertical-offset="0">
           <caret line="244" column="12" selection-start-line="244" selection-start-column="12" selection-end-line="244" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1485,7 +1443,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.44059977" vertical-offset="1970" max-vertical-offset="5688">
           <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1500,11 +1457,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="988" max-vertical-offset="2016">
           <caret line="62" column="8" selection-start-line="62" selection-start-column="8" selection-end-line="63" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2723#2724#0" expanded="false" />
-            <element signature="e#2751#2752#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1513,8 +1465,8 @@
         <state vertical-scroll-proportion="0.3325527" vertical-offset="50764" max-vertical-offset="224016">
           <caret line="2239" column="15" selection-start-line="2239" selection-start-column="15" selection-end-line="2239" selection-end-column="15" />
           <folding>
-            <element signature="e#86354#86355#0" expanded="true" />
-            <element signature="e#86414#86415#0" expanded="true" />
+            <element signature="e#86354#86355#0" expanded="false" />
+            <element signature="e#86414#86415#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1539,9 +1491,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="246" max-vertical-offset="1032">
           <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1550,7 +1499,7 @@
         <state vertical-scroll-proportion="0.46846846" vertical-offset="192" max-vertical-offset="1176">
           <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1567,7 +1516,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.9930795" vertical-offset="0" max-vertical-offset="1944">
           <caret line="73" column="4" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1610,61 +1558,11 @@
         <state vertical-scroll-proportion="0.4234234" vertical-offset="4614" max-vertical-offset="5472">
           <caret line="212" column="9" selection-start-line="212" selection-start-column="9" selection-end-line="212" selection-end-column="9" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6862#6863#0" expanded="true" />
-            <element signature="e#6900#6901#0" expanded="true" />
-            <element signature="e#6945#6946#0" expanded="true" />
-            <element signature="e#6989#6990#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/AssignmentTableManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1158" max-vertical-offset="1968">
-          <caret line="72" column="9" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1056#1057#0" expanded="true" />
-            <element signature="e#1124#1125#0" expanded="true" />
-            <element signature="e#1681#1682#0" expanded="true" />
-            <element signature="e#1757#1758#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/MissionTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3568" max-vertical-offset="4992">
-          <caret line="155" column="9" selection-start-line="153" selection-start-column="8" selection-end-line="155" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#608#609#0" expanded="true" />
-            <element signature="e#646#647#0" expanded="true" />
-            <element signature="e#770#771#0" expanded="true" />
-            <element signature="e#805#806#0" expanded="true" />
-            <element signature="e#2553#2554#0" expanded="true" />
-            <element signature="e#2631#2632#0" expanded="true" />
-            <element signature="e#2883#2884#0" expanded="true" />
-            <element signature="e#2961#2962#0" expanded="true" />
-            <element signature="e#3212#3213#0" expanded="true" />
-            <element signature="e#3290#3291#0" expanded="true" />
-            <element signature="e#4100#4101#0" expanded="true" />
-            <element signature="e#4170#4171#0" expanded="true" />
-            <element signature="e#4563#4564#0" expanded="true" />
-            <element signature="e#4625#4626#0" expanded="true" />
-            <element signature="e#4755#4756#0" expanded="true" />
-            <element signature="e#4795#4796#0" expanded="true" />
-            <element signature="e#4825#4826#0" expanded="true" />
-            <element signature="e#4870#4871#0" expanded="true" />
-            <element signature="e#4902#4903#0" expanded="true" />
-            <element signature="e#4949#4950#0" expanded="true" />
-            <element signature="e#4991#4992#0" expanded="true" />
-            <element signature="e#5048#5049#0" expanded="true" />
-            <element signature="e#5085#5086#0" expanded="true" />
-            <element signature="e#5137#5138#0" expanded="true" />
-            <element signature="e#5493#5494#0" expanded="true" />
-            <element signature="e#5541#5542#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#6862#6863#0" expanded="false" />
+            <element signature="e#6900#6901#0" expanded="false" />
+            <element signature="e#6945#6946#0" expanded="false" />
+            <element signature="e#6989#6990#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1679,35 +1577,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/Gui.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
+    <entry file="file://$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/AddMission.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2160" max-vertical-offset="3000">
+          <caret line="106" column="4" selection-start-line="106" selection-start-column="4" selection-end-line="112" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1709#1710#0" expanded="true" />
+            <element signature="e#1757#1758#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/MissionTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4350" max-vertical-offset="5040">
+          <caret line="219" column="70" selection-start-line="219" selection-start-column="70" selection-end-line="219" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2560#2561#0" expanded="true" />
+            <element signature="e#2646#2647#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/AssignmentTableManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="621" max-vertical-offset="2040">
+          <caret line="38" column="71" selection-start-line="38" selection-start-column="71" selection-end-line="38" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/Gui.form">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/AddMission.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="864" max-vertical-offset="3048">
-          <caret line="50" column="54" selection-start-line="50" selection-start-column="54" selection-end-line="50" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1709#1710#0" expanded="true" />
-            <element signature="e#1757#1758#0" expanded="true" />
-            <element signature="e#3871#3872#0" expanded="true" />
-            <element signature="e#3901#3902#0" expanded="true" />
-          </folding>
-        </state>
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gui/src/main/java/cz/muni/fi/pv168/agentproject/gui/Gui.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46846846" vertical-offset="216" max-vertical-offset="7104">
-          <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.17117117" vertical-offset="2598" max-vertical-offset="7152">
+          <caret line="113" column="36" selection-start-line="113" selection-start-column="36" selection-end-line="113" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

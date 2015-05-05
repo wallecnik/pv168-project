@@ -26,13 +26,18 @@ public class AssignmentTableManager {
         assignments = manager.findAllAssignments();
     }
 
-    public void addAssignment(Agent agent, Mission mission) throws IllegalArgumentException {
+    public void addAssignment(Agent agent, Mission mission) {
         Instant startTimeNow = Instant.now();
         Assignment assignment = new Assignment(null, agent, mission, startTimeNow);
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                manager.createAssignment(assignment);
+                try {
+                    manager.createAssignment(assignment);
+                }
+                catch (IllegalArgumentException iae) {
+                    throw new IllegalArgumentException(iae.getMessage());
+                }
             }
         });
         assignments.add(assignment);

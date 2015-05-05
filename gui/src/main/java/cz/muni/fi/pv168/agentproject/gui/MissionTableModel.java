@@ -1,7 +1,6 @@
 package cz.muni.fi.pv168.agentproject.gui;
 
-import cz.muni.fi.pv168.agentproject.db.Mission;
-import cz.muni.fi.pv168.agentproject.db.MissionManager;
+import cz.muni.fi.pv168.agentproject.db.*;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -89,23 +88,29 @@ public class MissionTableModel extends AbstractTableModel {
         Mission mission = missions.get(rowIndex);
         switch (columnIndex) {
             case 1:
-                mission.setGoal((String) newValue);
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        manager.updateMission(mission);
-                    }
-                });
+                if (verifyGoal((String) newValue)) {
+                    mission.setGoal((String) newValue);
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            manager.updateMission(mission);
+                        }
+                    });
+                }
                 break;
+
             case 2:
-                mission.setRequiredAgents((int) newValue);
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        manager.updateMission(mission);
-                    }
-                });
+                if (verifyRequiredAgents((int) newValue)) {
+                    mission.setRequiredAgents((int) newValue);
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            manager.updateMission(mission);
+                        }
+                    });
+                }
                 break;
+
             case 3:
                 mission.setCompleted((boolean) newValue);
                 SwingUtilities.invokeLater(new Runnable() {
@@ -115,6 +120,7 @@ public class MissionTableModel extends AbstractTableModel {
                     }
                 });
                 break;
+
             default:
                 throw new IllegalArgumentException("columnIndex");
         }
@@ -186,17 +192,37 @@ public class MissionTableModel extends AbstractTableModel {
         missions = manager.sortByCompleted();
     }
 
-    /*public void highlight(List<Mission> missionsToHighlight) {
-        for (int i = 0; i < missions.size(); i++) {
-            for (int j = 0; j < missionsToHighlight.size(); j++) {
-                if (missions.get(i) == missionsToHighlight.get(j)) {
-
-                }
-            }
-        }
-    }*/
-
     public int getMissionIndex(Mission mission) {
         return missions.indexOf(mission);
+    }
+
+    /**
+     * Checks whether the input for field "Goal" is valid or not.
+     * @return true if everything went as expected
+     */
+    private boolean verifyGoal(String goal) {
+        if (goal == null) {
+            //throw new IllegalArgumentException("Mission goal cannot be null!");
+            return false;
+        }
+        if (goal.equals("")) {
+            //throw new IllegalArgumentException("Mission goal cannot be empty!");
+            return false;
+        }
+        if (goal.length() > Constants.MISSION_GOAL_MAX_LENGTH) {
+            //throw new IllegalArgumentException("Mission goal is too lengthy!");
+            return false;
+        }
+
+        return true;
+    }
+
+    // TODO: Don't allow to go below the number of current assignments
+    private boolean verifyRequiredAgents(int requiredAgents) {
+        if (requiredAgents <= 0) {
+            //throw new IllegalArgumentException("There must be at least one agent for each mission!");
+            return false;
+        }
+        return true;
     }
 }
