@@ -4,6 +4,7 @@ import cz.muni.fi.pv168.agentproject.db.*;
 
 import javax.sql.DataSource;
 import javax.swing.*;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,6 +37,7 @@ public class Gui {
     private JLabel assigningAgent;
     private JLabel assigningMission;
     private JButton deleteAgentButton;
+    private JButton deleteMissionButton;
 
     /**
      * Creates the main window, creates all listeners and models, properly initialize
@@ -47,7 +49,10 @@ public class Gui {
         JFrame frame = new JFrame("Gui");
         frame.setContentPane(new Gui(frame, dataSource).guiMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Assignment manager");
+        frame.setPreferredSize(new Dimension(800, 600));
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 
@@ -72,6 +77,7 @@ public class Gui {
                 });
             }
         });
+
         deleteAgentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -79,16 +85,30 @@ public class Gui {
                 ((AgentTableModel) agentsTable.getModel()).removeRow(index);
             }
         });
+
         addMissionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                        AddMission.main();
+                        AddMission addMission = new AddMission(parent);
+                        Mission newMission = addMission.getMission();
+                        ((MissionTableModel) missionsTable.getModel()).addMission(newMission);
                     }
                 });
             }
         });
+
+        deleteMissionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int index = missionsTable.getSelectedRow();
+                ((MissionTableModel) missionsTable.getModel()).removeMission(index);
+            }
+        });
+
+        JTableHeader missionsTableHeader = missionsTable.getTableHeader();
+        missionsTableHeader.addMouseListener(new TableHeaderMouseListener(missionsTable));
     }
 
     /**
@@ -101,6 +121,9 @@ public class Gui {
 
         agentsTable.setModel(new AgentTableModel(agentManager));
         missionsTable.setModel(new MissionTableModel(missionManager));
+
+        assignmentsAgentsTable.setModel(new AgentTableModel(agentManager));
+        assignmentsMissionsTable.setModel(new MissionTableModel(missionManager));
     }
 
     /**

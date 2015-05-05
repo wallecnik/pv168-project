@@ -20,6 +20,9 @@ import java.util.regex.Pattern;
  */
 public class AddAgent {
     //TODO: add logging
+    // TODO: Attempt to delete an agent when table contains none results in ArrayIndexOutOfBoundsException;
+    // also happens when no row is selected
+    // TODO: Instant
 
     private JDialog dialog;
     private JFrame parent;
@@ -61,6 +64,8 @@ public class AddAgent {
                 dialog.dispose();
             }
         });
+
+        displayDialog();
     }
 
     /**

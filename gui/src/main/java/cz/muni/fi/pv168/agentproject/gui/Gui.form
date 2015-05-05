@@ -286,6 +286,12 @@
                           <text value="Add Mission"/>
                         </properties>
                       </component>
+                      <component id="8a62f" class="javax.swing.JButton" binding="deleteMissionButton">
+                        <constraints/>
+                        <properties>
+                          <text value="Delete"/>
+                        </properties>
+                      </component>
                     </children>
                   </toolbar>
                 </children>
