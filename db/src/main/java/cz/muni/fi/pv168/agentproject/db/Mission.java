@@ -93,4 +93,14 @@ public class Mission {
         result = 31 * result + (completed ? 1 : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Mission{" +
+                "id=" + id +
+                ", requiredAgents=" + requiredAgents +
+                ", goal='" + goal + '\'' +
+                ", completed=" + completed +
+                '}';
+    }
 }

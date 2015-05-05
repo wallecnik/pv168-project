@@ -4,6 +4,7 @@ import cz.muni.fi.pv168.agentproject.db.Agent;
 import cz.muni.fi.pv168.agentproject.db.Constants;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.ZoneId;
@@ -20,9 +21,7 @@ import java.util.regex.Pattern;
  */
 public class AddAgent {
     //TODO: add logging
-    // TODO: Attempt to delete an agent when table contains none results in ArrayIndexOutOfBoundsException;
-    // also happens when no row is selected
-    // TODO: Instant
+    // TODO: Instant formatting
 
     private JDialog dialog;
     private JFrame parent;
@@ -76,6 +75,8 @@ public class AddAgent {
         dialog.setContentPane(addAgentMain);
         dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         dialog.setLocationRelativeTo(parent);
+        dialog.setTitle("Add a new mission");
+        dialog.setPreferredSize(new Dimension(300, 300));
         dialog.pack();
         dialog.setVisible(true);
     }

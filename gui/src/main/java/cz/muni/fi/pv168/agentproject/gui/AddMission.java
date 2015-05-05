@@ -115,7 +115,7 @@ public class AddMission {
     /**
      * @return List of all missions
      */
-    public Mission getMission() {
+    public Mission getMissions() {
         return mission;
     }
 }

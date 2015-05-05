@@ -139,13 +139,13 @@ public class MissionTableModel extends AbstractTableModel {
 
     public void addMission(Mission mission) {
         if (mission != null) {
-            missions.add(mission);
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
                     manager.createMission(mission);
                 }
             });
+            missions.add(mission);
             fireTableRowsInserted(missions.size() - 1, missions.size() - 1);
         }
     }
@@ -166,6 +166,10 @@ public class MissionTableModel extends AbstractTableModel {
         fireTableRowsDeleted(row, row);
     }
 
+    public Mission getMission(int row) {
+        return missions.get(row);
+    }
+
     public void sortById() {
         missions = manager.sortById();
     }
@@ -180,5 +184,19 @@ public class MissionTableModel extends AbstractTableModel {
 
     public void sortByCompleted() {
         missions = manager.sortByCompleted();
+    }
+
+    /*public void highlight(List<Mission> missionsToHighlight) {
+        for (int i = 0; i < missions.size(); i++) {
+            for (int j = 0; j < missionsToHighlight.size(); j++) {
+                if (missions.get(i) == missionsToHighlight.get(j)) {
+
+                }
+            }
+        }
+    }*/
+
+    public int getMissionIndex(Mission mission) {
+        return missions.indexOf(mission);
     }
 }

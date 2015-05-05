@@ -208,6 +208,10 @@ public class AgentTableModel extends AbstractTableModel {
      * @param row A row to be deleted
      */
     public void removeRow(int row) {
+        if (row == -1) {
+            return;
+        }
+
         Agent agent = agents.get(row);
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -217,5 +221,13 @@ public class AgentTableModel extends AbstractTableModel {
         });
         agents.remove(row);
         fireTableRowsDeleted(row, row);
+    }
+
+    public Agent getAgent(int row) {
+        return agents.get(row);
+    }
+
+    public int getAgentIndex(Agent agent) {
+        return agents.indexOf(agent);
     }
 }
