@@ -1,5 +1,8 @@
 package cz.muni.fi.pv168.agentproject.db;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.sql.DataSource;
 import java.sql.*;
 import java.time.Instant;
@@ -9,8 +12,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * This class manages the database for creating, retrieving, updating and deleting Assignments.
@@ -23,7 +24,7 @@ import java.util.logging.Logger;
  */
 public class AssignmentManagerImpl extends AbstractManager implements AssignmentManager {
 
-    public static final Logger logger = Logger.getLogger(AssignmentManagerImpl.class.getName());
+    public static final Logger log = LoggerFactory.getLogger(AssignmentManagerImpl.class);
 
     private DataSource dataSource;
     private AgentManager agentManager;
@@ -54,6 +55,8 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
      */
     @Override
     public void createAssignment(Assignment assignment) throws IllegalArgumentException {
+
+        log.debug("creating assignment " + assignment);
 
         validateAssignment(assignment);
         if (assignment.getId() != null) {
@@ -87,7 +90,7 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
             assignment.setId(newId);
 
         } catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle);
+            log.warn(null, sqle);
             throw new ServiceFailureException("Error when inserting assignment " + assignment, sqle);
         }
 
@@ -104,6 +107,8 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
      */
     @Override
     public Assignment findAssignmentById(Long id) throws IllegalArgumentException {
+
+        log.debug("looking up assignment with id " + id);
 
         Assignment retVal = null;
 
@@ -127,7 +132,7 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
             }
 
         } catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle);
+            log.warn(null, sqle);
             throw new ServiceFailureException("Error when looking up an assignment with id" + id, sqle);
         }
 
@@ -147,6 +152,8 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
      */
     @Override
     public void updateAssignment(Assignment assignment) throws IllegalArgumentException {
+
+        log.debug("updating assignment " + assignment);
 
         validateAssignment(assignment);
 
@@ -182,7 +189,7 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
             }
 
         } catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle);
+            log.warn(null, sqle);
             throw new ServiceFailureException("Error when updating assignment " + assignment, sqle);
         }
 
@@ -198,6 +205,8 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
      */
     @Override
     public void deleteAssignment(Assignment assignment) throws IllegalArgumentException {
+
+        log.debug("deleting assignment " + assignment);
 
         if (assignment == null) {
             throw new IllegalArgumentException("assignment is null");
@@ -221,7 +230,7 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
             }
 
         } catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle);
+            log.warn(null, sqle);
             throw new ServiceFailureException("Error when updating assignment " + assignment, sqle);
         }
 
@@ -235,6 +244,8 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
      */
     @Override
     public Set<Assignment> findAllAssignments() {
+
+        log.debug("looking up all assignments");
 
         Set<Assignment> retSet = new HashSet<>();
 
@@ -251,7 +262,7 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
             }
 
         } catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle);
+            log.warn(null, sqle);
             throw new ServiceFailureException("Error when looking up all agents", sqle);
         }
 
@@ -270,6 +281,8 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
      */
     @Override
     public List<Assignment> findAssignmentsForAgent(Agent agent) throws IllegalArgumentException {
+
+        log.debug("looking up all assignments for agent " + agent);
 
         if (agent == null) {
             throw new IllegalArgumentException("Agent pointer is null");
@@ -301,7 +314,7 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
             }
 
         } catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle);
+            log.warn(null, sqle);
             throw new ServiceFailureException("Error when looking up all assignment for agent " + agent, sqle);
         }
 
@@ -319,6 +332,8 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
      */
     @Override
     public List<Assignment> findAssignmentsForMission(Mission mission) throws IllegalArgumentException {
+
+        log.debug("looking up all assignments for mission " + mission);
 
         if (mission == null) {
             throw new IllegalArgumentException("Mission pointer is null");
@@ -350,7 +365,7 @@ public class AssignmentManagerImpl extends AbstractManager implements Assignment
             }
 
         } catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle);
+            log.warn(null, sqle);
             throw new ServiceFailureException("Error when looking up all assignment for mission " + mission, sqle);
         }
 

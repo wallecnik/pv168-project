@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Built-By: Dužinka
-Created-By: IntelliJ IDEA
 Build-Jdk: 1.8.0_31
+Built-By: Wallecnik
+Created-By: IntelliJ IDEA
 

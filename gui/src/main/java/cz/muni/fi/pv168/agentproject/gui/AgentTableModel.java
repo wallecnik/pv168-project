@@ -2,11 +2,18 @@ package cz.muni.fi.pv168.agentproject.gui;
 
 import cz.muni.fi.pv168.agentproject.db.Agent;
 import cz.muni.fi.pv168.agentproject.db.AgentManager;
+import cz.muni.fi.pv168.agentproject.db.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
-import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Implementation of TableModel for displaying Agents.
@@ -15,7 +22,8 @@ import java.util.List;
  * @version 1.0-SNAPSHOT
  */
 public class AgentTableModel extends AbstractTableModel {
-    //TODO: add logging
+
+    private static final Logger log = LoggerFactory.getLogger(AgentTableModel.class);
 
     private static final int COLUMN_COUNT = 3;
 
@@ -30,27 +38,22 @@ public class AgentTableModel extends AbstractTableModel {
      * @param manager manager to be used for database operations
      */
     public AgentTableModel(AgentManager manager) {
+        log.debug("creating AgentTableModel");
         this.manager = manager;
-        agents = manager.findAllAgents();
-    }
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                agents = manager.findAllAgents();
+                return null;
+            }
 
-    /**
-     * Adds a new Agent at the end of the table.
-     * Database operation runs on a separate thread.
-     *
-     * @param agent An agent to be inserted
-     */
-    public void addAgent(Agent agent) {
-        if (agent != null) {
-            agents.add(agent);
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    manager.createAgent(agent);
-                }
-            });
-            fireTableRowsInserted(agents.size() - 1, agents.size() - 1);
-        }
+            @Override
+            protected void done() {
+                super.done();
+                AgentTableModel.this.fireTableDataChanged();
+            }
+        };
+        worker.execute();
     }
 
     /**
@@ -96,7 +99,7 @@ public class AgentTableModel extends AbstractTableModel {
             case 1:
                 return String.class;
             case 2:
-                return Instant.class;
+                return String.class;
             default:
                 throw new IllegalArgumentException("columnIndex");
         }
@@ -114,11 +117,11 @@ public class AgentTableModel extends AbstractTableModel {
     public String getColumnName(int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return "Id";
+                return Gui.getStrings().getString("gui.table.agents.header.id");
             case 1:
-                return "Name";
+                return Gui.getStrings().getString("gui.table.agents.header.name");
             case 2:
-                return "Born";
+                return Gui.getStrings().getString("gui.table.agents.header.born");
             default:
                 throw new IllegalArgumentException("columnIndex");
         }
@@ -134,14 +137,14 @@ public class AgentTableModel extends AbstractTableModel {
      */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Agent agent = agents.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return agent.getId();
+                return getAgent(rowIndex).getId();
             case 1:
-                return agent.getName();
+                return getAgent(rowIndex).getName();
             case 2:
-                return agent.getBorn();
+                return DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(
+                        ZonedDateTime.ofInstant(getAgent(rowIndex).getBorn(), ZoneId.systemDefault()));
             default:
                 throw new IllegalArgumentException("columnIndex");
         }
@@ -150,6 +153,7 @@ public class AgentTableModel extends AbstractTableModel {
     /**
      * Sets the value in the cell at <code>columnIndex</code> and
      * <code>rowIndex</code> to <code>aValue</code>.
+     * Database operation runs on a separate thread via SwingWorker.
      *
      * @param aValue      the new value
      * @param rowIndex    the row whose value is to be changed
@@ -159,21 +163,31 @@ public class AgentTableModel extends AbstractTableModel {
      */
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        Agent agent = agents.get(rowIndex);
+        Agent agent = getAgent(rowIndex);
         switch (columnIndex) {
             case 1:
-                agent.setName((String) aValue);
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        manager.updateAgent(agent);
-                    }
-                });
+                if (verifyNameAndAlert((String) aValue)) {
+                    agent.setName((String) aValue);
+                    SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+                        @Override
+                        protected Void doInBackground() throws Exception {
+                            manager.updateAgent(agent);
+                            agents = manager.findAllAgents();
+                            return null;
+                        }
+
+                        @Override
+                        protected void done() {
+                            super.done();
+                            AgentTableModel.this.fireTableDataChanged();
+                        }
+                    };
+                    worker.execute();
+                }
                 break;
             default:
                 throw new IllegalArgumentException("columnIndex");
         }
-        fireTableCellUpdated(rowIndex, columnIndex);
     }
 
     /**
@@ -202,25 +216,58 @@ public class AgentTableModel extends AbstractTableModel {
     }
 
     /**
+     * Adds a new Agent at the end of the table.
+     * Database operation runs on a separate thread via SwingWorker.
+     *
+     * @param agent An agent to be inserted
+     */
+    public void addAgent(Agent agent) {
+        if (agent != null) {
+            SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    manager.createAgent(agent);
+                    agents = manager.findAllAgents();
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    super.done();
+                    AgentTableModel.this.fireTableDataChanged();
+                }
+            };
+            worker.execute();
+        }
+    }
+
+    /**
      * Removes the specified row from the table and the database.
-     * Database operation runs on a separate thread.
+     * Database operation runs on a separate thread via SwingWorker.
      *
      * @param row A row to be deleted
      */
     public void removeRow(int row) {
-        if (row == -1) {
+        if (row < 0) {
             return;
         }
 
-        Agent agent = agents.get(row);
-        SwingUtilities.invokeLater(new Runnable() {
+        Agent agent = getAgent(row);
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
             @Override
-            public void run() {
+            protected Void doInBackground() throws Exception {
                 manager.deleteAgent(agent);
+                agents = manager.findAllAgents();
+                return null;
             }
-        });
-        agents.remove(row);
-        fireTableRowsDeleted(row, row);
+
+            @Override
+            protected void done() {
+                super.done();
+                AgentTableModel.this.fireTableDataChanged();
+            }
+        };
+        worker.execute();
     }
 
     public Agent getAgent(int row) {
@@ -230,4 +277,25 @@ public class AgentTableModel extends AbstractTableModel {
     public int getAgentIndex(Agent agent) {
         return agents.indexOf(agent);
     }
+
+    private boolean verifyNameAndAlert(String name) {
+        if (name == null) {
+            Gui.alert("agent name is null");
+            return false;
+        }
+        if (name.equals("")) {
+            Gui.alert("agent name is empty");
+            return false;
+        }
+        if (name.length() > Constants.AGENT_NAME_MAX_LENGTH) {
+            Gui.alert("agent name is too long");
+            return false;
+        }
+        if (!Pattern.matches(Constants.AGENT_NAME_REGEX, name)) {
+            Gui.alert("agent name contains illegal characters");
+            return false;
+        }
+        return true;
+    }
+
 }

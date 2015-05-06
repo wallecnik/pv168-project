@@ -1,10 +1,14 @@
 package cz.muni.fi.pv168.agentproject.db;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.sql.DataSource;
 import java.sql.*;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Implemented MissionManager interface
@@ -14,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class MissionManagerImpl extends AbstractManager implements MissionManager {
 
-    public static final Logger logger = Logger.getLogger(MissionManagerImpl.class.getName());
+    public static final Logger log = LoggerFactory.getLogger(MissionManagerImpl.class.getName());
     private DataSource dataSource;
 
     public MissionManagerImpl(DataSource dataSource) {
@@ -33,6 +37,8 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
      */
     @Override
     public void createMission(Mission mission) throws ServiceFailureException, IllegalArgumentException {
+
+        log.debug("creating mission " + mission);
 
         validateMission(mission);
 
@@ -60,7 +66,7 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
 
         }
         catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle);
+            log.warn(null, sqle);
             throw new ServiceFailureException("Error when inserting mission " + mission, sqle);
         }
     }
@@ -76,7 +82,9 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
      *                                          (inherited from validateMission())
      */
     @Override
-        public void updateMission(Mission mission) throws ServiceFailureException, IllegalArgumentException {
+    public void updateMission(Mission mission) throws ServiceFailureException, IllegalArgumentException {
+
+        log.debug("updating mission " + mission);
 
         validateMission(mission);
 
@@ -103,7 +111,7 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
             }
 
         } catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle);
+            log.warn(null, sqle);
             throw new ServiceFailureException("Error when updating mission" + mission, sqle);
         }
     }
@@ -118,6 +126,9 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
      */
     @Override
     public void deleteMission(Mission mission) throws ServiceFailureException, IllegalArgumentException {
+
+        log.debug("deleting mission " + mission);
+
         if (mission == null) {
             throw new IllegalArgumentException("Mission pointer is null");
         }
@@ -140,7 +151,7 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
             }
 
         } catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle);
+            log.warn(null, sqle);
             throw new ServiceFailureException("Error when deleting mission" + mission, sqle);
         }
     }
@@ -156,6 +167,8 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
      */
     @Override
     public Mission findMissionById(Long id) throws ServiceFailureException, IllegalArgumentException{
+
+        log.debug("looking up mission with id " + id);
 
         Mission returnValue;
 
@@ -187,7 +200,7 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
             }
 
         } catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle);
+            log.warn(null, sqle);
             throw new ServiceFailureException("Error when searching for mission with id " + id, sqle);
         }
 
@@ -202,6 +215,8 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
      */
     @Override
     public List<Mission> findAllMissions() throws ServiceFailureException {
+
+        log.debug("looking up all missions");
 
         List<Mission> retSet = new ArrayList<>();
 
@@ -218,7 +233,7 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
             }
 
         } catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle);
+            log.warn(null, sqle);
             throw new ServiceFailureException("Error when searching for all missions", sqle);
         }
 

@@ -1,6 +1,8 @@
 package cz.muni.fi.pv168.agentproject.gui;
 
 import cz.muni.fi.pv168.agentproject.db.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 import javax.swing.*;
@@ -8,8 +10,9 @@ import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.NoSuchElementException;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.ResourceBundle;
 
 /**
  * This class represents the main window of the application.
@@ -19,14 +22,15 @@ import java.util.List;
  * @version 1.0-SNAPSHOT
  */
 public class Gui {
-    //TODO: add logging
+
+    private static final Logger log = LoggerFactory.getLogger(Gui.class);
+
     // TODO: Add menu
 
-    private final JFrame parent;
+    private static JFrame parent;
+    private static ResourceBundle strings = ResourceBundle.getBundle("strings/strings");
 
     private JPanel assignments;
-    /*private JTable agentsTable;
-    private JTable missionsTable;*/
     private JButton assignButton;
     private JPanel guiMain;
     private JButton addAgentButton;
@@ -50,14 +54,15 @@ public class Gui {
      * @param dataSource configured DataSource to be used with managers
      */
     public static void display(DataSource dataSource) {
-        JFrame frame = new JFrame("Gui");
+        JFrame frame = new JFrame();
         frame.setContentPane(new Gui(frame, dataSource).guiMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Assignment manager");
+        frame.setTitle(getStrings().getString("gui.main.title"));
         frame.setPreferredSize(new Dimension(1024, 768));
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        log.debug("Main window displayed");
     }
 
     /**
@@ -127,8 +132,7 @@ public class Gui {
 
                             try {
                                 assignmentTableManager.addAssignment(agent, mission);
-                            }
-                            catch (IllegalArgumentException iae) {
+                            } catch (IllegalArgumentException iae) {
                                 System.out.println("Caught");
                                 JOptionPane.showMessageDialog(parent, iae.getMessage(),
                                         "Add assignment", JOptionPane.WARNING_MESSAGE);
@@ -154,8 +158,7 @@ public class Gui {
 
                             try {
                                 assignmentTableManager.removeAssignment(agent, mission);
-                            }
-                            catch (NoSuchElementException nsee) {
+                            } catch (NoSuchElementException nsee) {
                                 JOptionPane.showMessageDialog(parent, nsee.getMessage(),
                                         "Delete assignment", JOptionPane.WARNING_MESSAGE);
                             }
@@ -225,9 +228,8 @@ public class Gui {
             }
         });
 
-        // Enables sorting by clicking on the header column
-        JTableHeader missionsTableHeader = missionsTable.getTableHeader();
-        missionsTableHeader.addMouseListener(new TableHeaderMouseListener(missionsTable));
+        log.debug("listeners initialized");
+
     }
 
     /**
@@ -257,6 +259,12 @@ public class Gui {
 
         agentsTable.setSelectionBackground(Color.GREEN);
         missionsTable.setSelectionBackground(Color.GREEN);
+
+        // Enables sorting by clicking on the header column
+        JTableHeader missionsTableHeader = missionsTable.getTableHeader();
+        missionsTableHeader.addMouseListener(new TableHeaderMouseListener(missionsTable));
+
+        log.debug("components set");
     }
 
     /**
@@ -292,4 +300,22 @@ public class Gui {
         return menubar;
     }
 
+    /**
+     * Creates dialog window with one message in parameter
+     *
+     * @param message Message to be shown
+     */
+    public static void alert(String message) {
+        log.warn("input error: " + message);
+        JOptionPane.showMessageDialog(parent, message, "Input error", JOptionPane.WARNING_MESSAGE);
+    }
+
+    /**
+     * Returns bundle with locale strings
+     *
+     * @return ResourceBundle with strings
+     */
+    public static ResourceBundle getStrings() {
+        return strings;
+    }
 }

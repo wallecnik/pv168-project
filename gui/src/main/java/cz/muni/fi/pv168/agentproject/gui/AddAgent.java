@@ -71,11 +71,11 @@ public class AddAgent {
      * Displays this window
      */
     private void displayDialog() {
-        dialog = new JDialog(parent, "AddAgent", true);
+        dialog = new JDialog(parent, true);
         dialog.setContentPane(addAgentMain);
         dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         dialog.setLocationRelativeTo(parent);
-        dialog.setTitle("Add a new mission");
+        dialog.setTitle(Gui.getStrings().getString("gui.form.agents.main.title"));
         dialog.setPreferredSize(new Dimension(300, 300));
         dialog.pack();
         dialog.setVisible(true);
@@ -121,7 +121,7 @@ public class AddAgent {
      * Creates dialog window with one message in parameter
      */
     private void alert(String message) {
-        JOptionPane.showMessageDialog(parent, message);
+        JOptionPane.showMessageDialog(parent, message, "Input error", JOptionPane.WARNING_MESSAGE);
     }
 
     /**

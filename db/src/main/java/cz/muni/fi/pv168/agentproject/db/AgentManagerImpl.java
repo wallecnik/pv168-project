@@ -1,5 +1,8 @@
 package cz.muni.fi.pv168.agentproject.db;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.sql.DataSource;
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -7,8 +10,6 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
@@ -23,7 +24,7 @@ import java.util.regex.Pattern;
  */
 public class AgentManagerImpl extends AbstractManager implements AgentManager {
 
-    public static final Logger logger = Logger.getLogger(AgentManagerImpl.class.getName());
+    public static final Logger log = LoggerFactory.getLogger(AgentManagerImpl.class);
 
     private DataSource dataSource;
 
@@ -50,6 +51,8 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
     @Override
     public void createAgent(Agent agent) throws ServiceFailureException, IllegalArgumentException {
 
+        log.debug("creating agent " + agent);
+
         validateAgent(agent);
 
         if (agent.getId() != null) {
@@ -75,7 +78,7 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
 
         }
         catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle);
+            log.warn(null, sqle);
             throw new ServiceFailureException("Error when inserting agent " + agent, sqle);
         }
 
@@ -92,6 +95,8 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
      */
     @Override
     public Agent findAgentById(Long id) throws ServiceFailureException, IllegalArgumentException{
+
+        log.debug("looking up agent with id " + id);
 
         Agent retVal;
 
@@ -123,7 +128,7 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
             }
 
         } catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle);
+            log.warn(null, sqle);
             throw new ServiceFailureException("Error when looking up an agent with id" + id, sqle);
         }
 
@@ -142,6 +147,8 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
      */
     @Override
     public void updateAgent(Agent agent) throws ServiceFailureException, IllegalArgumentException {
+
+        log.debug("updating agent " + agent);
 
         validateAgent(agent);
 
@@ -165,7 +172,7 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
             }
 
         } catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle);
+            log.warn(null, sqle);
             throw new ServiceFailureException("Error when updating an agent" + agent, sqle);
         }
     }
@@ -180,6 +187,9 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
      */
     @Override
     public void deleteAgent(Agent agent) throws ServiceFailureException, IllegalArgumentException {
+
+        log.debug("deleting agent " + agent);
+
         if (agent == null) {
             throw new IllegalArgumentException("Agent pointer is null");
         }
@@ -202,7 +212,7 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
             }
 
         } catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle);
+            log.warn(null, sqle);
             throw new ServiceFailureException("Error when deleting an agent" + agent, sqle);
         }
     }
@@ -216,6 +226,8 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
      */
     @Override
     public List<Agent> findAllAgents() throws ServiceFailureException {
+
+        log.debug("looking up all agents");
 
         List<Agent> retList = new ArrayList<>();
 
@@ -232,7 +244,7 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
             }
 
         } catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle);
+            log.warn(null, sqle);
             throw new ServiceFailureException("Error when looking up all agents", sqle);
         }
 

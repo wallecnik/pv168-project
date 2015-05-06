@@ -1,6 +1,8 @@
 package cz.muni.fi.pv168.agentproject.gui;
 
 import cz.muni.fi.pv168.agentproject.db.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -9,6 +11,8 @@ import java.util.List;
 
 public class MissionTableModel extends AbstractTableModel {
 
+    private static final Logger log = LoggerFactory.getLogger(MissionTableModel.class);
+
     private static final int COLUMN_COUNT = 4;
 
     private MissionManager manager;
@@ -16,8 +20,23 @@ public class MissionTableModel extends AbstractTableModel {
     private List<Mission> missions;
 
     public MissionTableModel(MissionManager manager) {
+        log.debug("creating AgentTableModel");
         this.manager = manager;
-        missions = manager.findAllMissions();
+        this.manager = manager;
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                missions = manager.findAllMissions();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                super.done();
+                MissionTableModel.this.fireTableDataChanged();
+            }
+        };
+        worker.execute();
     }
 
     @Override
@@ -54,13 +73,13 @@ public class MissionTableModel extends AbstractTableModel {
     public String getColumnName(int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return "ID";
+                return Gui.getStrings().getString("gui.table.missions.header.id");
             case 1:
-                return "Goal";
+                return Gui.getStrings().getString("gui.table.missions.header.goal");
             case 2:
-                return "Required agents";
+                return Gui.getStrings().getString("gui.table.missions.header.required_agents");
             case 3:
-                return "Completed";
+                return Gui.getStrings().getString("gui.table.missions.header.completed");
             default:
                 throw new IllegalArgumentException("columnIndex");
         }
@@ -68,7 +87,7 @@ public class MissionTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Mission mission = missions.get(rowIndex);
+        Mission mission = getMission(rowIndex);
         switch (columnIndex) {
             case 0:
                 return mission.getId();
@@ -85,46 +104,72 @@ public class MissionTableModel extends AbstractTableModel {
 
     @Override
     public void setValueAt(Object newValue, int rowIndex, int columnIndex) {
-        Mission mission = missions.get(rowIndex);
+        Mission mission = getMission(rowIndex);
         switch (columnIndex) {
             case 1:
                 if (verifyGoal((String) newValue)) {
                     mission.setGoal((String) newValue);
-                    SwingUtilities.invokeLater(new Runnable() {
+                    SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
                         @Override
-                        public void run() {
+                        protected Void doInBackground() throws Exception {
                             manager.updateMission(mission);
+                            missions = manager.findAllMissions();
+                            return null;
                         }
-                    });
+
+                        @Override
+                        protected void done() {
+                            super.done();
+                            MissionTableModel.this.fireTableDataChanged();
+                        }
+                    };
+                    worker.execute();
                 }
                 break;
 
             case 2:
                 if (verifyRequiredAgents((int) newValue)) {
                     mission.setRequiredAgents((int) newValue);
-                    SwingUtilities.invokeLater(new Runnable() {
+                    SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
                         @Override
-                        public void run() {
+                        protected Void doInBackground() throws Exception {
                             manager.updateMission(mission);
+                            missions = manager.findAllMissions();
+                            return null;
                         }
-                    });
+
+                        @Override
+                        protected void done() {
+                            super.done();
+                            MissionTableModel.this.fireTableDataChanged();
+                        }
+                    };
+                    worker.execute();
                 }
                 break;
 
             case 3:
                 mission.setCompleted((boolean) newValue);
-                SwingUtilities.invokeLater(new Runnable() {
+                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
                     @Override
-                    public void run() {
+                    protected Void doInBackground() throws Exception {
                         manager.updateMission(mission);
+                        missions = manager.findAllMissions();
+                        return null;
                     }
-                });
+
+                    @Override
+                    protected void done() {
+                        super.done();
+                        MissionTableModel.this.fireTableDataChanged();
+                    }
+                };
+                worker.execute();
                 break;
 
             default:
                 throw new IllegalArgumentException("columnIndex");
         }
-        fireTableCellUpdated(rowIndex, columnIndex);
     }
 
     @Override
@@ -145,31 +190,45 @@ public class MissionTableModel extends AbstractTableModel {
 
     public void addMission(Mission mission) {
         if (mission != null) {
-            SwingUtilities.invokeLater(new Runnable() {
+            SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
                 @Override
-                public void run() {
+                protected Void doInBackground() throws Exception {
                     manager.createMission(mission);
+                    missions = manager.findAllMissions();
+                    return null;
                 }
-            });
-            missions.add(mission);
-            fireTableRowsInserted(missions.size() - 1, missions.size() - 1);
+
+                @Override
+                protected void done() {
+                    super.done();
+                    MissionTableModel.this.fireTableDataChanged();
+                }
+            };
+            worker.execute();
         }
     }
 
     public void removeMission(int row) {
-        if (row == -1) {
+        if (row < 0) {
             return;
         }
 
-        Mission mission = missions.get(row);
-        SwingUtilities.invokeLater(new Runnable() {
+        Mission mission = getMission(row);
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
             @Override
-            public void run() {
+            protected Void doInBackground() throws Exception {
                 manager.deleteMission(mission);
+                missions = manager.findAllMissions();
+                return null;
             }
-        });
-        missions.remove(row);
-        fireTableRowsDeleted(row, row);
+
+            @Override
+            protected void done() {
+                super.done();
+                MissionTableModel.this.fireTableDataChanged();
+            }
+        };
+        worker.execute();
     }
 
     public Mission getMission(int row) {
@@ -177,19 +236,71 @@ public class MissionTableModel extends AbstractTableModel {
     }
 
     public void sortById() {
-        missions = manager.sortById();
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                missions = manager.sortById();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                super.done();
+                MissionTableModel.this.fireTableDataChanged();
+            }
+        };
+        worker.execute();
     }
 
     public void sortByGoal() {
-        missions = manager.sortByGoal();
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                missions = manager.sortByGoal();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                super.done();
+                MissionTableModel.this.fireTableDataChanged();
+            }
+        };
+        worker.execute();
     }
 
     public void sortByRequiredAgents() {
-        missions = manager.sortByRequiredAgents();
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                missions = manager.sortByRequiredAgents();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                super.done();
+                MissionTableModel.this.fireTableDataChanged();
+            }
+        };
+        worker.execute();
     }
 
     public void sortByCompleted() {
-        missions = manager.sortByCompleted();
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                missions = manager.sortByCompleted();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                super.done();
+                MissionTableModel.this.fireTableDataChanged();
+            }
+        };
+        worker.execute();
     }
 
     public int getMissionIndex(Mission mission) {

@@ -60,11 +60,11 @@ public class AddMission {
      * Displays dialog window for adding a mission
      */
     private void displayDialog() {
-        dialog = new JDialog(parent, "AddAgent", true);
+        dialog = new JDialog(parent, true);
         dialog.setContentPane(addMissionMain);
         dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         dialog.setLocationRelativeTo(parent);
-        dialog.setTitle("Add a new mission");
+        dialog.setTitle(Gui.getStrings().getString("gui.form.missions.main.title"));
         dialog.setPreferredSize(new Dimension(300, 300));
         dialog.pack();
         dialog.setLocationRelativeTo(null);

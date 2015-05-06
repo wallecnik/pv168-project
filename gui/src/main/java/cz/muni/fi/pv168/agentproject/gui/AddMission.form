@@ -21,7 +21,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Form for adding missions"/>
+              <text resource-bundle="strings/strings" key="gui.form.missions.header.title"/>
             </properties>
           </component>
           <component id="5828f" class="javax.swing.JLabel">
@@ -29,7 +29,7 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Goal"/>
+              <text resource-bundle="strings/strings" key="gui.form.missions.text.goal"/>
             </properties>
           </component>
           <component id="d0a57" class="javax.swing.JLabel">
@@ -37,7 +37,7 @@
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Required agents"/>
+              <text resource-bundle="strings/strings" key="gui.form.missions.text.required_agents"/>
             </properties>
           </component>
           <component id="7e95f" class="javax.swing.JLabel">
@@ -45,7 +45,7 @@
               <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Completed"/>
+              <text resource-bundle="strings/strings" key="gui.form.missions.text.completed"/>
             </properties>
           </component>
           <component id="1182c" class="javax.swing.JTextField" binding="goalField">
@@ -69,7 +69,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="True"/>
+                  <text resource-bundle="strings/strings" key="gui.form.missions.text.true"/>
                 </properties>
               </component>
               <component id="c82e7" class="javax.swing.JRadioButton" binding="completedFalse">
@@ -77,7 +77,7 @@
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="False"/>
+                  <text resource-bundle="strings/strings" key="gui.form.missions.text.false"/>
                 </properties>
               </component>
             </children>
@@ -101,7 +101,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Send"/>
+                  <text resource-bundle="strings/strings" key="gui.form.missions.button.add"/>
                 </properties>
               </component>
               <component id="9a6b" class="javax.swing.JButton" binding="cancelMissionButton">
@@ -109,7 +109,7 @@
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Cancel"/>
+                  <text resource-bundle="strings/strings" key="gui.form.missions.button.cancel"/>
                 </properties>
               </component>
             </children>
