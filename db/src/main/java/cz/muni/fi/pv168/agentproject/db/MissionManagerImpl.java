@@ -107,7 +107,7 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
 
             int addedRows = ps.executeUpdate();
             if(addedRows != 1) {
-                throw new IllegalArgumentException("Unable to update mission " + mission);
+                throw new ServiceFailureException("Unable to update mission " + mission);
             }
 
         } catch (SQLException sqle) {
@@ -147,7 +147,7 @@ public class MissionManagerImpl extends AbstractManager implements MissionManage
 
             int addedRows = ps.executeUpdate();
             if(addedRows != 1) {
-                throw new IllegalArgumentException("Did not delete mission with id =" + missionId);
+                throw new ServiceFailureException("Did not delete mission with id =" + missionId);
             }
 
         } catch (SQLException sqle) {

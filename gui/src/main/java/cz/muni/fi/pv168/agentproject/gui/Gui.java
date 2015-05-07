@@ -10,8 +10,6 @@ import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 
 /**
@@ -37,8 +35,6 @@ public class Gui {
     private JButton addMissionButton;
     private JTable agentsTable;
     private JTable missionsTable;
-    private JLabel assigningAgent;
-    private JLabel assigningMission;
     private JButton deleteAgentButton;
     private JButton deleteMissionButton;
     private JButton showAgentAssButton;
@@ -116,7 +112,6 @@ public class Gui {
             }
         });
 
-        // TODO: Unable to catch ANY exception here! Not sure why.
         assignButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -130,13 +125,7 @@ public class Gui {
                             Agent agent = ((AgentTableModel) agentsTable.getModel()).getAgent(indexAgent);
                             Mission mission = ((MissionTableModel) missionsTable.getModel()).getMission(indexMission);
 
-                            try {
-                                assignmentTableManager.addAssignment(agent, mission);
-                            } catch (IllegalArgumentException iae) {
-                                System.out.println("Caught");
-                                JOptionPane.showMessageDialog(parent, iae.getMessage(),
-                                        "Add assignment", JOptionPane.WARNING_MESSAGE);
-                            }
+                            assignmentTableManager.addAssignment(agent, mission);
                         }
                     });
                 }
@@ -156,12 +145,7 @@ public class Gui {
                             Agent agent = ((AgentTableModel) agentsTable.getModel()).getAgent(indexAgent);
                             Mission mission = ((MissionTableModel) missionsTable.getModel()).getMission(indexMission);
 
-                            try {
-                                assignmentTableManager.removeAssignment(agent, mission);
-                            } catch (NoSuchElementException nsee) {
-                                JOptionPane.showMessageDialog(parent, nsee.getMessage(),
-                                        "Delete assignment", JOptionPane.WARNING_MESSAGE);
-                            }
+                            assignmentTableManager.removeAssignment(agent, mission);
 
                             // Don't allow zombie selection
                             agentsTable.clearSelection();
@@ -177,25 +161,8 @@ public class Gui {
             public void actionPerformed(ActionEvent e) {
                 int indexAgent = agentsTable.getSelectedRow();
                 if (indexAgent >= 0) {
-                    EventQueue.invokeLater(new Runnable() {
-                        public void run() {
-                            Agent agent = ((AgentTableModel) agentsTable.getModel()).getAgent(indexAgent);
-                            List<Mission> missions = assignmentTableManager.showMissionsForAgent(agent);
-                            int indexMission;
-
-                            // Refresh both tables selection
-                            missionsTable.clearSelection();
-                            agentsTable.setRowSelectionInterval(indexAgent, indexAgent);
-                            if (missions != null) {
-
-                                // For each mission in assignment, find its row index in mission table and add it to selection
-                                for (Mission mission : missions) {
-                                    indexMission = ((MissionTableModel) missionsTable.getModel()).getMissionIndex(mission);
-                                    missionsTable.addRowSelectionInterval(indexMission, indexMission);
-                                }
-                            }
-                        }
-                    });
+                    Agent agent = ((AgentTableModel) agentsTable.getModel()).getAgent(indexAgent);
+                    assignmentTableManager.showMissionsForAgent(agent, indexAgent);
                 }
             }
         });
@@ -205,25 +172,8 @@ public class Gui {
             public void actionPerformed(ActionEvent e) {
                 int indexMission = missionsTable.getSelectedRow();
                 if (indexMission >= 0) {
-                    EventQueue.invokeLater(new Runnable() {
-                        public void run() {
-                            Mission mission = ((MissionTableModel) missionsTable.getModel()).getMission(indexMission);
-                            List<Agent> agents = assignmentTableManager.showAgentsForMission(mission);
-                            int indexAgent;
-
-                            // Refresh both tables selection
-                            agentsTable.clearSelection();
-                            missionsTable.setRowSelectionInterval(indexMission, indexMission);
-                            if (agents != null) {
-
-                                // For each agent in assignment, find its row index in agent table and add it to selection
-                                for (Agent agent : agents) {
-                                    indexAgent = ((AgentTableModel) agentsTable.getModel()).getAgentIndex(agent);
-                                    agentsTable.addRowSelectionInterval(indexAgent, indexAgent);
-                                }
-                            }
-                        }
-                    });
+                    Mission mission = ((MissionTableModel) missionsTable.getModel()).getMission(indexMission);
+                    assignmentTableManager.showAgentsForMission(mission, indexMission);
                 }
             }
         });
@@ -242,7 +192,7 @@ public class Gui {
 
         agentsTable.setModel(new AgentTableModel(agentManager));
         missionsTable.setModel(new MissionTableModel(missionManager));
-        assignmentTableManager = new AssignmentTableManager(assignmentManager);
+        assignmentTableManager = new AssignmentTableManager(assignmentManager, this);
 
         agentsTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         missionsTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -317,5 +267,13 @@ public class Gui {
      */
     public static ResourceBundle getStrings() {
         return strings;
+    }
+
+    public JTable getAgentsTable() {
+        return agentsTable;
+    }
+
+    public JTable getMissionsTable() {
+        return missionsTable;
     }
 }

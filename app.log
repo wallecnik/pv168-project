@@ -103,3 +103,721 @@
 2015-05-06 19:01:07 INFO  Main:39 - Opening database connection
 2015-05-06 19:01:31 INFO  Main:37 - Application starts
 2015-05-06 19:01:31 INFO  Main:39 - Opening database connection
+2015-05-07 09:42:25 INFO  Main:37 - Application starts
+2015-05-07 09:42:25 INFO  Main:39 - Opening database connection
+2015-05-07 09:42:28 DEBUG AgentTableModel:41 - creating AgentTableModel
+2015-05-07 09:42:28 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-07 09:42:28 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-07 09:42:28 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-07 09:42:28 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-07 09:42:28 WARN  AgentManagerImpl:247 - 
+java.sql.SQLException: Cannot create PoolableConnectionFactory (Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:2291)
+	at org.apache.commons.dbcp2.BasicDataSource.createDataSource(BasicDataSource.java:2038)
+	at org.apache.commons.dbcp2.BasicDataSource.getConnection(BasicDataSource.java:1533)
+	at cz.muni.fi.pv168.agentproject.db.AgentManagerImpl.findAllAgents(AgentManagerImpl.java:234)
+	at cz.muni.fi.pv168.agentproject.gui.AgentTableModel$1.doInBackground(AgentTableModel.java:46)
+	at cz.muni.fi.pv168.agentproject.gui.AgentTableModel$1.doInBackground(AgentTableModel.java:43)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:408)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:389)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1038)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:338)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2237)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2270)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2069)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:794)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:408)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:389)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:399)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:325)
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:39)
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:256)
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:2301)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:2287)
+	... 11 more
+Caused by: java.net.ConnectException: Connection refused
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:345)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:213)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:297)
+	... 27 more
+2015-05-07 09:42:28 WARN  AssignmentManagerImpl:265 - 
+java.sql.SQLException: Cannot create PoolableConnectionFactory (Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:2291)
+	at org.apache.commons.dbcp2.BasicDataSource.createDataSource(BasicDataSource.java:2038)
+	at org.apache.commons.dbcp2.BasicDataSource.getConnection(BasicDataSource.java:1533)
+	at cz.muni.fi.pv168.agentproject.db.AssignmentManagerImpl.findAllAssignments(AssignmentManagerImpl.java:252)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager.<init>(AssignmentTableManager.java:26)
+	at cz.muni.fi.pv168.agentproject.gui.Gui.setComponents(Gui.java:245)
+	at cz.muni.fi.pv168.agentproject.gui.Gui.<init>(Gui.java:75)
+	at cz.muni.fi.pv168.agentproject.gui.Gui.display(Gui.java:58)
+	at cz.muni.fi.pv168.agentproject.gui.Main$1.run(Main.java:45)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:749)
+	at java.awt.EventQueue.access$500(EventQueue.java:97)
+	at java.awt.EventQueue$3.run(EventQueue.java:702)
+	at java.awt.EventQueue$3.run(EventQueue.java:696)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$1.doIntersectionPrivilege(ProtectionDomain.java:75)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:719)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:408)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:389)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1038)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:338)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2237)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2270)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2069)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:794)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:408)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:389)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:399)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:325)
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:39)
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:256)
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:2301)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:2287)
+	... 22 more
+Caused by: java.net.ConnectException: Connection refused
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:345)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:213)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:297)
+	... 38 more
+2015-05-07 09:42:28 WARN  MissionManagerImpl:236 - 
+java.sql.SQLException: Cannot create PoolableConnectionFactory (Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:2291)
+	at org.apache.commons.dbcp2.BasicDataSource.createDataSource(BasicDataSource.java:2038)
+	at org.apache.commons.dbcp2.BasicDataSource.getConnection(BasicDataSource.java:1533)
+	at cz.muni.fi.pv168.agentproject.db.MissionManagerImpl.findAllMissions(MissionManagerImpl.java:223)
+	at cz.muni.fi.pv168.agentproject.gui.MissionTableModel$1.doInBackground(MissionTableModel.java:29)
+	at cz.muni.fi.pv168.agentproject.gui.MissionTableModel$1.doInBackground(MissionTableModel.java:26)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:408)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:389)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1038)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:338)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2237)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2270)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2069)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:794)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:408)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:389)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:399)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:325)
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:39)
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:256)
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:2301)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:2287)
+	... 11 more
+Caused by: java.net.ConnectException: Connection refused
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:345)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:213)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:297)
+	... 27 more
+2015-05-07 09:43:05 INFO  Main:37 - Application starts
+2015-05-07 09:43:05 INFO  Main:39 - Opening database connection
+2015-05-07 09:43:05 DEBUG AgentTableModel:41 - creating AgentTableModel
+2015-05-07 09:43:05 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-07 09:43:05 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-07 09:43:05 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-07 09:43:05 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-07 09:43:06 DEBUG Gui:267 - components set
+2015-05-07 09:43:06 DEBUG Gui:231 - listeners initialized
+2015-05-07 09:43:07 DEBUG Gui:65 - Main window displayed
+2015-05-07 09:43:23 INFO  Main:37 - Application starts
+2015-05-07 09:43:23 INFO  Main:39 - Opening database connection
+2015-05-07 09:43:23 DEBUG AgentTableModel:41 - creating AgentTableModel
+2015-05-07 09:43:23 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-07 09:43:23 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-07 09:43:23 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-07 09:43:23 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-07 09:43:24 DEBUG Gui:267 - components set
+2015-05-07 09:43:24 DEBUG Gui:231 - listeners initialized
+2015-05-07 09:43:25 DEBUG Gui:65 - Main window displayed
+2015-05-07 09:48:32 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}
+2015-05-07 09:48:32 DEBUG AgentManagerImpl:99 - looking up agent with id 1
+2015-05-07 09:48:36 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 09:48:36 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 09:48:47 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 09:48:47 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 09:49:03 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 09:49:03 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 09:49:28 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T07:49:28.148Z}
+2015-05-07 09:49:47 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}
+2015-05-07 09:49:47 DEBUG AgentManagerImpl:99 - looking up agent with id 5
+2015-05-07 09:49:47 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 09:49:47 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 09:49:47 DEBUG AssignmentManagerImpl:209 - deleting assignment Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-06T15:38:33.797Z}
+2015-05-07 09:50:03 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T07:50:03.688Z}
+2015-05-07 09:50:10 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 09:50:10 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 09:50:16 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}
+2015-05-07 09:50:16 DEBUG AgentManagerImpl:99 - looking up agent with id 1
+2015-05-07 09:50:17 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 09:50:17 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 09:50:22 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 09:50:22 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 09:50:23 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 09:50:23 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 09:50:24 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 09:50:24 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 10:17:48 INFO  Main:37 - Application starts
+2015-05-07 10:17:48 INFO  Main:39 - Opening database connection
+2015-05-07 10:17:48 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-07 10:17:48 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-07 10:17:48 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-07 10:17:48 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-07 10:17:48 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-07 10:17:48 DEBUG Gui:265 - components set
+2015-05-07 10:17:48 DEBUG Gui:229 - listeners initialized
+2015-05-07 10:17:48 WARN  AssignmentManagerImpl:265 - 
+java.sql.SQLException: Cannot create PoolableConnectionFactory (Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:2291)
+	at org.apache.commons.dbcp2.BasicDataSource.createDataSource(BasicDataSource.java:2038)
+	at org.apache.commons.dbcp2.BasicDataSource.getConnection(BasicDataSource.java:1533)
+	at cz.muni.fi.pv168.agentproject.db.AssignmentManagerImpl.findAllAssignments(AssignmentManagerImpl.java:252)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$1.doInBackground(AssignmentTableManager.java:28)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$1.doInBackground(AssignmentTableManager.java:25)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:408)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:389)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1038)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:338)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2237)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2270)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2069)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:794)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:408)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:389)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:399)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:325)
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:39)
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:256)
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:2301)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:2287)
+	... 11 more
+Caused by: java.net.ConnectException: Connection refused
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:345)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:213)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:297)
+	... 27 more
+2015-05-07 10:17:48 WARN  MissionManagerImpl:236 - 
+java.sql.SQLException: Cannot create PoolableConnectionFactory (Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:2291)
+	at org.apache.commons.dbcp2.BasicDataSource.createDataSource(BasicDataSource.java:2038)
+	at org.apache.commons.dbcp2.BasicDataSource.getConnection(BasicDataSource.java:1533)
+	at cz.muni.fi.pv168.agentproject.db.MissionManagerImpl.findAllMissions(MissionManagerImpl.java:223)
+	at cz.muni.fi.pv168.agentproject.gui.MissionTableModel$1.doInBackground(MissionTableModel.java:29)
+	at cz.muni.fi.pv168.agentproject.gui.MissionTableModel$1.doInBackground(MissionTableModel.java:26)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:408)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:389)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1038)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:338)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2237)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2270)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2069)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:794)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:408)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:389)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:399)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:325)
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:39)
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:256)
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:2301)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:2287)
+	... 11 more
+Caused by: java.net.ConnectException: Connection refused
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:345)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:213)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:297)
+	... 27 more
+2015-05-07 10:17:49 WARN  AgentManagerImpl:247 - 
+java.sql.SQLException: Cannot create PoolableConnectionFactory (Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:2291)
+	at org.apache.commons.dbcp2.BasicDataSource.createDataSource(BasicDataSource.java:2038)
+	at org.apache.commons.dbcp2.BasicDataSource.getConnection(BasicDataSource.java:1533)
+	at cz.muni.fi.pv168.agentproject.db.AgentManagerImpl.findAllAgents(AgentManagerImpl.java:234)
+	at cz.muni.fi.pv168.agentproject.gui.AgentTableModel$1.doInBackground(AgentTableModel.java:48)
+	at cz.muni.fi.pv168.agentproject.gui.AgentTableModel$1.doInBackground(AgentTableModel.java:44)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:408)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:389)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1038)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:338)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2237)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2270)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2069)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:794)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:408)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:389)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:399)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:325)
+	at org.apache.commons.dbcp2.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:39)
+	at org.apache.commons.dbcp2.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:256)
+	at org.apache.commons.dbcp2.BasicDataSource.validateConnectionFactory(BasicDataSource.java:2301)
+	at org.apache.commons.dbcp2.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:2287)
+	... 11 more
+Caused by: java.net.ConnectException: Connection refused
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:345)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at com.mysql.jdbc.StandardSocketFactory.connect(StandardSocketFactory.java:213)
+	at com.mysql.jdbc.MysqlIO.<init>(MysqlIO.java:297)
+	... 27 more
+2015-05-07 10:17:49 WARN  Gui:307 - input error: Database error
+2015-05-07 10:34:01 INFO  Main:37 - Application starts
+2015-05-07 10:34:01 INFO  Main:39 - Opening database connection
+2015-05-07 10:34:01 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-07 10:34:01 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-07 10:34:01 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-07 10:34:01 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-07 10:34:01 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-07 10:34:01 DEBUG Gui:265 - components set
+2015-05-07 10:34:01 DEBUG Gui:229 - listeners initialized
+2015-05-07 10:34:03 DEBUG Gui:63 - Main window displayed
+2015-05-07 10:34:07 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}
+2015-05-07 10:34:07 DEBUG AgentManagerImpl:99 - looking up agent with id 1
+2015-05-07 10:34:09 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}
+2015-05-07 10:34:09 DEBUG AgentManagerImpl:99 - looking up agent with id 1
+2015-05-07 10:34:13 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 10:34:13 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 10:36:22 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Tomas Valka', born=1993-03-04T23:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T08:36:22.777Z}
+2015-05-07 10:36:22 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-07 10:36:24 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Tomas Valka', born=1993-03-04T23:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T08:36:24.839Z}
+2015-05-07 10:36:24 ERROR AssignmentTableManager:54 - 
+java.lang.IllegalArgumentException: Error. Probable cause: Attempting to insert an agent twice or more agent to a mission. Assignment: Assignment{agent=Agent{name='Tomas Valka', born=1993-03-04T23:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T08:36:24.839Z}
+	at cz.muni.fi.pv168.agentproject.db.AssignmentManagerImpl.createAssignment(AssignmentManagerImpl.java:81)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:48)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:44)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2015-05-07 10:36:24 WARN  Gui:307 - input error: Cannot create one assignment twice.
+2015-05-07 10:36:28 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Tomas Valka', born=1993-03-04T23:00:00Z}
+2015-05-07 10:36:28 DEBUG AgentManagerImpl:99 - looking up agent with id 6
+2015-05-07 10:36:28 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 10:36:28 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 10:36:28 DEBUG AssignmentManagerImpl:209 - deleting assignment Assignment{agent=Agent{name='Tomas Valka', born=1993-03-04T23:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T08:36:22.777Z}
+2015-05-07 10:36:28 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-07 10:36:31 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Tomas Valka', born=1993-03-04T23:00:00Z}
+2015-05-07 10:36:31 DEBUG AgentManagerImpl:99 - looking up agent with id 6
+2015-05-07 10:36:31 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 10:36:31 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 10:36:31 WARN  Gui:307 - input error: No such assignment exist
+2015-05-07 10:36:36 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Tomas Valka', born=1993-03-04T23:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T08:36:36.421Z}
+2015-05-07 10:36:36 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-07 10:36:38 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Tomas Valka', born=1993-03-04T23:00:00Z}
+2015-05-07 10:36:38 DEBUG AgentManagerImpl:99 - looking up agent with id 6
+2015-05-07 10:44:44 INFO  Main:37 - Application starts
+2015-05-07 10:44:44 INFO  Main:39 - Opening database connection
+2015-05-07 10:44:45 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-07 10:44:45 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-07 10:44:45 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-07 10:44:45 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-07 10:44:45 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-07 10:44:45 DEBUG Gui:248 - components set
+2015-05-07 10:44:45 DEBUG Gui:212 - listeners initialized
+2015-05-07 10:44:46 DEBUG Gui:63 - Main window displayed
+2015-05-07 10:44:51 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 10:44:51 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 10:44:54 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}
+2015-05-07 10:44:54 DEBUG AgentManagerImpl:99 - looking up agent with id 1
+2015-05-07 10:44:56 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}
+2015-05-07 10:44:56 DEBUG AgentManagerImpl:99 - looking up agent with id 1
+2015-05-07 10:44:56 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 10:44:56 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 10:44:56 DEBUG AssignmentManagerImpl:209 - deleting assignment Assignment{agent=Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-06T15:36:39.089Z}
+2015-05-07 10:44:56 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-07 10:45:00 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}
+2015-05-07 10:45:00 DEBUG AgentManagerImpl:99 - looking up agent with id 1
+2015-05-07 10:45:00 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 10:45:00 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 10:45:00 WARN  Gui:290 - input error: No such assignment exist
+2015-05-07 10:45:03 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}
+2015-05-07 10:45:03 DEBUG AgentManagerImpl:99 - looking up agent with id 1
+2015-05-07 10:45:08 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Tak uvidime', born=1992-12-31T23:00:00Z}
+2015-05-07 10:45:08 DEBUG AgentManagerImpl:99 - looking up agent with id 2
+2015-05-07 10:45:10 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}
+2015-05-07 10:45:10 DEBUG AgentManagerImpl:99 - looking up agent with id 5
+2015-05-07 10:45:11 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Tomas Valka', born=1993-03-04T23:00:00Z}
+2015-05-07 10:45:11 DEBUG AgentManagerImpl:99 - looking up agent with id 6
+2015-05-07 10:47:13 INFO  Main:37 - Application starts
+2015-05-07 10:47:13 INFO  Main:39 - Opening database connection
+2015-05-07 10:47:13 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-07 10:47:13 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-07 10:47:13 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-07 10:47:13 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-07 10:47:13 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-07 10:47:13 DEBUG Gui:230 - components set
+2015-05-07 10:47:13 DEBUG Gui:194 - listeners initialized
+2015-05-07 10:47:16 DEBUG Gui:62 - Main window displayed
+2015-05-07 10:47:20 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 10:47:20 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 10:47:23 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T08:47:23.756Z}
+2015-05-07 10:47:23 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-07 10:47:25 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T08:47:25.158Z}
+2015-05-07 10:47:25 ERROR AssignmentTableManager:56 - 
+java.lang.IllegalArgumentException: Error. Probable cause: Attempting to insert an agent twice or more agent to a mission. Assignment: Assignment{agent=Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T08:47:25.158Z}
+	at cz.muni.fi.pv168.agentproject.db.AssignmentManagerImpl.createAssignment(AssignmentManagerImpl.java:81)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:50)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:46)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2015-05-07 10:47:25 WARN  Gui:272 - input error: Cannot create one assignment twice.
+2015-05-07 10:47:28 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 10:47:28 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 11:42:22 INFO  Main:37 - Application starts
+2015-05-07 11:42:22 INFO  Main:39 - Opening database connection
+2015-05-07 11:42:23 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-07 11:42:23 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-07 11:42:23 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-07 11:42:23 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-07 11:42:23 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-07 11:42:23 DEBUG Gui:217 - components set
+2015-05-07 11:42:23 DEBUG Gui:181 - listeners initialized
+2015-05-07 11:42:27 DEBUG Gui:61 - Main window displayed
+2015-05-07 11:42:37 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:42:37.995Z}
+2015-05-07 11:42:38 ERROR AssignmentTableManager:56 - 
+java.lang.IllegalArgumentException: Error. Probable cause: Attempting to insert an agent twice or more agent to a mission. Assignment: Assignment{agent=Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:42:37.995Z}
+	at cz.muni.fi.pv168.agentproject.db.AssignmentManagerImpl.createAssignment(AssignmentManagerImpl.java:81)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:50)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:46)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2015-05-07 11:42:38 WARN  Gui:259 - input error: Nelze přiřadit jednoho agenta vícekrát ke stejné misi
+2015-05-07 11:42:44 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Tomas Valka', born=1993-03-04T23:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:42:44.854Z}
+2015-05-07 11:42:44 ERROR AssignmentTableManager:56 - 
+java.lang.IllegalArgumentException: Error. Probable cause: Attempting to insert an agent twice or more agent to a mission. Assignment: Assignment{agent=Agent{name='Tomas Valka', born=1993-03-04T23:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:42:44.854Z}
+	at cz.muni.fi.pv168.agentproject.db.AssignmentManagerImpl.createAssignment(AssignmentManagerImpl.java:81)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:50)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:46)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2015-05-07 11:42:44 WARN  Gui:259 - input error: Nelze přiřadit jednoho agenta vícekrát ke stejné misi
+2015-05-07 11:42:47 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Tomas Valka', born=1993-03-04T23:00:00Z}
+2015-05-07 11:42:47 DEBUG AgentManagerImpl:99 - looking up agent with id 6
+2015-05-07 11:42:48 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 11:42:48 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 11:42:51 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Tak uvidime', born=1992-12-31T23:00:00Z}
+2015-05-07 11:42:51 DEBUG AgentManagerImpl:99 - looking up agent with id 2
+2015-05-07 11:42:54 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 11:42:54 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 11:42:57 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:42:57.447Z}
+2015-05-07 11:42:57 ERROR AssignmentTableManager:56 - 
+java.lang.IllegalArgumentException: Error. Probable cause: Attempting to insert an agent twice or more agent to a mission. Assignment: Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:42:57.447Z}
+	at cz.muni.fi.pv168.agentproject.db.AssignmentManagerImpl.createAssignment(AssignmentManagerImpl.java:81)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:50)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:46)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2015-05-07 11:42:57 WARN  Gui:259 - input error: Nelze přiřadit jednoho agenta vícekrát ke stejné misi
+2015-05-07 11:43:01 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 11:43:01 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 11:43:11 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:43:11.491Z}
+2015-05-07 11:43:11 ERROR AssignmentTableManager:56 - 
+java.lang.IllegalArgumentException: Error. Probable cause: Attempting to insert an agent twice or more agent to a mission. Assignment: Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:43:11.491Z}
+	at cz.muni.fi.pv168.agentproject.db.AssignmentManagerImpl.createAssignment(AssignmentManagerImpl.java:81)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:50)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:46)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2015-05-07 11:43:11 WARN  Gui:259 - input error: Nelze přiřadit jednoho agenta vícekrát ke stejné misi
+2015-05-07 11:43:20 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 11:43:20 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 11:43:22 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:43:22.741Z}
+2015-05-07 11:43:22 ERROR AssignmentTableManager:56 - 
+java.lang.IllegalArgumentException: Error. Probable cause: Attempting to insert an agent twice or more agent to a mission. Assignment: Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:43:22.741Z}
+	at cz.muni.fi.pv168.agentproject.db.AssignmentManagerImpl.createAssignment(AssignmentManagerImpl.java:81)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:50)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:46)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2015-05-07 11:43:22 WARN  Gui:259 - input error: Nelze přiřadit jednoho agenta vícekrát ke stejné misi
+2015-05-07 11:43:28 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}
+2015-05-07 11:43:28 DEBUG AgentManagerImpl:99 - looking up agent with id 5
+2015-05-07 11:43:28 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 11:43:28 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 11:43:28 WARN  Gui:259 - input error: Agent nebyl k této misi přiřazen
+2015-05-07 11:43:33 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:43:33.690Z}
+2015-05-07 11:43:33 ERROR AssignmentTableManager:56 - 
+java.lang.IllegalArgumentException: Error. Probable cause: Attempting to insert an agent twice or more agent to a mission. Assignment: Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:43:33.690Z}
+	at cz.muni.fi.pv168.agentproject.db.AssignmentManagerImpl.createAssignment(AssignmentManagerImpl.java:81)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:50)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:46)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2015-05-07 11:43:33 WARN  Gui:259 - input error: Nelze přiřadit jednoho agenta vícekrát ke stejné misi
+2015-05-07 11:43:35 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}
+2015-05-07 11:43:35 DEBUG AgentManagerImpl:99 - looking up agent with id 5
+2015-05-07 11:43:35 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 11:43:35 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 11:43:35 WARN  Gui:259 - input error: Agent nebyl k této misi přiřazen
+2015-05-07 11:44:59 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:44:59.485Z}
+2015-05-07 11:44:59 ERROR AssignmentTableManager:56 - 
+java.lang.IllegalArgumentException: Error. Probable cause: Attempting to insert an agent twice or more agent to a mission. Assignment: Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:44:59.485Z}
+	at cz.muni.fi.pv168.agentproject.db.AssignmentManagerImpl.createAssignment(AssignmentManagerImpl.java:81)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:50)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:46)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2015-05-07 11:44:59 WARN  Gui:259 - input error: Nelze přiřadit jednoho agenta vícekrát ke stejné misi
+2015-05-07 11:45:16 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:45:16.193Z}
+2015-05-07 11:45:16 ERROR AssignmentTableManager:56 - 
+java.lang.IllegalArgumentException: Error. Probable cause: Attempting to insert an agent twice or more agent to a mission. Assignment: Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:45:16.193Z}
+	at cz.muni.fi.pv168.agentproject.db.AssignmentManagerImpl.createAssignment(AssignmentManagerImpl.java:81)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:50)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:46)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2015-05-07 11:45:16 WARN  Gui:259 - input error: Nelze přiřadit jednoho agenta vícekrát ke stejné misi
+2015-05-07 11:45:54 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}
+2015-05-07 11:45:54 DEBUG AgentManagerImpl:99 - looking up agent with id 5
+2015-05-07 11:45:54 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 11:45:54 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 11:45:54 WARN  Gui:259 - input error: Agent nebyl k této misi přiřazen
+2015-05-07 11:45:59 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 11:45:59 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 11:46:16 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:46:16.774Z}
+2015-05-07 11:46:16 ERROR AssignmentTableManager:56 - 
+java.lang.IllegalArgumentException: Error. Probable cause: Attempting to insert an agent twice or more agent to a mission. Assignment: Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:46:16.774Z}
+	at cz.muni.fi.pv168.agentproject.db.AssignmentManagerImpl.createAssignment(AssignmentManagerImpl.java:81)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:50)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:46)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2015-05-07 11:46:16 WARN  Gui:259 - input error: Nelze přiřadit jednoho agenta vícekrát ke stejné misi
+2015-05-07 11:49:31 INFO  Main:37 - Application starts
+2015-05-07 11:49:31 INFO  Main:39 - Opening database connection
+2015-05-07 11:49:32 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-07 11:49:32 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-07 11:49:32 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-07 11:49:32 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-07 11:49:32 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-07 11:49:32 DEBUG Gui:217 - components set
+2015-05-07 11:49:32 DEBUG Gui:181 - listeners initialized
+2015-05-07 11:49:33 DEBUG Gui:61 - Main window displayed
+2015-05-07 11:49:40 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:49:40.416Z}
+2015-05-07 11:49:40 ERROR AssignmentTableManager:56 - 
+java.lang.IllegalArgumentException: Error. Probable cause: Attempting to insert an agent twice or more agent to a mission. Assignment: Assignment{agent=Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:49:40.416Z}
+	at cz.muni.fi.pv168.agentproject.db.AssignmentManagerImpl.createAssignment(AssignmentManagerImpl.java:81)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:50)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:46)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2015-05-07 11:49:40 WARN  Gui:259 - input error: Nelze přiřadit jednoho agenta vícekrát ke stejné misi nebo je dosažen maximální možný počet agentů pro danou misi
+2015-05-07 11:49:45 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Tomas Valka', born=1993-03-04T23:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:49:45.309Z}
+2015-05-07 11:49:45 ERROR AssignmentTableManager:56 - 
+java.lang.IllegalArgumentException: Error. Probable cause: Attempting to insert an agent twice or more agent to a mission. Assignment: Assignment{agent=Agent{name='Tomas Valka', born=1993-03-04T23:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:49:45.309Z}
+	at cz.muni.fi.pv168.agentproject.db.AssignmentManagerImpl.createAssignment(AssignmentManagerImpl.java:81)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:50)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:46)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2015-05-07 11:49:45 WARN  Gui:259 - input error: Nelze přiřadit jednoho agenta vícekrát ke stejné misi nebo je dosažen maximální možný počet agentů pro danou misi
+2015-05-07 11:49:49 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:49:49.175Z}
+2015-05-07 11:49:49 ERROR AssignmentTableManager:56 - 
+java.lang.IllegalArgumentException: Error. Probable cause: Attempting to insert an agent twice or more agent to a mission. Assignment: Assignment{agent=Agent{name='Kuliferda', born=1995-08-05T22:00:00Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T09:49:49.175Z}
+	at cz.muni.fi.pv168.agentproject.db.AssignmentManagerImpl.createAssignment(AssignmentManagerImpl.java:81)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:50)
+	at cz.muni.fi.pv168.agentproject.gui.AssignmentTableManager$2.doInBackground(AssignmentTableManager.java:46)
+	at javax.swing.SwingWorker$1.call(SwingWorker.java:295)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at javax.swing.SwingWorker.run(SwingWorker.java:334)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+2015-05-07 11:49:49 WARN  Gui:259 - input error: Nelze přiřadit jednoho agenta vícekrát ke stejné misi nebo je dosažen maximální možný počet agentů pro danou misi
+2015-05-07 11:49:56 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}
+2015-05-07 11:49:56 DEBUG AgentManagerImpl:99 - looking up agent with id 1
+2015-05-07 11:50:00 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 11:50:00 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 11:50:01 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}
+2015-05-07 11:50:01 DEBUG AgentManagerImpl:99 - looking up agent with id 1
+2015-05-07 11:50:01 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 11:50:01 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-07 11:50:01 DEBUG AssignmentManagerImpl:209 - deleting assignment Assignment{agent=Agent{name='Michal Brandejs', born=2015-05-04T11:54:22Z}, mission=Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}, startTime=2015-05-07T08:47:23.756Z}
+2015-05-07 11:50:01 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-07 11:50:05 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
+2015-05-07 11:50:05 DEBUG MissionManagerImpl:171 - looking up mission with id 1

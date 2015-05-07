@@ -168,7 +168,7 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
 
             int addedRows = ps.executeUpdate();
             if(addedRows != 1) {
-                throw new IllegalArgumentException("Unable to update agent " + agent);
+                throw new ServiceFailureException("Unable to update agent " + agent);
             }
 
         } catch (SQLException sqle) {
@@ -208,7 +208,7 @@ public class AgentManagerImpl extends AbstractManager implements AgentManager {
 
             int addedRows = ps.executeUpdate();
             if(addedRows != 1) {
-                throw new IllegalArgumentException("Did not delete agent with id =" + agentId);
+                throw new ServiceFailureException("Did not delete agent with id =" + agentId);
             }
 
         } catch (SQLException sqle) {

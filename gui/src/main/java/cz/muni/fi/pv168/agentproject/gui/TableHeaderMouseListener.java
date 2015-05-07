@@ -24,17 +24,17 @@ public class TableHeaderMouseListener extends MouseAdapter {
         Point point = event.getPoint();
         int column = table.columnAtPoint(point);
 
-        switch(table.getColumnName(column)) {
-            case "ID":
+        switch(column) {
+            case 1:
                 ((MissionTableModel) table.getModel()).sortById();
                 break;
-            case "Goal":
+            case 2:
                 ((MissionTableModel) table.getModel()).sortByGoal();
                 break;
-            case "Required agents":
+            case 3:
                 ((MissionTableModel) table.getModel()).sortByRequiredAgents();
                 break;
-            case "Completed":
+            case 4:
                 ((MissionTableModel) table.getModel()).sortByCompleted();
                 break;
             default:

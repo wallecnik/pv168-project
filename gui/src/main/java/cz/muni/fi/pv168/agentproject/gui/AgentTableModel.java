@@ -3,6 +3,7 @@ package cz.muni.fi.pv168.agentproject.gui;
 import cz.muni.fi.pv168.agentproject.db.Agent;
 import cz.muni.fi.pv168.agentproject.db.AgentManager;
 import cz.muni.fi.pv168.agentproject.db.Constants;
+import cz.muni.fi.pv168.agentproject.db.ServiceFailureException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,8 +43,14 @@ public class AgentTableModel extends AbstractTableModel {
         this.manager = manager;
         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
             @Override
-            protected Void doInBackground() throws Exception {
-                agents = manager.findAllAgents();
+            protected Void doInBackground()  {
+                try {
+                    agents = manager.findAllAgents();
+                } catch (ServiceFailureException e) {
+                    log.error("Database error", e);
+                    Gui.alert(Gui.getStrings().getString("gui.alert.database_error"));
+                    System.exit(-1);
+                }
                 return null;
             }
 
@@ -170,9 +177,17 @@ public class AgentTableModel extends AbstractTableModel {
                     agent.setName((String) aValue);
                     SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
                         @Override
-                        protected Void doInBackground() throws Exception {
-                            manager.updateAgent(agent);
-                            agents = manager.findAllAgents();
+                        protected Void doInBackground() {
+                            try {
+                                manager.updateAgent(agent);
+                                agents = manager.findAllAgents();
+                            } catch (ServiceFailureException e) {
+                                log.error("Database error", e);
+                                Gui.alert(Gui.getStrings().getString("gui.alert.database_error"));
+                            } catch (IllegalArgumentException e) {
+                                log.error("", e);
+                                Gui.alert(Gui.getStrings().getString("gui.alert.unspecified_error"));
+                            }
                             return null;
                         }
 
@@ -225,9 +240,17 @@ public class AgentTableModel extends AbstractTableModel {
         if (agent != null) {
             SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
                 @Override
-                protected Void doInBackground() throws Exception {
-                    manager.createAgent(agent);
-                    agents = manager.findAllAgents();
+                protected Void doInBackground()  {
+                    try {
+                        manager.createAgent(agent);
+                        agents = manager.findAllAgents();
+                    } catch (ServiceFailureException e) {
+                        log.error("Database error", e);
+                        Gui.alert(Gui.getStrings().getString("gui.alert.database_error"));
+                    } catch (IllegalArgumentException e) {
+                        log.error("", e);
+                        Gui.alert(Gui.getStrings().getString("gui.alert.unspecified_error"));
+                    }
                     return null;
                 }
 
@@ -255,9 +278,17 @@ public class AgentTableModel extends AbstractTableModel {
         Agent agent = getAgent(row);
         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
             @Override
-            protected Void doInBackground() throws Exception {
-                manager.deleteAgent(agent);
-                agents = manager.findAllAgents();
+            protected Void doInBackground() {
+                try {
+                    manager.deleteAgent(agent);
+                    agents = manager.findAllAgents();
+                } catch (ServiceFailureException e) {
+                    log.error("Database error", e);
+                    Gui.alert(Gui.getStrings().getString("gui.alert.database_error"));
+                } catch (IllegalArgumentException e) {
+                    log.error("", e);
+                    Gui.alert(Gui.getStrings().getString("gui.alert.unspecified_error"));
+                }
                 return null;
             }
 
@@ -280,19 +311,19 @@ public class AgentTableModel extends AbstractTableModel {
 
     private boolean verifyNameAndAlert(String name) {
         if (name == null) {
-            Gui.alert("agent name is null");
+            Gui.alert(Gui.getStrings().getString("gui.alert.agents.name.null"));
             return false;
         }
         if (name.equals("")) {
-            Gui.alert("agent name is empty");
+            Gui.alert(Gui.getStrings().getString("gui.alert.agents.name.empty"));
             return false;
         }
         if (name.length() > Constants.AGENT_NAME_MAX_LENGTH) {
-            Gui.alert("agent name is too long");
+            Gui.alert(Gui.getStrings().getString("gui.alert.agents.name.long"));
             return false;
         }
         if (!Pattern.matches(Constants.AGENT_NAME_REGEX, name)) {
-            Gui.alert("agent name contains illegal characters");
+            Gui.alert(Gui.getStrings().getString("gui.alert.agents.name.illegal"));
             return false;
         }
         return true;

@@ -78,19 +78,19 @@ public class AddMission {
      */
     private boolean verifyAndAlert(ButtonGroup completedButton) {
         if (goalField.getText() == null) {
-            alert("Mission goal cannot be null!");
+            alert(Gui.getStrings().getString("gui.alert.missions.goal.null"));
             return false;
         }
         if (goalField.getText().equals("")) {
-            alert("Mission goal cannot be empty!");
+            alert(Gui.getStrings().getString("gui.alert.missions.goal.empty"));
             return false;
         }
         if (goalField.getText().length() > Constants.MISSION_GOAL_MAX_LENGTH) {
-            alert("Mission goal is too lengthy!");
+            alert(Gui.getStrings().getString("gui.alert.missions.goal.long"));
             return false;
         }
         if ((int) requiredAgentsField.getValue() <= 0) {
-            alert("There must be at least one agent for each mission!");
+            alert(Gui.getStrings().getString("gui.alert.missions.required_agents"));
             return false;
         }
 
@@ -100,7 +100,7 @@ public class AddMission {
                 return true;
             }
         }
-        alert("You must choose whether the mission is completed or not!");
+        alert(Gui.getStrings().getString("gui.alert.missions.completed"));
         return false;
     }
 
@@ -109,7 +109,7 @@ public class AddMission {
      * @param message
      */
     private void alert(String message) {
-        JOptionPane.showMessageDialog(parent, message, "Input error", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(parent, message, Gui.getStrings().getString("gui.alert.header.title"), JOptionPane.WARNING_MESSAGE);
     }
 
     /**

@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.DateTimeException;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.regex.Pattern;
@@ -50,10 +51,16 @@ public class AddAgent {
 
         addAgentButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent event) {
                 if (verifyAndAlert()) {
-                    agent = new Agent(null, nameText.getText(), ZonedDateTime.of((Integer) yearText.getValue(), (Integer) monthText.getValue(), (Integer) dayText.getValue(), 0, 0, 0, 0, ZoneId.of("CET")).toInstant());
-                    dialog.dispose();
+                    ZonedDateTime zonedDateTime = null;
+                    try {
+                        ZonedDateTime.of((Integer) yearText.getValue(), (Integer) monthText.getValue(), (Integer) dayText.getValue(), 0, 0, 0, 0, ZoneId.of("CET"));
+                        agent = new Agent(null, nameText.getText(), zonedDateTime.toInstant());
+                        dialog.dispose();
+                    } catch (DateTimeException e) {
+                        alert(Gui.getStrings().getString("gui.alert.agents.date.not_possible"));
+                    }
                 }
             }
         });
@@ -86,32 +93,38 @@ public class AddAgent {
      */
     private boolean verifyAndAlert() {
         if (nameText.getText() == null) {
-            alert("agent name is null");
+            alert(Gui.getStrings().getString("gui.alert.agents.name.null"));
             return false;
         }
         if (nameText.getText().equals("")) {
-            alert("agent name is empty");
+            alert(Gui.getStrings().getString("gui.alert.agents.name.empty"));
             return false;
         }
         if (nameText.getText().length() > Constants.AGENT_NAME_MAX_LENGTH) {
-            alert("agent name is too long");
+            alert(Gui.getStrings().getString("gui.alert.agents.name.long"));
             return false;
         }
         if (!Pattern.matches(Constants.AGENT_NAME_REGEX, nameText.getText())) {
-            alert("agent name contains illegal characters");
+            alert(Gui.getStrings().getString("gui.alert.agents.name.illegal"));
             return false;
         }
         if((Integer)dayText.getValue() <= 0 || (Integer)dayText.getValue() > 31 || (Integer)monthText.getValue() <= 0 || (Integer)monthText.getValue() > 12) {
-            alert("day or month is illegal");
+            alert(Gui.getStrings().getString("gui.alert.agents.date.not_possible"));
             return false;
         }
-        ZonedDateTime born = ZonedDateTime.of((Integer) yearText.getValue(), (Integer) monthText.getValue(), (Integer) dayText.getValue(), 0, 0, 0, 0, ZoneId.systemDefault());
+        ZonedDateTime born = null;
+        try {
+            born = ZonedDateTime.of((Integer) yearText.getValue(), (Integer) monthText.getValue(), (Integer) dayText.getValue(), 0, 0, 0, 0, ZoneId.systemDefault());
+        } catch (DateTimeException e) {
+            alert(Gui.getStrings().getString("gui.alert.agents.date.not_possible"));
+            return false;
+        }
         if (born.compareTo(ZonedDateTime.now()) > 0) {
-            alert("Agent not born yet");
+            alert(Gui.getStrings().getString("gui.alert.agents.date.not_born_yet"));
             return false;
         }
         if (born.plusYears(100).compareTo(ZonedDateTime.now()) < 0) {
-            alert("Agent is too old");
+            alert(Gui.getStrings().getString("gui.alert.agents.date.too_old"));
             return false;
         }
         return true;
@@ -121,7 +134,7 @@ public class AddAgent {
      * Creates dialog window with one message in parameter
      */
     private void alert(String message) {
-        JOptionPane.showMessageDialog(parent, message, "Input error", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(parent, message, Gui.getStrings().getString("gui.alert.header.title"), JOptionPane.WARNING_MESSAGE);
     }
 
     /**

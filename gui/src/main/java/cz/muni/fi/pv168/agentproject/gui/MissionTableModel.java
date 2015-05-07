@@ -25,8 +25,13 @@ public class MissionTableModel extends AbstractTableModel {
         this.manager = manager;
         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
             @Override
-            protected Void doInBackground() throws Exception {
-                missions = manager.findAllMissions();
+            protected Void doInBackground()  {
+                try {
+                    missions = manager.findAllMissions();
+                } catch (ServiceFailureException e) {
+                    log.error("Database error", e);
+                    Gui.alert(Gui.getStrings().getString("gui.alert.database_error"));
+                }
                 return null;
             }
 
@@ -111,9 +116,17 @@ public class MissionTableModel extends AbstractTableModel {
                     mission.setGoal((String) newValue);
                     SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
                         @Override
-                        protected Void doInBackground() throws Exception {
-                            manager.updateMission(mission);
-                            missions = manager.findAllMissions();
+                        protected Void doInBackground()  {
+                            try {
+                                manager.updateMission(mission);
+                                missions = manager.findAllMissions();
+                            } catch (ServiceFailureException e) {
+                                log.error("Database error", e);
+                                Gui.alert(Gui.getStrings().getString("gui.alert.database_error"));
+                            } catch (IllegalArgumentException e) {
+                                log.error("", e);
+                                Gui.alert(Gui.getStrings().getString("gui.alert.unspecified_error"));
+                            }
                             return null;
                         }
 
@@ -132,9 +145,17 @@ public class MissionTableModel extends AbstractTableModel {
                     mission.setRequiredAgents((int) newValue);
                     SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
                         @Override
-                        protected Void doInBackground() throws Exception {
-                            manager.updateMission(mission);
-                            missions = manager.findAllMissions();
+                        protected Void doInBackground()  {
+                            try {
+                                manager.updateMission(mission);
+                                missions = manager.findAllMissions();
+                            } catch (ServiceFailureException e) {
+                                log.error("Database error", e);
+                                Gui.alert(Gui.getStrings().getString("gui.alert.database_error"));
+                            } catch (IllegalArgumentException e) {
+                                log.error("", e);
+                                Gui.alert(Gui.getStrings().getString("gui.alert.unspecified_error"));
+                            }
                             return null;
                         }
 
@@ -152,9 +173,17 @@ public class MissionTableModel extends AbstractTableModel {
                 mission.setCompleted((boolean) newValue);
                 SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
                     @Override
-                    protected Void doInBackground() throws Exception {
-                        manager.updateMission(mission);
-                        missions = manager.findAllMissions();
+                    protected Void doInBackground()  {
+                        try {
+                            manager.updateMission(mission);
+                            missions = manager.findAllMissions();
+                        } catch (ServiceFailureException e) {
+                            log.error("Database error", e);
+                            Gui.alert(Gui.getStrings().getString("gui.alert.database_error"));
+                        } catch (IllegalArgumentException e) {
+                            log.error("", e);
+                            Gui.alert(Gui.getStrings().getString("gui.alert.unspecified_error"));
+                        }
                         return null;
                     }
 
@@ -192,9 +221,17 @@ public class MissionTableModel extends AbstractTableModel {
         if (mission != null) {
             SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
                 @Override
-                protected Void doInBackground() throws Exception {
-                    manager.createMission(mission);
-                    missions = manager.findAllMissions();
+                protected Void doInBackground()  {
+                    try {
+                        manager.createMission(mission);
+                        missions = manager.findAllMissions();
+                    } catch (ServiceFailureException e) {
+                        log.error("Database error", e);
+                        Gui.alert(Gui.getStrings().getString("gui.alert.database_error"));
+                    } catch (IllegalArgumentException e) {
+                        log.error("", e);
+                        Gui.alert(Gui.getStrings().getString("gui.alert.unspecified_error"));
+                    }
                     return null;
                 }
 
@@ -216,9 +253,17 @@ public class MissionTableModel extends AbstractTableModel {
         Mission mission = getMission(row);
         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
             @Override
-            protected Void doInBackground() throws Exception {
-                manager.deleteMission(mission);
-                missions = manager.findAllMissions();
+            protected Void doInBackground()  {
+                try {
+                    manager.deleteMission(mission);
+                    missions = manager.findAllMissions();
+                } catch (ServiceFailureException e) {
+                    log.error("Database error", e);
+                    Gui.alert(Gui.getStrings().getString("gui.alert.database_error"));
+                } catch (IllegalArgumentException e) {
+                    log.error("", e);
+                    Gui.alert(Gui.getStrings().getString("gui.alert.unspecified_error"));
+                }
                 return null;
             }
 
@@ -238,8 +283,13 @@ public class MissionTableModel extends AbstractTableModel {
     public void sortById() {
         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
             @Override
-            protected Void doInBackground() throws Exception {
-                missions = manager.sortById();
+            protected Void doInBackground()  {
+                try {
+                    missions = manager.sortById();
+                } catch (ServiceFailureException e) {
+                    log.error("Database error", e);
+                    Gui.alert(Gui.getStrings().getString("gui.alert.database_error"));
+                }
                 return null;
             }
 
@@ -255,8 +305,13 @@ public class MissionTableModel extends AbstractTableModel {
     public void sortByGoal() {
         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
             @Override
-            protected Void doInBackground() throws Exception {
-                missions = manager.sortByGoal();
+            protected Void doInBackground()  {
+                try {
+                    missions = manager.sortByGoal();
+                } catch (ServiceFailureException e) {
+                    log.error("Database error", e);
+                    Gui.alert(Gui.getStrings().getString("gui.alert.database_error"));
+                }
                 return null;
             }
 
@@ -272,8 +327,13 @@ public class MissionTableModel extends AbstractTableModel {
     public void sortByRequiredAgents() {
         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
             @Override
-            protected Void doInBackground() throws Exception {
-                missions = manager.sortByRequiredAgents();
+            protected Void doInBackground()  {
+                try {
+                    missions = manager.sortByRequiredAgents();
+                } catch (ServiceFailureException e) {
+                    log.error("Database error", e);
+                    Gui.alert(Gui.getStrings().getString("gui.alert.database_error"));
+                }
                 return null;
             }
 
@@ -289,8 +349,13 @@ public class MissionTableModel extends AbstractTableModel {
     public void sortByCompleted() {
         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
             @Override
-            protected Void doInBackground() throws Exception {
-                missions = manager.sortByCompleted();
+            protected Void doInBackground()  {
+                try {
+                    missions = manager.sortByCompleted();
+                } catch (ServiceFailureException e) {
+                    log.error("Database error", e);
+                    Gui.alert(Gui.getStrings().getString("gui.alert.database_error"));
+                }
                 return null;
             }
 
@@ -313,15 +378,15 @@ public class MissionTableModel extends AbstractTableModel {
      */
     private boolean verifyGoal(String goal) {
         if (goal == null) {
-            //throw new IllegalArgumentException("Mission goal cannot be null!");
+            Gui.alert(Gui.getStrings().getString("gui.alert.missions.goal.null"));
             return false;
         }
         if (goal.equals("")) {
-            //throw new IllegalArgumentException("Mission goal cannot be empty!");
+            Gui.alert(Gui.getStrings().getString("gui.alert.missions.goal.empty"));
             return false;
         }
         if (goal.length() > Constants.MISSION_GOAL_MAX_LENGTH) {
-            //throw new IllegalArgumentException("Mission goal is too lengthy!");
+            Gui.alert(Gui.getStrings().getString("gui.alert.missions.goal.long"));
             return false;
         }
 
@@ -331,7 +396,7 @@ public class MissionTableModel extends AbstractTableModel {
     // TODO: Don't allow to go below the number of current assignments
     private boolean verifyRequiredAgents(int requiredAgents) {
         if (requiredAgents <= 0) {
-            //throw new IllegalArgumentException("There must be at least one agent for each mission!");
+            Gui.alert(Gui.getStrings().getString("gui.alert.missions.required_agents"));
             return false;
         }
         return true;
