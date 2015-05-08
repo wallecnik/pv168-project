@@ -74,6 +74,9 @@ public class AgentTableModel extends AbstractTableModel {
      */
     @Override
     public int getRowCount() {
+        if (agents == null) {
+            return 0;
+        }
         return agents.size();
     }
 

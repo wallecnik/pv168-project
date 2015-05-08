@@ -46,6 +46,9 @@ public class MissionTableModel extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
+        if (missions == null) {
+            return 0;
+        }
         return missions.size();
     }
 

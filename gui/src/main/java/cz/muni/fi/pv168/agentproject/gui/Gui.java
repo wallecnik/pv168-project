@@ -23,8 +23,6 @@ public class Gui {
 
     private static final Logger log = LoggerFactory.getLogger(Gui.class);
 
-    // TODO: Add menu
-
     private static JFrame parent;
     private static ResourceBundle strings = ResourceBundle.getBundle("strings/strings");
 
@@ -55,6 +53,7 @@ public class Gui {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle(getStrings().getString("gui.main.title"));
         frame.setPreferredSize(new Dimension(1024, 768));
+        frame.setJMenuBar(createMenu());
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -223,13 +222,13 @@ public class Gui {
      */
     private static JMenuBar createMenu() {
         JMenuBar menubar = new JMenuBar();
-        JMenu fileMenu = new JMenu("File");
-        final JMenu helpMenu = new JMenu("Help");
+        JMenu fileMenu = new JMenu(strings.getString("alert.file"));
+        final JMenu aboutMenu = new JMenu(strings.getString("alert.about"));
 
         menubar.add(fileMenu);
-        menubar.add(helpMenu);
+        menubar.add(aboutMenu);
 
-        JMenuItem exitMenuItem = new JMenuItem("Exit");
+        JMenuItem exitMenuItem = new JMenuItem(strings.getString("alert.exit"));
         exitMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -238,15 +237,17 @@ public class Gui {
         });
         fileMenu.add(exitMenuItem);
 
-        JMenuItem aboutMenuItem = new JMenuItem("About");
+        JMenuItem aboutMenuItem = new JMenuItem(strings.getString("alert.about"));
         aboutMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(helpMenu, "Skvělá aplikace (c) Já", "About", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(parent, strings.getString("alert.created.by"),
+                        "About", JOptionPane.INFORMATION_MESSAGE);
             }
         });
-        helpMenu.add(aboutMenuItem);
+        aboutMenu.add(aboutMenuItem);
 
+        log.debug("Menu created.");
         return menubar;
     }
 
@@ -257,7 +258,7 @@ public class Gui {
      */
     public static void alert(String message) {
         log.warn("input error: " + message);
-        JOptionPane.showMessageDialog(parent, message, "Input error", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(parent, message, strings.getString("gui.alert"), JOptionPane.WARNING_MESSAGE);
     }
 
     /**

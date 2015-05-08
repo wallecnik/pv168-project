@@ -2,6 +2,8 @@ package cz.muni.fi.pv168.agentproject.gui;
 
 import cz.muni.fi.pv168.agentproject.db.Constants;
 import cz.muni.fi.pv168.agentproject.db.Mission;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,6 +28,7 @@ public class AddMission {
     private JButton         cancelMissionButton;
 
     private Mission         mission = null;
+    private static final Logger log = LoggerFactory.getLogger(AddMission.class);
 
     public AddMission(JFrame parent) {
         this.parent = parent;
@@ -54,6 +57,7 @@ public class AddMission {
         });
 
         displayDialog();
+        log.debug("AddMission performed");
     }
 
     /**
@@ -69,6 +73,7 @@ public class AddMission {
         dialog.pack();
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
+        log.debug("AddMission dialog window displayed");
     }
 
     /**
@@ -79,28 +84,34 @@ public class AddMission {
     private boolean verifyAndAlert(ButtonGroup completedButton) {
         if (goalField.getText() == null) {
             alert(Gui.getStrings().getString("gui.alert.missions.goal.null"));
+            log.debug("Inserted null mission goal.");
             return false;
         }
         if (goalField.getText().equals("")) {
             alert(Gui.getStrings().getString("gui.alert.missions.goal.empty"));
+            log.debug("Inserted empty mission goal.");
             return false;
         }
         if (goalField.getText().length() > Constants.MISSION_GOAL_MAX_LENGTH) {
             alert(Gui.getStrings().getString("gui.alert.missions.goal.long"));
+            log.debug("Inserted too long mission goal.");
             return false;
         }
         if ((int) requiredAgentsField.getValue() <= 0) {
             alert(Gui.getStrings().getString("gui.alert.missions.required_agents"));
+            log.debug("Inserted negative number of mission's required agents.");
             return false;
         }
 
         Enumeration<AbstractButton> radioButtons = completedButton.getElements();
         while (radioButtons.hasMoreElements()) {
             if(radioButtons.nextElement().isSelected()) {
+                log.debug("Inserted correct mission data.");
                 return true;
             }
         }
         alert(Gui.getStrings().getString("gui.alert.missions.completed"));
+        log.debug("Didn't specify mission true/false.");
         return false;
     }
 

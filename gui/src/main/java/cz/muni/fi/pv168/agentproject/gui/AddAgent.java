@@ -2,14 +2,14 @@ package cz.muni.fi.pv168.agentproject.gui;
 
 import cz.muni.fi.pv168.agentproject.db.Agent;
 import cz.muni.fi.pv168.agentproject.db.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.DateTimeException;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.util.regex.Pattern;
 
 /**
@@ -21,8 +21,6 @@ import java.util.regex.Pattern;
  * @version 1.0-SNAPSHOT
  */
 public class AddAgent {
-    //TODO: add logging
-    // TODO: Instant formatting
 
     private JDialog dialog;
     private JFrame parent;
@@ -30,12 +28,14 @@ public class AddAgent {
     private Agent agent = null;
 
     private JTextField nameText;
-    private JSpinner dayText;
-    private JSpinner monthText;
-    private JSpinner yearText;
+    private JComboBox dayText;
+    private JComboBox monthText;
+    private JComboBox yearText;
     private JButton addAgentButton;
     private JPanel addAgentMain;
     private JButton cancelAgentButton;
+
+    private static final Logger log = LoggerFactory.getLogger(AddAgent.class);
 
     /**
      * Constructor for objects of this class. Sets the layout and basic listeners
@@ -49,13 +49,15 @@ public class AddAgent {
     public AddAgent(JFrame parent) {
         this.parent = parent;
 
+        populateComboBoxes(dayText, monthText, yearText);
+
         addAgentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
                 if (verifyAndAlert()) {
                     ZonedDateTime zonedDateTime = null;
                     try {
-                        ZonedDateTime.of((Integer) yearText.getValue(), (Integer) monthText.getValue(), (Integer) dayText.getValue(), 0, 0, 0, 0, ZoneId.of("CET"));
+                        zonedDateTime = ZonedDateTime.of((Integer) yearText.getSelectedItem(), (Integer) monthText.getSelectedItem(), (Integer) dayText.getSelectedItem(), 0, 0, 0, 0, ZoneId.of("CET"));
                         agent = new Agent(null, nameText.getText(), zonedDateTime.toInstant());
                         dialog.dispose();
                     } catch (DateTimeException e) {
@@ -72,6 +74,7 @@ public class AddAgent {
         });
 
         displayDialog();
+        log.debug("AddAgent performed.");
     }
 
     /**
@@ -85,7 +88,9 @@ public class AddAgent {
         dialog.setTitle(Gui.getStrings().getString("gui.form.agents.main.title"));
         dialog.setPreferredSize(new Dimension(300, 300));
         dialog.pack();
+        dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
+        log.debug("AddMission dialog window displayed");
     }
 
     /**
@@ -94,37 +99,45 @@ public class AddAgent {
     private boolean verifyAndAlert() {
         if (nameText.getText() == null) {
             alert(Gui.getStrings().getString("gui.alert.agents.name.null"));
+            log.debug("Inserted null agent name.");
             return false;
         }
         if (nameText.getText().equals("")) {
             alert(Gui.getStrings().getString("gui.alert.agents.name.empty"));
+            log.debug("Inserted empty agent name.");
             return false;
         }
         if (nameText.getText().length() > Constants.AGENT_NAME_MAX_LENGTH) {
             alert(Gui.getStrings().getString("gui.alert.agents.name.long"));
+            log.debug("Inserted too long agent name.");
             return false;
         }
         if (!Pattern.matches(Constants.AGENT_NAME_REGEX, nameText.getText())) {
             alert(Gui.getStrings().getString("gui.alert.agents.name.illegal"));
+            log.debug("Inserted invalid agent name.");
             return false;
         }
-        if((Integer)dayText.getValue() <= 0 || (Integer)dayText.getValue() > 31 || (Integer)monthText.getValue() <= 0 || (Integer)monthText.getValue() > 12) {
+        if((Integer)dayText.getSelectedItem() <= 0 || (Integer)dayText.getSelectedItem() > 31 || (Integer)monthText.getSelectedItem() <= 0 || (Integer)monthText.getSelectedItem() > 12) {
             alert(Gui.getStrings().getString("gui.alert.agents.date.not_possible"));
+            log.debug("Inserted invalid agent date.");
             return false;
         }
         ZonedDateTime born = null;
         try {
-            born = ZonedDateTime.of((Integer) yearText.getValue(), (Integer) monthText.getValue(), (Integer) dayText.getValue(), 0, 0, 0, 0, ZoneId.systemDefault());
+            born = ZonedDateTime.of((Integer) yearText.getSelectedItem(), (Integer) monthText.getSelectedItem(), (Integer) dayText.getSelectedItem(), 0, 0, 0, 0, ZoneId.systemDefault());
         } catch (DateTimeException e) {
             alert(Gui.getStrings().getString("gui.alert.agents.date.not_possible"));
+            log.debug("Inserted invalid agent date.");
             return false;
         }
         if (born.compareTo(ZonedDateTime.now()) > 0) {
             alert(Gui.getStrings().getString("gui.alert.agents.date.not_born_yet"));
+            log.debug("Inserted agent that has not been born yet.");
             return false;
         }
         if (born.plusYears(100).compareTo(ZonedDateTime.now()) < 0) {
             alert(Gui.getStrings().getString("gui.alert.agents.date.too_old"));
+            log.debug("Inserted too old agent.");
             return false;
         }
         return true;
@@ -144,5 +157,24 @@ public class AddAgent {
      */
     public Agent getAgent() {
         return agent;
+    }
+
+    private void populateComboBoxes(JComboBox dayText, JComboBox monthText, JComboBox yearText) {
+        for (int day = 1; day <= 31; day++) {
+            dayText.addItem(day);
+        }
+
+        for (int month = 1; month <= 12; month++) {
+            monthText.addItem(month);
+        }
+
+        Instant dateNow = Instant.now();
+        LocalDateTime ldt = LocalDateTime.ofInstant(dateNow, ZoneId.systemDefault());
+        int yearNow = ldt.getYear();
+
+        for (int year = yearNow - 100; year <= yearNow; year++) {
+            yearText.addItem(year);
+        }
+        log.debug("Agent date comboboxes populated.");
     }
 }

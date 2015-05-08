@@ -821,3 +821,385 @@ java.lang.IllegalArgumentException: Error. Probable cause: Attempting to insert 
 2015-05-07 11:50:01 DEBUG AssignmentManagerImpl:248 - looking up all assignments
 2015-05-07 11:50:05 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=2, goal='Make IS rule the world', completed=false}
 2015-05-07 11:50:05 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-08 17:48:27 INFO  Main:37 - Application starts
+2015-05-08 17:48:27 INFO  Main:39 - Opening database connection
+2015-05-08 17:48:28 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 17:48:28 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 17:48:28 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 17:48:28 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 17:48:28 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 17:48:28 DEBUG Gui:217 - components set
+2015-05-08 17:48:28 DEBUG Gui:181 - listeners initialized
+2015-05-08 17:49:16 INFO  Main:37 - Application starts
+2015-05-08 17:49:16 INFO  Main:39 - Opening database connection
+2015-05-08 17:49:16 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 17:49:16 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 17:49:16 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 17:49:16 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 17:49:16 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 17:49:16 DEBUG Gui:217 - components set
+2015-05-08 17:49:16 DEBUG Gui:181 - listeners initialized
+2015-05-08 17:49:35 INFO  Main:37 - Application starts
+2015-05-08 17:49:35 INFO  Main:39 - Opening database connection
+2015-05-08 17:49:35 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 17:49:35 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 17:49:35 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 17:49:35 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 17:49:35 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 17:49:35 DEBUG Gui:217 - components set
+2015-05-08 17:49:35 DEBUG Gui:181 - listeners initialized
+2015-05-08 17:49:36 DEBUG Gui:61 - Main window displayed
+2015-05-08 17:49:51 DEBUG AgentManagerImpl:54 - creating agent Agent{name='Buldozer', born=1985-10-19T23:00:00Z}
+2015-05-08 17:49:52 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 17:50:01 DEBUG AgentManagerImpl:151 - updating agent Agent{name='Kapr', born=1985-10-19T23:00:00Z}
+2015-05-08 17:50:01 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 17:50:07 DEBUG AgentManagerImpl:151 - updating agent Agent{name='Buldozer', born=1985-10-19T23:00:00Z}
+2015-05-08 17:50:07 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 17:50:16 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 17:50:44 DEBUG MissionManagerImpl:41 - creating mission Mission{id=null, requiredAgents=30, goal='Vypustit mouchu', completed=false}
+2015-05-08 17:50:44 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 17:50:51 DEBUG MissionManagerImpl:87 - updating mission Mission{id=3, requiredAgents=40, goal='Vypustit mouchu', completed=false}
+2015-05-08 17:50:51 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 17:50:52 DEBUG MissionManagerImpl:87 - updating mission Mission{id=3, requiredAgents=40, goal='Vypustit mouchu', completed=true}
+2015-05-08 17:50:52 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 17:50:58 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=3, requiredAgents=40, goal='Vypustit mouchu', completed=true}
+2015-05-08 17:50:58 DEBUG MissionManagerImpl:171 - looking up mission with id 3
+2015-05-08 17:51:01 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=2, requiredAgents=2, goal='Eat an egg', completed=false}
+2015-05-08 17:51:01 DEBUG MissionManagerImpl:171 - looking up mission with id 2
+2015-05-08 17:51:02 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Mirek Dušín', born=1950-06-02T23:00:00Z}
+2015-05-08 17:51:02 DEBUG AgentManagerImpl:99 - looking up agent with id 1
+2015-05-08 17:51:04 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=1, requiredAgents=3, goal='Destroy a blueberry', completed=true}
+2015-05-08 17:51:04 DEBUG MissionManagerImpl:171 - looking up mission with id 1
+2015-05-08 17:51:06 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Mirek Dušín', born=1950-06-02T23:00:00Z}
+2015-05-08 17:51:06 DEBUG AgentManagerImpl:99 - looking up agent with id 1
+2015-05-08 17:51:07 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Buldozer', born=1985-10-19T23:00:00Z}
+2015-05-08 17:51:07 DEBUG AgentManagerImpl:99 - looking up agent with id 2
+2015-05-08 17:51:09 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Mirek Dušín', born=1950-06-02T23:00:00Z}
+2015-05-08 17:51:09 DEBUG AgentManagerImpl:99 - looking up agent with id 1
+2015-05-08 17:51:12 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=3, requiredAgents=40, goal='Vypustit mouchu', completed=true}
+2015-05-08 17:51:12 DEBUG MissionManagerImpl:171 - looking up mission with id 3
+2015-05-08 17:51:15 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Buldozer', born=1985-10-19T23:00:00Z}, mission=Mission{id=3, requiredAgents=40, goal='Vypustit mouchu', completed=true}, startTime=2015-05-08T15:51:15.084Z}
+2015-05-08 17:51:15 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 17:51:17 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=3, requiredAgents=40, goal='Vypustit mouchu', completed=true}
+2015-05-08 17:51:17 DEBUG MissionManagerImpl:171 - looking up mission with id 3
+2015-05-08 17:51:18 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=2, requiredAgents=2, goal='Eat an egg', completed=false}
+2015-05-08 17:51:18 DEBUG MissionManagerImpl:171 - looking up mission with id 2
+2015-05-08 17:51:22 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Buldozer', born=1985-10-19T23:00:00Z}
+2015-05-08 17:51:22 DEBUG AgentManagerImpl:99 - looking up agent with id 2
+2015-05-08 17:51:23 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Buldozer', born=1985-10-19T23:00:00Z}
+2015-05-08 17:51:23 DEBUG AgentManagerImpl:99 - looking up agent with id 2
+2015-05-08 17:51:23 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=3, requiredAgents=40, goal='Vypustit mouchu', completed=true}
+2015-05-08 17:51:23 DEBUG MissionManagerImpl:171 - looking up mission with id 3
+2015-05-08 17:51:23 DEBUG AssignmentManagerImpl:209 - deleting assignment Assignment{agent=Agent{name='Buldozer', born=1985-10-19T23:00:00Z}, mission=Mission{id=3, requiredAgents=40, goal='Vypustit mouchu', completed=true}, startTime=2015-05-08T15:51:15.084Z}
+2015-05-08 17:51:23 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 17:51:25 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=2, requiredAgents=2, goal='Eat an egg', completed=false}
+2015-05-08 17:51:25 DEBUG MissionManagerImpl:171 - looking up mission with id 2
+2015-05-08 17:51:26 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=3, requiredAgents=40, goal='Vypustit mouchu', completed=true}
+2015-05-08 17:51:26 DEBUG MissionManagerImpl:171 - looking up mission with id 3
+2015-05-08 17:51:27 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Buldozer', born=1985-10-19T23:00:00Z}, mission=Mission{id=3, requiredAgents=40, goal='Vypustit mouchu', completed=true}, startTime=2015-05-08T15:51:27.714Z}
+2015-05-08 17:51:27 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 17:56:51 INFO  Main:37 - Application starts
+2015-05-08 17:56:51 INFO  Main:39 - Opening database connection
+2015-05-08 17:56:51 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 17:56:51 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 17:56:51 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 17:56:51 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 17:56:51 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 17:56:51 DEBUG Gui:218 - components set
+2015-05-08 17:56:51 DEBUG Gui:182 - listeners initialized
+2015-05-08 17:56:51 DEBUG Gui:62 - Main window displayed
+2015-05-08 17:58:57 INFO  Main:37 - Application starts
+2015-05-08 17:58:57 INFO  Main:39 - Opening database connection
+2015-05-08 17:58:57 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 17:58:57 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 17:58:58 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 17:58:58 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 17:58:58 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 17:58:58 DEBUG Gui:218 - components set
+2015-05-08 17:58:58 DEBUG Gui:182 - listeners initialized
+2015-05-08 17:58:58 DEBUG Gui:62 - Main window displayed
+2015-05-08 18:00:40 INFO  Main:37 - Application starts
+2015-05-08 18:00:40 INFO  Main:39 - Opening database connection
+2015-05-08 18:00:41 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 18:00:41 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 18:00:41 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 18:00:41 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 18:00:41 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 18:00:41 DEBUG Gui:218 - components set
+2015-05-08 18:00:41 DEBUG Gui:182 - listeners initialized
+2015-05-08 18:00:41 DEBUG Gui:62 - Main window displayed
+2015-05-08 18:01:25 INFO  Main:37 - Application starts
+2015-05-08 18:01:25 INFO  Main:39 - Opening database connection
+2015-05-08 18:01:25 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 18:01:25 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 18:01:25 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 18:01:25 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 18:01:25 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 18:01:25 DEBUG Gui:218 - components set
+2015-05-08 18:01:25 DEBUG Gui:182 - listeners initialized
+2015-05-08 18:01:26 DEBUG Gui:62 - Main window displayed
+2015-05-08 18:02:15 INFO  Main:37 - Application starts
+2015-05-08 18:02:15 INFO  Main:39 - Opening database connection
+2015-05-08 18:02:16 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 18:02:16 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 18:02:16 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 18:02:16 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 18:02:16 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 18:02:16 DEBUG Gui:218 - components set
+2015-05-08 18:02:16 DEBUG Gui:182 - listeners initialized
+2015-05-08 18:02:16 DEBUG Gui:62 - Main window displayed
+2015-05-08 18:04:31 INFO  Main:37 - Application starts
+2015-05-08 18:04:31 INFO  Main:39 - Opening database connection
+2015-05-08 18:04:32 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 18:04:32 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 18:04:32 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 18:04:32 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 18:04:32 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 18:04:32 DEBUG Gui:218 - components set
+2015-05-08 18:04:32 DEBUG Gui:182 - listeners initialized
+2015-05-08 18:04:32 DEBUG Gui:62 - Main window displayed
+2015-05-08 18:05:06 INFO  Main:37 - Application starts
+2015-05-08 18:05:06 INFO  Main:39 - Opening database connection
+2015-05-08 18:05:06 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 18:05:06 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 18:05:06 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 18:05:06 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 18:05:06 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 18:05:06 DEBUG Gui:218 - components set
+2015-05-08 18:05:06 DEBUG Gui:182 - listeners initialized
+2015-05-08 18:05:07 DEBUG Gui:62 - Main window displayed
+2015-05-08 18:11:41 INFO  Main:37 - Application starts
+2015-05-08 18:11:41 INFO  Main:39 - Opening database connection
+2015-05-08 18:11:41 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 18:11:41 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 18:11:41 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 18:11:41 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 18:11:41 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 18:11:41 DEBUG Gui:218 - components set
+2015-05-08 18:11:41 DEBUG Gui:182 - listeners initialized
+2015-05-08 18:11:41 DEBUG Gui:62 - Main window displayed
+2015-05-08 18:35:49 INFO  Main:37 - Application starts
+2015-05-08 18:35:49 INFO  Main:39 - Opening database connection
+2015-05-08 18:35:49 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 18:35:49 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 18:35:49 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 18:35:49 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 18:35:49 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 18:35:49 DEBUG Gui:218 - components set
+2015-05-08 18:35:49 DEBUG Gui:182 - listeners initialized
+2015-05-08 18:35:49 DEBUG Gui:62 - Main window displayed
+2015-05-08 18:37:03 INFO  Main:37 - Application starts
+2015-05-08 18:37:03 INFO  Main:39 - Opening database connection
+2015-05-08 18:37:03 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 18:37:03 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 18:37:03 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 18:37:03 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 18:37:03 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 18:37:03 DEBUG Gui:218 - components set
+2015-05-08 18:37:03 DEBUG Gui:182 - listeners initialized
+2015-05-08 18:37:03 DEBUG Gui:62 - Main window displayed
+2015-05-08 18:38:54 DEBUG AgentManagerImpl:54 - creating agent Agent{name='Dužinka', born=1985-08-06T22:00:00Z}
+2015-05-08 18:38:54 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 18:43:27 INFO  Main:37 - Application starts
+2015-05-08 18:43:27 INFO  Main:39 - Opening database connection
+2015-05-08 18:43:27 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 18:43:27 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 18:43:27 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 18:43:27 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 18:43:27 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 18:43:27 DEBUG Gui:218 - components set
+2015-05-08 18:43:27 DEBUG Gui:182 - listeners initialized
+2015-05-08 18:43:27 DEBUG Gui:62 - Main window displayed
+2015-05-08 18:44:17 DEBUG AgentManagerImpl:54 - creating agent Agent{name='Pugo', born=1918-03-29T23:00:00Z}
+2015-05-08 18:44:18 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 18:44:28 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Pugo', born=1918-03-29T23:00:00Z}
+2015-05-08 18:44:28 DEBUG AgentManagerImpl:99 - looking up agent with id 4
+2015-05-08 18:52:17 INFO  Main:37 - Application starts
+2015-05-08 18:52:17 INFO  Main:39 - Opening database connection
+2015-05-08 18:52:17 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 18:52:17 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 18:52:17 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 18:52:17 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 18:52:17 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 18:52:17 DEBUG Gui:218 - components set
+2015-05-08 18:52:17 DEBUG Gui:182 - listeners initialized
+2015-05-08 18:52:17 DEBUG Gui:62 - Main window displayed
+2015-05-08 19:07:27 INFO  Main:37 - Application starts
+2015-05-08 19:07:27 INFO  Main:39 - Opening database connection
+2015-05-08 19:07:28 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 19:07:28 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 19:07:28 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 19:07:28 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 19:07:28 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 19:07:28 DEBUG Gui:218 - components set
+2015-05-08 19:07:28 DEBUG Gui:182 - listeners initialized
+2015-05-08 19:07:28 DEBUG Gui:62 - Main window displayed
+2015-05-08 19:07:43 DEBUG AgentManagerImpl:54 - creating agent Agent{name='Dužítko', born=1973-12-19T23:00:00Z}
+2015-05-08 19:07:43 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 19:07:56 DEBUG MissionManagerImpl:41 - creating mission Mission{id=null, requiredAgents=50, goal='Kružítko', completed=true}
+2015-05-08 19:07:56 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 19:07:59 DEBUG AssignmentManagerImpl:59 - creating assignment Assignment{agent=Agent{name='Dužítko', born=1973-12-19T23:00:00Z}, mission=Mission{id=4, requiredAgents=50, goal='Kružítko', completed=true}, startTime=2015-05-08T17:07:59.232Z}
+2015-05-08 19:07:59 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 19:08:01 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Dužítko', born=1973-12-19T23:00:00Z}
+2015-05-08 19:08:01 DEBUG AgentManagerImpl:99 - looking up agent with id 5
+2015-05-08 19:08:01 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=3, requiredAgents=40, goal='Vypustit mouchu', completed=true}
+2015-05-08 19:08:01 DEBUG MissionManagerImpl:171 - looking up mission with id 3
+2015-05-08 19:08:01 WARN  Gui:261 - input error: Agent nebyl k této misi přiřazen
+2015-05-08 19:08:06 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=3, requiredAgents=40, goal='Vypustit mouchu', completed=true}
+2015-05-08 19:08:06 DEBUG MissionManagerImpl:171 - looking up mission with id 3
+2015-05-08 19:08:09 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=4, requiredAgents=50, goal='Kružítko', completed=true}
+2015-05-08 19:08:09 DEBUG MissionManagerImpl:171 - looking up mission with id 4
+2015-05-08 19:38:51 INFO  Main:37 - Application starts
+2015-05-08 19:38:51 INFO  Main:39 - Opening database connection
+2015-05-08 19:38:51 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 19:38:51 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 19:38:51 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 19:38:51 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 19:38:51 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 19:38:51 DEBUG Gui:218 - components set
+2015-05-08 19:38:51 DEBUG Gui:182 - listeners initialized
+2015-05-08 19:38:51 DEBUG Gui:62 - Main window displayed
+2015-05-08 19:39:25 INFO  Main:37 - Application starts
+2015-05-08 19:39:25 INFO  Main:39 - Opening database connection
+2015-05-08 19:39:26 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 19:39:26 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 19:39:26 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 19:39:26 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 19:39:26 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 19:39:26 DEBUG Gui:218 - components set
+2015-05-08 19:39:26 DEBUG Gui:182 - listeners initialized
+2015-05-08 19:39:26 DEBUG Gui:62 - Main window displayed
+2015-05-08 19:40:06 INFO  Main:37 - Application starts
+2015-05-08 19:40:06 INFO  Main:39 - Opening database connection
+2015-05-08 19:40:06 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 19:40:06 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 19:40:06 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 19:40:06 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 19:40:06 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 19:40:06 DEBUG Gui:218 - components set
+2015-05-08 19:40:06 DEBUG Gui:182 - listeners initialized
+2015-05-08 19:40:06 DEBUG Gui:62 - Main window displayed
+2015-05-08 19:40:49 INFO  Main:37 - Application starts
+2015-05-08 19:40:49 INFO  Main:39 - Opening database connection
+2015-05-08 19:40:50 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 19:40:50 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 19:40:50 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 19:40:50 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 19:40:50 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 19:40:50 DEBUG Gui:218 - components set
+2015-05-08 19:40:50 DEBUG Gui:182 - listeners initialized
+2015-05-08 19:40:50 DEBUG Gui:62 - Main window displayed
+2015-05-08 19:41:09 INFO  Main:37 - Application starts
+2015-05-08 19:41:09 INFO  Main:39 - Opening database connection
+2015-05-08 19:41:10 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 19:41:10 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 19:41:10 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 19:41:10 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 19:41:10 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 19:41:10 DEBUG Gui:218 - components set
+2015-05-08 19:41:10 DEBUG Gui:182 - listeners initialized
+2015-05-08 19:41:10 DEBUG Gui:62 - Main window displayed
+2015-05-08 19:41:34 INFO  Main:37 - Application starts
+2015-05-08 19:41:34 INFO  Main:39 - Opening database connection
+2015-05-08 19:41:34 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 19:41:34 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 19:41:34 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 19:41:34 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 19:41:34 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 19:41:34 DEBUG Gui:218 - components set
+2015-05-08 19:41:34 DEBUG Gui:182 - listeners initialized
+2015-05-08 19:41:35 DEBUG Gui:62 - Main window displayed
+2015-05-08 19:41:46 INFO  Main:37 - Application starts
+2015-05-08 19:41:46 INFO  Main:39 - Opening database connection
+2015-05-08 19:41:46 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 19:41:46 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 19:41:46 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 19:41:46 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 19:41:46 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 19:41:46 DEBUG Gui:218 - components set
+2015-05-08 19:41:46 DEBUG Gui:182 - listeners initialized
+2015-05-08 19:41:47 DEBUG Gui:62 - Main window displayed
+2015-05-08 19:42:06 INFO  Main:37 - Application starts
+2015-05-08 19:42:06 INFO  Main:39 - Opening database connection
+2015-05-08 19:42:06 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 19:42:06 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 19:42:06 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 19:42:06 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 19:42:06 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 19:42:06 DEBUG Gui:218 - components set
+2015-05-08 19:42:06 DEBUG Gui:182 - listeners initialized
+2015-05-08 19:42:07 DEBUG Gui:62 - Main window displayed
+2015-05-08 19:42:21 INFO  Main:37 - Application starts
+2015-05-08 19:42:21 INFO  Main:39 - Opening database connection
+2015-05-08 19:42:22 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 19:42:22 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 19:42:22 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 19:42:22 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 19:42:22 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 19:42:22 DEBUG Gui:218 - components set
+2015-05-08 19:42:22 DEBUG Gui:182 - listeners initialized
+2015-05-08 19:42:22 DEBUG Gui:62 - Main window displayed
+2015-05-08 19:42:57 INFO  Main:37 - Application starts
+2015-05-08 19:42:57 INFO  Main:39 - Opening database connection
+2015-05-08 19:42:57 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 19:42:57 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 19:42:57 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 19:42:57 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 19:42:57 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 19:42:57 DEBUG Gui:218 - components set
+2015-05-08 19:42:57 DEBUG Gui:182 - listeners initialized
+2015-05-08 19:42:57 DEBUG Gui:62 - Main window displayed
+2015-05-08 19:49:06 INFO  Main:37 - Application starts
+2015-05-08 19:49:06 INFO  Main:39 - Opening database connection
+2015-05-08 19:49:06 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 19:49:06 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 19:49:06 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 19:49:06 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 19:49:06 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 19:49:06 DEBUG Gui:218 - components set
+2015-05-08 19:49:06 DEBUG Gui:182 - listeners initialized
+2015-05-08 19:49:07 DEBUG Gui:62 - Main window displayed
+2015-05-08 21:05:09 INFO  Main:37 - Application starts
+2015-05-08 21:05:09 INFO  Main:39 - Opening database connection
+2015-05-08 21:05:09 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 21:05:09 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 21:05:09 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 21:05:09 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 21:05:09 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 21:05:09 DEBUG Gui:216 - components set
+2015-05-08 21:05:09 DEBUG Gui:180 - listeners initialized
+2015-05-08 21:05:09 DEBUG Gui:250 - Menu created.
+2015-05-08 21:05:10 DEBUG Gui:60 - Main window displayed
+2015-05-08 21:05:14 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=4, requiredAgents=50, goal='Kružítko', completed=true}
+2015-05-08 21:05:14 DEBUG MissionManagerImpl:171 - looking up mission with id 4
+2015-05-08 21:05:16 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=2, requiredAgents=2, goal='Eat an egg', completed=false}
+2015-05-08 21:05:16 DEBUG MissionManagerImpl:171 - looking up mission with id 2
+2015-05-08 21:05:18 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Dužinka', born=1985-08-06T22:00:00Z}
+2015-05-08 21:05:18 DEBUG AgentManagerImpl:99 - looking up agent with id 3
+2015-05-08 21:09:23 INFO  Main:37 - Application starts
+2015-05-08 21:09:23 INFO  Main:39 - Opening database connection
+2015-05-08 21:09:24 DEBUG AgentTableModel:42 - creating AgentTableModel
+2015-05-08 21:09:24 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 21:09:24 DEBUG MissionTableModel:23 - creating AgentTableModel
+2015-05-08 21:09:24 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 21:09:24 DEBUG AssignmentManagerImpl:248 - looking up all assignments
+2015-05-08 21:09:24 DEBUG Gui:216 - components set
+2015-05-08 21:09:24 DEBUG Gui:180 - listeners initialized
+2015-05-08 21:09:24 DEBUG Gui:250 - Menu created.
+2015-05-08 21:09:24 DEBUG Gui:60 - Main window displayed
+2015-05-08 21:09:33 DEBUG AddAgent:178 - Agent date comboboxes populated.
+2015-05-08 21:09:49 DEBUG AddAgent:107 - Inserted empty agent name.
+2015-05-08 21:09:49 DEBUG AddAgent:93 - AddMission dialog window displayed
+2015-05-08 21:09:49 DEBUG AddAgent:77 - AddAgent performed.
+2015-05-08 21:09:52 DEBUG AddMission:92 - Inserted empty mission goal.
+2015-05-08 21:09:57 DEBUG AddMission:102 - Inserted negative number of mission's required agents.
+2015-05-08 21:09:59 DEBUG AddMission:76 - AddMission dialog window displayed
+2015-05-08 21:09:59 DEBUG AddMission:60 - AddMission performed
+2015-05-08 21:10:04 DEBUG AgentManagerImpl:191 - deleting agent Agent{name='Pugo', born=1918-03-29T23:00:00Z}
+2015-05-08 21:10:04 DEBUG AgentManagerImpl:230 - looking up all agents
+2015-05-08 21:10:10 DEBUG AssignmentManagerImpl:336 - looking up all assignments for mission Mission{id=2, requiredAgents=2, goal='Eat an egg', completed=false}
+2015-05-08 21:10:10 DEBUG MissionManagerImpl:171 - looking up mission with id 2
+2015-05-08 21:10:13 DEBUG MissionManagerImpl:130 - deleting mission Mission{id=2, requiredAgents=2, goal='Eat an egg', completed=false}
+2015-05-08 21:10:13 DEBUG MissionManagerImpl:219 - looking up all missions
+2015-05-08 21:10:16 DEBUG AssignmentManagerImpl:285 - looking up all assignments for agent Agent{name='Mirek Dušín', born=1950-06-02T23:00:00Z}
+2015-05-08 21:10:16 DEBUG AgentManagerImpl:99 - looking up agent with id 1
