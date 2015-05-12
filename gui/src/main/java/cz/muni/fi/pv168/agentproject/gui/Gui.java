@@ -242,7 +242,7 @@ public class Gui {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(parent, strings.getString("alert.created.by"),
-                        "About", JOptionPane.INFORMATION_MESSAGE);
+                        strings.getString("alert.about"), JOptionPane.INFORMATION_MESSAGE);
             }
         });
         aboutMenu.add(aboutMenuItem);
